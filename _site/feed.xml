@@ -1,0 +1,830 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-07-23T20:48:00-05:00</updated><id>http://localhost:4000/</id><title type="html">David Okun</title><subtitle>Developer Advocate at IBM</subtitle><entry><title type="html">Generating a Client SDK For LoopBack with the Bluemix CLI</title><link href="http://localhost:4000/2017/07/20/generate-client-sdk-loopback-bluemix-cli/" rel="alternate" type="text/html" title="Generating a Client SDK For LoopBack with the Bluemix CLI" /><published>2017-07-20T07:00:00-05:00</published><updated>2017-07-20T07:00:00-05:00</updated><id>http://localhost:4000/2017/07/20/generate-client-sdk-loopback-bluemix-cli</id><content type="html" xml:base="http://localhost:4000/2017/07/20/generate-client-sdk-loopback-bluemix-cli/">&lt;p&gt;&lt;strong&gt;Editor’s Note: This is mirrored from &lt;a href=&quot;https://strongloop.com/strongblog/generate-client-sdk-loopback-bluemix-cli&quot;&gt;strongloop.com&lt;/a&gt; here.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/WztyOGl.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;If you’re reading this post, it’s entirely possible that you’ve been exposed to the goodness that is &lt;a href=&quot;http://loopback.io/&quot;&gt;LoopBack&lt;/a&gt;. If not, I’d recommend checking out &lt;a href=&quot;https://developer.ibm.com/apiconnect/2017/03/09/loopback-in-5-minutes/&quot;&gt;my video showing you how you can create an API with LoopBack in just 5 minutes&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Having a RESTful API ready to go in such a short period of time is quite powerful, and it really reduces the time needed to get your backend up and running. But there’s an important part of your application that LoopBack neglects - your frontend.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;(extremely documentary voice)&lt;/em&gt;&lt;/strong&gt; What if I told you that you could use a command line interface to generate (code generation is kind of a thing around here) a client SDK for any application you create in LoopBack?&lt;/p&gt;
+
+&lt;p&gt;Now that you’ve fallen out of your chair, get back in your seat and let’s get cracking. You’re going to love this &amp;lt;3.&lt;/p&gt;
+
+&lt;p&gt;(P.S. - I would like to thank &lt;a href=&quot;https://twitter.com/Chris__Bailey&quot;&gt;Chris Bailey&lt;/a&gt; for the inspiration for this post - he gave a &lt;a href=&quot;https://news.realm.io/news/altconf-2017-chris-bailey-full-stack-swift-in-30-minutes&quot;&gt;great talk at AltConf about Full Stack Swift&lt;/a&gt; and how you can do this.&lt;/p&gt;
+
+&lt;h3 id=&quot;setup&quot;&gt;Setup&lt;/h3&gt;
+
+&lt;p&gt;You’ll need to have a few things installed first.&lt;/p&gt;
+
+&lt;h4 id=&quot;loopback&quot;&gt;LoopBack&lt;/h4&gt;
+
+&lt;p&gt;Make sure you have Node.js and npm installed on your machine, then go to your command line and type in &lt;code class=&quot;highlighter-rouge&quot;&gt;npm install -g loopback-cli&lt;/code&gt;. This should give you all you need to start generating RESTful APIs for Node.js.&lt;/p&gt;
+
+&lt;h4 id=&quot;bluemix-cli&quot;&gt;Bluemix CLI&lt;/h4&gt;
+
+&lt;p&gt;Go to &lt;a href=&quot;https://console.bluemix.net/docs/cli/index.html#cli&quot;&gt;this&lt;/a&gt; website and install the appropriate CLI for your operating system. You don’t &lt;em&gt;need&lt;/em&gt; an account in Bluemix to use the CLI, but as an IBM employee I am legally mandated to inform you that signing up for a &lt;a href=&quot;https://console.ng.bluemix.net&quot;&gt;Bluemix&lt;/a&gt; account is a very good idea (just kidding about the legal mandate.) If you do, you’ll be able to manage your cloud applications with it, and you can find out more about that &lt;a href=&quot;https://clis.ng.bluemix.net/ui/home.html&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h4 id=&quot;bluemix-sdk-generation-plugin&quot;&gt;&lt;a href=&quot;https://console.bluemix.net/docs/cloudnative/sdk_cli.html#sdk-cli&quot;&gt;Bluemix SDK Generation Plugin&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;You have to have the Bluemix CLI installed first, but once you have it up and running, type &lt;code class=&quot;highlighter-rouge&quot;&gt;bx plugin install sdk-gen -r Bluemix&lt;/code&gt; into your terminal, and let the plugin download and follow the resulting instructions. Your system should now be set up to do what it needs to do to generate a client SDK.&lt;/p&gt;
+
+&lt;h4 id=&quot;an-api-that-follows-the-openapi-spec&quot;&gt;An API That Follows the OpenAPI Spec&lt;/h4&gt;
+
+&lt;p&gt;All generated LoopBack APIs adhere to the &lt;a href=&quot;https://github.com/OAI/OpenAPI-Specification&quot;&gt;OpenAPI Specification&lt;/a&gt;, which, for the purpose of this tutorial, means that you can represent the structure and capabilities of your API in a single .yml file. This also used to be called a “Swagger” file, but to be fair, you should feel pretty awesome being able to rep your API in a single file. For this tutorial, we’ll use &lt;a href=&quot;https://github.com/StrongLoop-Evangelists/loopback-in-five&quot;&gt;this&lt;/a&gt; as an API to work with. You should be able to clone this git repo, and then run &lt;code class=&quot;highlighter-rouge&quot;&gt;npm install&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;If you’ve done all this, you should be ready to go.&lt;/p&gt;
+
+&lt;h3 id=&quot;exporting-your-api-definition&quot;&gt;Exporting your API Definition&lt;/h3&gt;
+
+&lt;p&gt;LoopBack has a super easy way to do this. First, navigate to the root directory of your API, and type in &lt;code class=&quot;highlighter-rouge&quot;&gt;lb export-api-def&lt;/code&gt;. Don’t be alarmed at the amount of text your terminal spits out - all your terminal has done is print out the generated specification file for your API. Since this file can be quite big, you can tell the top of the file by the first few lines if they look like this:&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;swagger&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;2.0'&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;info&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;1.0.0&lt;/span&gt;
+  &lt;span class=&quot;s&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Loopback-in-five&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;basePath&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/api&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;paths&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;If you want to avoid the big copy and paste job, decide on a file name first (Let’s go with AnimalAPIDefinition.yml) and type in &lt;code class=&quot;highlighter-rouge&quot;&gt;lb export-api-def --o AnimalAPIDefinition.yml&lt;/code&gt;. The &lt;code class=&quot;highlighter-rouge&quot;&gt;--o&lt;/code&gt; tag specifies where the output information should go to. For more information on working with Swagger documentation in LoopBack, read my friend &lt;a href=&quot;https://twitter.com/raymondcamden&quot;&gt;Raymond Camden’s&lt;/a&gt; &lt;a href=&quot;https://strongloop.com/strongblog/generating-swagger-openapi-specification-from-your-loopback-application/&quot;&gt;post&lt;/a&gt; on it.&lt;/p&gt;
+
+&lt;h3 id=&quot;generating-the-sdk&quot;&gt;Generating the SDK&lt;/h3&gt;
+
+&lt;p&gt;Ok, brace yourself. Stay in the root directory of your API, and, if you’ve followed the previous steps to a T, type &lt;code class=&quot;highlighter-rouge&quot;&gt;bx sdk generate --js -f ./AnimalAPIDefinition.yml&lt;/code&gt; into your terminal. Let the CLI do its thing, and when you’re done, you should have a .zip file in your directory titled &lt;code class=&quot;highlighter-rouge&quot;&gt;AnimalAPIDefinition.zip&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Before we dive into the contents of that folder, let’s look at the command you just typed, and what some of your options are. The &lt;code class=&quot;highlighter-rouge&quot;&gt;bx sdk generate&lt;/code&gt; command will always be the same regardless of your choices, but you likely noticed the &lt;code class=&quot;highlighter-rouge&quot;&gt;--js&lt;/code&gt; flag right after. This means we will be generating a JavaScript SDK for the API. You aren’t limited to JavaScript though! You can make a Swift (&lt;code class=&quot;highlighter-rouge&quot;&gt;--ios&lt;/code&gt;), Java/Android (&lt;code class=&quot;highlighter-rouge&quot;&gt;--android&lt;/code&gt;), or even a GoLang (&lt;code class=&quot;highlighter-rouge&quot;&gt;--go&lt;/code&gt;) SDK for any API that follows the OpenAPI spec. I love writing web service code, but you know what I like even more than that? Having web service code written for me.&lt;/p&gt;
+
+&lt;p&gt;After that, you notice the &lt;code class=&quot;highlighter-rouge&quot;&gt;-f&lt;/code&gt; flag. This indicates that you are generating an SDK based on a local spec file. You could instead choose to specify an app in your space with the &lt;code class=&quot;highlighter-rouge&quot;&gt;-a&lt;/code&gt; flag. You can also use an API that is hosted somewhere with a URL, locally with &lt;code class=&quot;highlighter-rouge&quot;&gt;-l&lt;/code&gt; or on the internet with &lt;code class=&quot;highlighter-rouge&quot;&gt;-r&lt;/code&gt;. This means if you see an API somewhere in the wild, and you know the URL for it’s OpenAPI Specification document, then congratulations - you got yourself an SDK to connect with it!&lt;/p&gt;
+
+&lt;h3 id=&quot;what-you-made&quot;&gt;What you made&lt;/h3&gt;
+
+&lt;p&gt;The generated output is super clean. Each type of SDK has it’s own way of being implemented, which I’ll leave to you to figure out, but let’s take a look at the contents of the .zip folder.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/SOQa20q.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This basically creates a ready-made npm module for you. Here’s what your package.json file looks like:&lt;/p&gt;
+
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;loopback_in_five&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;version&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;1.0.0&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;description&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;ERROR_UNKNOWN&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;license&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Unlicense&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;main&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;src/animalapidefinition/index.js&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;scripts&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;test&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;./node_modules/mocha/bin/mocha --recursive&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;dependencies&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;superagent&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;3.5.2&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;nconf&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;~0.8.4&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;devDependencies&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;mocha&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;~2.3.4&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;sinon&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;1.17.3&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;expect.js&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;~0.3.1&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;You even have a way to test it, built-in! Feel free to browse the source code, but what you’ll want to check out is the documentation, which is chock full of really useful instructions on how to use your API. Start at the &lt;code class=&quot;highlighter-rouge&quot;&gt;README.md&lt;/code&gt; file for a really nice table of contents, and a GitHub-ready install guide:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/pHKUQh1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Go through all the pages so you can see how to get the most out of your newest SDK. Last, but certainly not least, you want to open up your &lt;code class=&quot;highlighter-rouge&quot;&gt;AnimalAPIDefinitionConfig.json&lt;/code&gt; file, and look at its contents:&lt;/p&gt;
+
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;loopback_in_fiveHost&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://localhost/api&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Scant on details, but this is important. Whenever you make use of your API, you only have to list the host URL for your LoopBack API here, and your SDK will simply work with it. This even works if you are testing on your local machine!&lt;/p&gt;
+
+&lt;h3 id=&quot;what-next&quot;&gt;What Next?&lt;/h3&gt;
+
+&lt;p&gt;Imagine being able to take this command and fit it into your Continuous Delivery  pipeline, and being able to walk up to the frontend devs on your team and say, “Don’t worry, y’all, I got this.” Imagine that, with every build, your team gets an updated SDK deployed into their workspace, and they never have to iterate web service code again. I believe in this world, and now you have the tools you need to make this happen! Make sure to follow me on Twitter &lt;a href=&quot;https://twitter.com/dokun24&quot;&gt;here&lt;/a&gt; to find out more neat tips and tricks.&lt;/p&gt;</content><author><name>David Okun</name></author><summary type="html">Editor’s Note: This is mirrored from strongloop.com here.</summary></entry><entry><title type="html">Using LoopBack with Facebook’s Graph API for User Authentication</title><link href="http://localhost:4000/2017/07/11/loopback-facebook-api-user-authentication/" rel="alternate" type="text/html" title="Using LoopBack with Facebook’s Graph API for User Authentication" /><published>2017-07-11T07:00:00-05:00</published><updated>2017-07-11T07:00:00-05:00</updated><id>http://localhost:4000/2017/07/11/loopback-facebook-api-user-authentication</id><content type="html" xml:base="http://localhost:4000/2017/07/11/loopback-facebook-api-user-authentication/">&lt;p&gt;&lt;strong&gt;Editor’s Note: This is mirrored from &lt;a href=&quot;https://strongloop.com/strongblog/loopback-facebook-api-user-authentication/&quot;&gt;strongloop.com&lt;/a&gt; here.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;When you use LoopBack to set up your API, you can integrate it with &lt;a href=&quot;https://passportjs.org&quot;&gt;Passport&lt;/a&gt; to enable your application for third party logins. But what if that just doesn’t cut it for you? Do you need to roll something custom-made?&lt;/p&gt;
+
+&lt;p&gt;In this post, we’ll show you how you can use the REST connector in LoopBack to connect with the Facebook Graph API, and how you can leverage that connection for user authentication in a server application primarily for mobile clients.&lt;/p&gt;
+
+&lt;p&gt;You may have heard that &lt;a href=&quot;http://tsl.io&quot;&gt;The SilverLogic&lt;/a&gt; have made the decision to use LoopBack as a key component of their new game, &lt;a href=&quot;https://strongloop.com/strongblog/loopback-open-source-xtra-points/&quot;&gt;XtraPoints&lt;/a&gt;. You’ll be using that application as context for this post.&lt;/p&gt;
+
+&lt;h2 id=&quot;setup&quot;&gt;Setup&lt;/h2&gt;
+
+&lt;p&gt;To get started, create a basic LoopBack application with the &lt;code class=&quot;highlighter-rouge&quot;&gt;lb&lt;/code&gt; command. You’ll need Node.js and npm to do this, and you’ll have to have run &lt;code class=&quot;highlighter-rouge&quot;&gt;npm install -g loopback-cli&lt;/code&gt; first.&lt;/p&gt;
+
+&lt;h2 id=&quot;creating-an-extended-user-object&quot;&gt;Creating An Extended User Object&lt;/h2&gt;
+
+&lt;p&gt;After you do this, you’re going to create a new model object that extends the built-in User class. Enter &lt;code class=&quot;highlighter-rouge&quot;&gt;lb model&lt;/code&gt; into your terminal, and follow the steps so your choices look like so:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;? Enter the model name: FBUser
+? Select the data-source to attach FBUser to: db (memory)
+? Select model's base class User
+? Expose FBUser via the REST API? Yes
+? Custom plural form (used to build REST URL):
+? Common model or server only? common
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Then, you’ll start adding some properties to this object. Here’s what your final choices will look like:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Enter an empty property name when done.
+? Property name: fullName
+   invoke   loopback:property
+? Property type: string
+? Required? Yes
+? Default value[leave blank for none]:
+
+Let's add another FBUser property.
+Enter an empty property name when done.
+? Property name: email
+   invoke   loopback:property
+? Property type: string
+? Required? Yes
+? Default value[leave blank for none]:
+
+Let's add another FBUser property.
+Enter an empty property name when done.
+? Property name: facebookPicUrl
+   invoke   loopback:property
+? Property type: string
+? Required? No
+? Default value[leave blank for none]:
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This is so that the properties you need are returned from the OAuth connection with Facebook, and your LoopBack server can properly handle them.&lt;/p&gt;
+
+&lt;h2 id=&quot;setting-up-your-facebook-application&quot;&gt;Setting up your Facebook Application&lt;/h2&gt;
+
+&lt;p&gt;Next, you’re going to go to &lt;a href=&quot;https://developer.facebook.com&quot;&gt;https://developer.facebook.com&lt;/a&gt; and create a new application. Make sure you take note of the App ID you create here:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/myB9wIR.png&quot; alt=&quot;appIDPhoto&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;When you are asked to choose a platform for your application, select “Other”:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/eG35O8k.png&quot; alt=&quot;selectOther&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;You’ll then have to go to the settings for your application to enter your redirect URI. Make sure you have one of these set beforehand. This is so that, when your application goes to Facebook (or any other third party OAuth login), it knows where to return to when it’s done authenticating. You’ll enter that here:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/iQeRFws.png&quot; alt=&quot;redirectURIPhoto&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;You’re done with Facebook now! Everything else can be done from the comfort of the LoopBack CLI now.&lt;/p&gt;
+
+&lt;h2 id=&quot;setting-up-your-rest-connector&quot;&gt;Setting up your REST Connector&lt;/h2&gt;
+
+&lt;p&gt;Go back to your command line and type in &lt;code class=&quot;highlighter-rouge&quot;&gt;lb datasource&lt;/code&gt; to add another connector. For this, you’ll be adding a connector to REST Services. Your options should look like this when you’re done adding it:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;? Enter the data-source name: Facebook
+? Select the connector for Facebook: REST services (supported by StrongLoop)
+Connector-specific configuration:
+? Base URL for the REST service:
+? Default options for the request:
+? An array of operation templates:
+? Use default CRUD mapping: No
+? Install loopback-connector-rest@^2.0 Yes
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;If you’re wondering why this looks pretty barren, don’t fret. After npm finishes installing the REST Connector, find your &lt;code class=&quot;highlighter-rouge&quot;&gt;datasources.json&lt;/code&gt; file inside your &lt;code class=&quot;highlighter-rouge&quot;&gt;server/&lt;/code&gt; directory, and go to your new datasource. The file should look like so:&lt;/p&gt;
+
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;db&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;db&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;localStorage&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;file&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;connector&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;memory&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;Facebook&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Facebook&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;baseURL&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;crud&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;connector&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;rest&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;configuring-your-datasource-with-operations&quot;&gt;Configuring your Datasource with Operations&lt;/h2&gt;
+
+&lt;p&gt;You’re going to add a new key in your Facebook datasource for operations, like so:&lt;/p&gt;
+
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Facebook&quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Facebook&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;baseURL&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;crud&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;connector&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;rest&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;operations&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;You’re then going to add three separate operations in this array, and we’ll step through them one by one.&lt;/p&gt;
+
+&lt;h3 id=&quot;exchanging-your-oauth-token&quot;&gt;Exchanging your OAuth Token&lt;/h3&gt;
+
+&lt;p&gt;The first operation will be responsible for exchanging an OAuth token from the client into an access token. Add the following to your empty array:&lt;/p&gt;
+
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;template&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;method&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;GET&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;url&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://graph.facebook.com/v2.9/oauth/access_token?client_id={appId}&amp;amp;redirect_uri={redirectUri}&amp;amp;client_secret={appSecret}&amp;amp;code={codeParameter}&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;headers&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;accept&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;application/json&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;functions&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;accessToken&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;appId&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;appSecret&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;redirectUri&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;codeParameter&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Make sure that your parameter fields here in brackets are spelled correctly, as these will be passed in via a remote method later on.&lt;/p&gt;
+
+&lt;h3 id=&quot;getting-the-current-user&quot;&gt;Getting the Current User&lt;/h3&gt;
+
+&lt;p&gt;The next operation will be responsible for retrieving the currently logged in user, so that you can get their Facebook ID. Add the following after the previous operation, in the same array:&lt;/p&gt;
+
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;template&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;method&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;GET&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;url&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://graph.facebook.com/v2.9/me?access_token={accessToken}&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;headers&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;accept&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;application/json&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;functions&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;me&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;accessToken&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; 
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Once again, take note that your parameters are spelled correctly.&lt;/p&gt;
+
+&lt;h3 id=&quot;getting-your-user-information&quot;&gt;Getting your User Information&lt;/h3&gt;
+
+&lt;p&gt;Finally, your third operation will get you some basic information about the user, now that you’ve properly authenticated them. Add the following after the previous two operations, in the same array:&lt;/p&gt;
+
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;template&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;method&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;GET&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;url&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://graph.facebook.com/v2.9/{userId}?access_token={accessToken}&amp;amp;fields=id,name,picture,first_name,last_name,email&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;headers&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;accept&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;application/json&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;functions&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;me&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;userId&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;accessToken&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; 
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;After you add these three operations, your &lt;code class=&quot;highlighter-rouge&quot;&gt;datasources.json&lt;/code&gt; file, in its entirety, should look like so (given your filled in app secrets and tokens):&lt;/p&gt;
+
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;db&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;db&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;localStorage&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;file&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;connector&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;memory&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;Facebook&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Facebook&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;baseURL&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;crud&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;connector&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;rest&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;operations&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;template&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+          &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;method&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;GET&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+          &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;url&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://graph.facebook.com/v2.9/oauth/access_token?client_id={appId}&amp;amp;redirect_uri={redirectUri}&amp;amp;client_secret={appSecret}&amp;amp;code={codeParameter}&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+          &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;headers&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;accept&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;application/json&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+          &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;functions&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+          &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;accessToken&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;appId&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;appSecret&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;redirectUri&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;codeParameter&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+          &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;template&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+          &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;method&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;GET&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+          &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;url&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://graph.facebook.com/v2.9/me?access_token={accessToken}&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+          &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;headers&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;accept&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;application/json&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+          &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;functions&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+          &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;me&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;accessToken&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+          &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; 
+        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;template&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+          &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;method&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;GET&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+          &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;url&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://graph.facebook.com/v2.9/{userId}?access_token={accessToken}&amp;amp;fields=id,name,picture,first_name,last_name,email&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+          &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;headers&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;accept&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;application/json&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+          &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;functions&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+          &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;me&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;userId&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;accessToken&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+          &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; 
+        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;If you need to take a second to breathe, we won’t blame you!&lt;/p&gt;
+
+&lt;h2 id=&quot;adding-a-remote-method&quot;&gt;Adding a Remote Method&lt;/h2&gt;
+
+&lt;p&gt;The last thing you’ll be doing is setting up a way for this user to login to Facebook. LoopBack has a way to easily extend any model object with custom logic via adding a &lt;em&gt;remote method&lt;/em&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;back-to-the-command-line&quot;&gt;Back to the Command Line&lt;/h3&gt;
+
+&lt;p&gt;In your terminal, type &lt;code class=&quot;highlighter-rouge&quot;&gt;lb remote-method&lt;/code&gt; and enter the following for each prompt:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;? Select the model: FBUser
+? Enter the remote method name: loginWithFacebook
+? Is Static? Yes
+? Description for method: Allows users to login with an OAuth2 token received from Facebook
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Most of this is variable for your use case, but make sure you select the right user model, and that the remote method will be static. Continue on with the following answers:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Let's configure where to expose your new method in the public REST API.
+You can provide multiple HTTP endpoints, enter an empty path when you are done.
+? Enter the path of this endpoint: /login-facebook
+? HTTP verb: post
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;You only need to provide one endpoint, and while it is up to you what to name it, this is an example that follows convention. Moving on:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Describe the input (&quot;accepts&quot;) arguments of your remote method.
+You can define multiple input arguments.
+Enter an empty name when you've defined all input arguments.
+? What is the name of this argument? oauth-token
+? Select argument's type: string
+? Is this argument required? Yes
+? Please describe the argument: OAuth2 token received from Facebook when logging in. Retrieved from the callback URL.
+? Where to get the value from? (auto)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Your only argument that gets passed in will be for the token itself. Make sure all of this is correct. Hit enter, and continue on to enter information about the arguments returned from the method:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Describe the output (&quot;returns&quot;) arguments to the remote method's callback function.
+You can define multiple output arguments.
+Enter an empty name when you've defined all output arguments.
+? What is the name of this argument? result
+? Select argument's type: object
+? Is this argument a full response body (root)? Yes
+? Please describe the argument: instance of FBUser
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This means that the entire response will be converted into a contextualized object for you to use in your remote method. Once you do that, you’ll be able to assign the returned fields to your user object. After this, hit enter once more, and the terminal will show you a code representation of the method you’ve created.&lt;/p&gt;
+
+&lt;h3 id=&quot;now-who-wants-to-write-some-actual-javascript&quot;&gt;Now, Who Wants to Write Some Actual JavaScript?&lt;/h3&gt;
+
+&lt;p&gt;You’ll want to add the &lt;code class=&quot;highlighter-rouge&quot;&gt;Bluebird&lt;/code&gt; module to your &lt;code class=&quot;highlighter-rouge&quot;&gt;package.json&lt;/code&gt; file before proceeding, so your updated file for dependencies should look something like this, specifically noting the new dependency:&lt;/p&gt;
+
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s2&quot;&gt;&quot;dependencies&quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;bluebird&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;^3.5.0&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;compression&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;^1.0.3&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;cors&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;^2.5.2&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;helmet&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;^1.3.0&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;loopback&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;^3.0.0&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;loopback-boot&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;^2.6.5&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;loopback-component-explorer&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;^4.0.0&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;loopback-connector-rest&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;^2.1.0&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;serve-favicon&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;^2.0.1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;strong-error-handler&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;^2.0.0&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;After you update this and run &lt;code class=&quot;highlighter-rouge&quot;&gt;npm install&lt;/code&gt;, go to your &lt;code class=&quot;highlighter-rouge&quot;&gt;fb-user.js&lt;/code&gt; file, which you should be able to find in your &lt;code class=&quot;highlighter-rouge&quot;&gt;common&lt;/code&gt; folder at your root directory. At first, you can copy and paste what your terminal showed you, so that your file looks like this:&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s1&quot;&gt;'use strict'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Promise&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'bluebird'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Fbuser&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;cm&quot;&gt;/**
+     * description
+     * @param {string} oauthToken token
+     * @param {Function(Error, object)} callback
+     */&lt;/span&gt;
+
+    &lt;span class=&quot;nx&quot;&gt;FBUser&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;loginWithFacebook&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;oauthToken&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;callback&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// TODO&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;callback&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;That &lt;code class=&quot;highlighter-rouge&quot;&gt;//TODO&lt;/code&gt; part is where you’ll be adding a lot of code. Take note that we’ve imported &lt;code class=&quot;highlighter-rouge&quot;&gt;bluebird&lt;/code&gt; at the top. Inside your method, start like so:&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;appID&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;YOUR_APP_ID_GOES_HERE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;appSecret&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'YOUR_APP_SECRET_GOES_HERE'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;redirectUrl&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'YOUR_APP_REDIRECT_URL_GOES_HERE'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Facebook&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;FBUser&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;datasources&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Facebook&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;accessToken&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The first three vars are identifiers specific to your application - make sure you get them from your own dev console. (NB: you may want to consider using environment variables for these so you don’t put your code at a security risk.)&lt;/p&gt;
+
+&lt;p&gt;The next var is simply getting a hold of the class you need to work with the correct datasource. Finally, you create a buffer for your access token when you receive it later.&lt;/p&gt;
+
+&lt;p&gt;Next, make use of the operation you wrote earlier to get an access token and exchange it for an OAuth token:&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;Facebook&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;accessToken&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;appId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;appSecret&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;redirectUrl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;oauthToken&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// retrieve access token from response&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;accessToken&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'access_token'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// get current user&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Facebook&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;me&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;accessToken&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;All that command line work paid off, didn’t it? Next, get the user ID for the logged in user, and get their info:&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// get Facebook ID&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;facebookId&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'id'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// retrieve user info&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Facebook&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;facebookId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;accessToken&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Lastly, we’re going to collect all the data we get from our last call, and return the requisite data via the callback we get at the end:&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fullName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'first_name'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;' '&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'last_name'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;email&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'email'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;pictureDictionary&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'picture'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;pictureData&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;pictureDictionary&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'data'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;facebookPicUrl&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;pictureData&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'url'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;callback&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'fullName'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fullname&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                  &lt;span class=&quot;s1&quot;&gt;'email'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;email&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                  &lt;span class=&quot;s1&quot;&gt;'facebookPicUrl'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;facebookPicUrl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;callback&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Whew! In the end, it all ties into the original model object you created, so you get the properties you need at the end. When you’ve done all of this by following these steps, your &lt;code class=&quot;highlighter-rouge&quot;&gt;fb-user.js&lt;/code&gt; file should look more or less like this:&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s1&quot;&gt;'use strict'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Promise&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'bluebird'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Fbuser&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;cm&quot;&gt;/**
+     * description
+     * @param {string} oauthToken token
+     * @param {Function(Error, object)} callback
+     */&lt;/span&gt;
+
+    &lt;span class=&quot;nx&quot;&gt;FBUser&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;loginWithFacebook&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;oauthToken&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;callback&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;appID&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;YOUR_APP_ID_GOES_HERE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;appSecret&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'YOUR_APP_SECRET_GOES_HERE'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;redirectUrl&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'YOUR_APP_REDIRECT_URL_GOES_HERE'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+      &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Facebook&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;FBUser&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;datasources&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Facebook&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+      &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;accessToken&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;Facebook&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;accessToken&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;appId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;appSecret&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;redirectUrl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;oauthToken&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	   &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+		  &lt;span class=&quot;c1&quot;&gt;// retrieve access token from response&lt;/span&gt;
+   	     &lt;span class=&quot;nx&quot;&gt;accessToken&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'access_token'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt; 
+		  &lt;span class=&quot;c1&quot;&gt;// get current user&lt;/span&gt;
+		  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Facebook&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;me&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;accessToken&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+		&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+		&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+         &lt;span class=&quot;c1&quot;&gt;// get Facebook ID&lt;/span&gt;
+         &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;facebookId&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'id'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+         &lt;span class=&quot;c1&quot;&gt;// retrieve user info&lt;/span&gt;
+         &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Facebook&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;facebookId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;accessToken&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+       &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+       &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+         &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fullName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'first_name'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;' '&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'last_name'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+         &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;email&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'email'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+         &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;pictureDictionary&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'picture'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+         &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;pictureData&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;pictureDictionary&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'data'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+         &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;facebookPicUrl&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;pictureData&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'url'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+         &lt;span class=&quot;nx&quot;&gt;callback&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'fullName'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fullname&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                            &lt;span class=&quot;s1&quot;&gt;'email'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;email&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                   &lt;span class=&quot;s1&quot;&gt;'facebookPicUrl'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;facebookPicUrl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+       &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+       &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+         &lt;span class=&quot;nx&quot;&gt;callback&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+       &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;youre-finished&quot;&gt;You’re Finished!!&lt;/h2&gt;
+
+&lt;p&gt;Now, when you login to XtraPoints with Facebook, you know what’s happening behind the scenes! If you want to try a demo of this, you can go clone &lt;a href=&quot;https://github.com/silverlogic/custom-facebook-auth&quot;&gt;this&lt;/a&gt; repository to try it out.&lt;/p&gt;
+
+&lt;p&gt;Interested in trying LoopBack for your own RESTful API needs? Check out &lt;a href=&quot;https://developer.ibm.com/apiconnect/2017/03/09/loopback-in-5-minutes/&quot;&gt;this&lt;/a&gt; blog post to get started in 5 minutes!&lt;/p&gt;</content><author><name>David Okun &amp; Manny Guerrero</name></author><summary type="html">Editor’s Note: This is mirrored from strongloop.com here.</summary></entry><entry><title type="html">Using LoopBack to Build the Open Source Game Xtra Points</title><link href="http://localhost:4000/2017/06/20/loopback-open-source-xtra-points/" rel="alternate" type="text/html" title="Using LoopBack to Build the Open Source Game Xtra Points" /><published>2017-06-20T07:00:00-05:00</published><updated>2017-06-20T07:00:00-05:00</updated><id>http://localhost:4000/2017/06/20/loopback-open-source-xtra-points</id><content type="html" xml:base="http://localhost:4000/2017/06/20/loopback-open-source-xtra-points/">&lt;p&gt;&lt;strong&gt;Editor’s Note: This is mirrored from &lt;a href=&quot;https://strongloop.com/strongblog/loopback-open-source-xtra-points/&quot;&gt;strongloop.com&lt;/a&gt; here.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Let’s start with a backstory. In 2010, my dad, &lt;a href=&quot;https://www.linkedin.com/in/robertokun/&quot;&gt;Robert Okun&lt;/a&gt;, and I started using an Excel spreadsheet to see who could correctly predict the outcome of more NFL games on a weekly basis. This caught on quite easily, and we’ve kept the game going since then. Along the way we made some additions to the game rules, trackers, points, and so on. Needless to say, the Excel spreadsheet has become a little, uh, let’s call it cumbersome.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/2017-06-20/this got old.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;After the 2016 season ended, a few things became clear. The Excel spreadsheet was getting old. We wanted to invite others to play, but it wasn’t an easy onboarding process. How could we better manage our own gameplay and more easily involve others? As a developer myself, a web or mobile version of the game seemed like the obvious option.&lt;/p&gt;
+
+&lt;p&gt;You do know where I’m going with this, don’t you? Something like &lt;a href=&quot;https://loopback.io&quot;&gt;LoopBack&lt;/a&gt; sure would be easy to get this up and running.&lt;/p&gt;
+
+&lt;h2 id=&quot;xtrapoints-10&quot;&gt;XtraPoints 1.0&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/2017-06-20/xpoints.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Sure enough, the talk turned to reality, and something exciting is underway. My dad now works for &lt;a href=&quot;https://tsl.io&quot;&gt;The SilverLogic&lt;/a&gt; as their Chief Business Development Officer, and he and &lt;a href=&quot;https://www.linkedin.com/in/hartmanndavid/&quot;&gt;David Hartmann, CEO&lt;/a&gt; have put a vision in place to make this a fully-playable and open source (!!!) game in time for the 2017 NFL Season. The SilverLogic (TSL) is a full service software engineering firm based out of South Florida, working with clients on unique ways to leverage mobile and web technology to make your life easier. Check out their portfolio &lt;a href=&quot;https://tsl.io/portfolio/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Along with using LoopBack, &lt;a href=&quot;http://kitura.io&quot;&gt;Kitura&lt;/a&gt;, and &lt;a href=&quot;https://console.ng.bluemix.net/catalog/&quot;&gt;Bluemix&lt;/a&gt;, TSL are working hard on a base application called &lt;em&gt;BaseApp&lt;/em&gt; accelerating rapid development of iOS and Android applications, which they plan to open source as part of this release.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“We’ve been working on improving BaseApp over the past two and a half years using it to give our clients a head-start when choosing to develop their technology with us. We figured our recent release of v2 along with collaborating on XtraPoints with IBM would be a great opportunity to finally take the step to share BaseApp with the open source community.” - David Hartmann, CEO, The SilverLogic&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;I think this is going to be a really fun game to play. I’ve played fantasy football and other things of that nature before, but this was always super easy to play, and pretty fun to do in a group, even if it is SportsBall™ related. Nonetheless, it was tough to keep track of on a spreadsheet, and it’s really exciting to see TSL take such ownership in making this turn to a reality. There’s even an ongoing discussion around getting Watson involved as someone to play against!&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“We plan on leveraging Watson in XtraPoints to make predictions on future games, and generating game picks based on its analysis.” -Manny Guerrero, The SilverLogic&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;when-can-i-try-it&quot;&gt;When can I try it?&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Update (7/13/2017)&lt;/strong&gt;: We’ve got some code for you to check out! You can look at the LoopBack component of XtraPoints &lt;a href=&quot;https://github.com/silverlogic/PicksApp-Loopback&quot;&gt;here&lt;/a&gt;. It’s in active development, so feel free to get involved if you want to help! You can also check &lt;a href=&quot;https://github.com/silverlogic/PicksApp-SportsScrapper&quot;&gt;this&lt;/a&gt; repo for how the website scraper is made in Swift, using &lt;a href=&quot;http://kitura.io&quot;&gt;Kitura&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;TSL are planning to release the first version of the app on iOS by the end of this month, to allow enough time for &lt;strong&gt;all&lt;/strong&gt; of the downloads to happen before the season starts. It’ll be totally free, and you’ll be able to watch the game get made in real time on GitHub soon. Being open source, I’m positive that TSL would love contributors to come on board and help get it up to speed.&lt;/p&gt;
+
+&lt;h2 id=&quot;whats-next&quot;&gt;What’s next?&lt;/h2&gt;
+
+&lt;p&gt;If you want to make a backend application just like XtraPoints, go see how you can have an API up and running in five minutes &lt;a href=&quot;https://developer.ibm.com/apiconnect/2017/03/09/loopback-in-5-minutes/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;</content><author><name>David Okun</name></author><summary type="html">Editor’s Note: This is mirrored from strongloop.com here.</summary></entry><entry><title type="html">Strongloop and IBM Do OSCON</title><link href="http://localhost:4000/2017/06/16/strongloop-and-ibm-do-oscon/" rel="alternate" type="text/html" title="Strongloop and IBM Do OSCON" /><published>2017-06-16T07:00:00-05:00</published><updated>2017-06-16T07:00:00-05:00</updated><id>http://localhost:4000/2017/06/16/strongloop-and-ibm-do-oscon</id><content type="html" xml:base="http://localhost:4000/2017/06/16/strongloop-and-ibm-do-oscon/">&lt;p&gt;&lt;strong&gt;Editor’s Note: This is mirrored from &lt;a href=&quot;https://strongloop.com/strongblog/strongloop-and-ibm-do-oscon/&quot;&gt;strongloop.com&lt;/a&gt; here.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Everything is bigger in Texas, and O’Reilly’s Open Source Convention 2017 was certainly no exception this year! Set right in the heart of Austin, Texas, OSCON was a meeting of some of the most powerful minds in software development, and as you would expect from Austin’s food scene, there was plenty of meat on the bone to digest.&lt;/p&gt;
+
+&lt;p&gt;When I went to IBM’s Interconnect a couple of months ago, I noted that people were becoming increasingly interested in ways to manage their API, rather than ways to actually roll an API. The secret seems to be out about &lt;a href=&quot;https://loopback.io&quot;&gt;Loopback&lt;/a&gt;, and OSCON reinforced the idea that API Management is currently all the rage. I spent time with &lt;a href=&quot;https://twitter.com/sai_vennam&quot;&gt;Sai Vennam&lt;/a&gt; showing off our latest implementation of what &lt;a href=&quot;https://developer.ibm.com/code/journey/unlock-enterprise-data-using-apis/&quot;&gt;ACME Freight&lt;/a&gt; uses to manage their shipping channels, and how they use Watson and OpenWhisk to help redirect shipments to safer locations in times of need. Suffice it to say, we had some people come and talk to us, and Sai noticed this about the foot traffic we had:
+&lt;!--more--&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;It was really exciting to see so many of the tech-savvy OSCON attendees flocking to our booth. Many came to play with the HTC Vive with Watson, a clear crowd-winner, but stayed to learn about our other tech.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Interestingly enough, with so much work and focus on the cloud and what people are deploying to it, there was one thing that seemed to catch onlookers’ attention more than most - &lt;a href=&quot;https://developer.ibm.com/openwhisk/&quot;&gt;OpenWhisk&lt;/a&gt;. Our team has been working really hard to show a bunch of different demos (such as &lt;a href=&quot;https://strongloop.com/strongblog/loopback-as-a-service-using-openwhisk/&quot;&gt;LoopBack as a service using OpenWhisk&lt;/a&gt;, &lt;a href=&quot;https://strongloop.com/strongblog/webinar-combining-open-whisk-serverless-openapi-swagger-and-api-connect-to-build-powerful-apis/&quot;&gt;making powerful APIs with OpenWhisk, Open API Spec, and API Connect&lt;/a&gt;, and &lt;a href=&quot;https://strongloop.com/strongblog/three-new-webcasts-for-june-loopback-openwhisk/&quot;&gt;three webcasts in June&lt;/a&gt;), but it was interesting to really see how Serverless technology is really taking the cloud computing world by storm. I primarily come from a &lt;a href=&quot;https://strongloop.com/strongblog/introducing-david-okun-strongloop-developer-evangelist/&quot;&gt;mobile&lt;/a&gt; development world, so seeing how easy and simple it is to basically deploy a function as a service is really invigorating. The attendees of OSCON largely agreed, as Sai also noticed:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Being at an open-source convention, attendees were glad to hear that IBM is working on serverless technology as an open-source project. The real kicker was when they saw how easy it was to start creating serverless functions right away!&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;It’s worth noting that our demo was somewhat of a gateway to the &lt;a href=&quot;https://www.ibm.com/innovation/milab/watson-speech-virtual-reality-unity/&quot;&gt;VR demo&lt;/a&gt; of Watson, and those who came to our booth were plenty happy to sit and chat with us anyway about API management with &lt;a href=&quot;https://developer.ibm.com/apiconnect/&quot;&gt;API Connect&lt;/a&gt; and &lt;a href=&quot;https://developer.ibm.com/openwhisk/&quot;&gt;OpenWhisk&lt;/a&gt;. Secure gateways are cool too!&lt;/p&gt;
+
+&lt;p&gt;OSCON is returning back to Portland next year in April 2018, and we’ll hopefully be there too to see what’s going on in the exciting world of containerization and API Management, as we continue our contributions to LoopBack.&lt;/p&gt;
+
+&lt;h2 id=&quot;whats-next&quot;&gt;What’s Next?&lt;/h2&gt;
+
+&lt;p&gt;OSCON is returning back to Portland next year in April 2018, and we’ll hopefully be there too to see what’s going on in the exciting world of containerization and API Management, as we continue our contributions to Loopback. If you haven’t seen, Loopback can help you get an API up and running in 5 minutes - &lt;a href=&quot;https://developer.ibm.com/apiconnect/2017/03/09/loopback-in-5-minutes/&quot;&gt;here’s&lt;/a&gt; how.&lt;/p&gt;</content><author><name>David Okun</name></author><summary type="html">Editor’s Note: This is mirrored from strongloop.com here.</summary></entry><entry><title type="html">Introducing David Okun</title><link href="http://localhost:4000/2017/01/10/introducing-david-okun-strongloop-developer-evangelist/" rel="alternate" type="text/html" title="Introducing David Okun" /><published>2017-01-10T06:00:00-06:00</published><updated>2017-01-10T06:00:00-06:00</updated><id>http://localhost:4000/2017/01/10/introducing-david-okun-strongloop-developer-evangelist</id><content type="html" xml:base="http://localhost:4000/2017/01/10/introducing-david-okun-strongloop-developer-evangelist/">&lt;p&gt;&lt;strong&gt;Editor’s Note: This is mirrored from &lt;a href=&quot;https://strongloop.com/strongblog/introducing-david-okun-strongloop-developer-evangelist/&quot;&gt;strongloop.com&lt;/a&gt; here.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Oh hi!&lt;/p&gt;
+
+&lt;p&gt;It’s been a really interesting road to get here, but I am IBM’s freshest addition to the StrongLoop team as a Developer Evangelist. Additionally, I’ll be that guy on the team who also gets to work with the Swift@IBM team, as my background has mostly focused on iOS.&lt;/p&gt;
+
+&lt;p&gt;First, I’d like to tell you a little bit about me.&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;p&gt;&lt;strong&gt;A Little Bit About Me&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;My dad came home with an Commodore Amiga when I was very young. He brought it home for himself and didn’t think I’d take to it. I did, though, and he and my mom both knew I’d do something with computers after seeing me interact with it. Fun fact: One of my first memories is playing as Mr. Miyagi from &lt;em&gt;The Karate Kid&lt;/em&gt; trying to catch a fly with chopsticks.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/2017-01-10/photo1-297x300.png&quot; alt=&quot;Me, when I figured out that Yeoman could generate JavaScript code automatically.&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I always tinkered around on computers more than I ever received formal education. In high school, I was exposed to C++, Java, and Visual Basic (and now you know my age!), and while I completed my Bachelor’s degree in Physics at University of Dallas, I used Python as a tool to complete a class called Computational Physics. After I finished school, I still wasn’t sure what to do, so I worked in sales and recruiting for a while. I grew pretty tired of this, and I decided to start learning how to write iOS apps. I was fortunate enough to get to work on some contracts around the country, and I got to make some really cool stuff too.&lt;/p&gt;
+
+&lt;p&gt;I enjoy making mobile technology, and it led me to eventually run the mobile department at IDscan Biometrics in London. I loved working with a team so intent on taking software usually reserved for high-powered servers, and pushing the limits of what can be done on a mobile device. Still, I always had an itch to learn more about how modern server-side software works. Most mobile apps these days need a connection to the cloud, so I decided I would learn how to make a web API. Node.js was an easy choice for what I learned first, and I’m really excited to expand on what I know, and share it with you.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What I’ll Be Doing&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;I don’t want to just be another talking head telling you what to do. My goal is to give you plenty of use cases and examples on how to use LoopBack to enrich your server side developer experience.&lt;/p&gt;
+
+&lt;p&gt;I have always believed that there are three distinct types of learners: visual, audio, and haptic. Haptic learners learn by doing, and I definitely feel as though I fall into that category. When I was learning how to develop applications on my own, I had to do tons of tutorials to actually see the stuff working on my own machine. Going to talks and watching videos were helpful activities for me, but nothing quite beat the experience of following a tutorial line by line and making the example work myself.&lt;/p&gt;
+
+&lt;p&gt;Additionally, I’ll be appearing at engagements all over the country showing how you (yes! you!) can use Loopback. You can follow me on Twitter (&lt;a href=&quot;https://twitter.com/dokun24&quot;&gt;@dokun24&lt;/a&gt;) to get an idea of where I’ll be at a speaking engagement, running a hackathon, or just helping out any way I possibly can. Don’t hesitate to email me at &lt;a href=&quot;mailto:david.okun@ibm.com&quot;&gt;david.okun@ibm.com&lt;/a&gt; if you have any other questions or if I can help you.&lt;/p&gt;</content><author><name>David Okun</name></author><summary type="html">Editor’s Note: This is mirrored from strongloop.com here.</summary></entry><entry><title type="html">How A Countdown Label Works</title><link href="http://localhost:4000/2014/03/06/how-a-countdown-label-works/" rel="alternate" type="text/html" title="How A Countdown Label Works" /><published>2014-03-06T06:00:00-06:00</published><updated>2014-03-06T06:00:00-06:00</updated><id>http://localhost:4000/2014/03/06/how-a-countdown-label-works</id><content type="html" xml:base="http://localhost:4000/2014/03/06/how-a-countdown-label-works/">&lt;p&gt;&lt;strong&gt;Editor’s Note: This is from a blog I started back in 2014, when I aimed to teach Objective-C to people who were totally unfamiliar with programming. It’s verbose, and I’m sorry, but also I am not sorry.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Welcome! I’ll explain more about my overall goal in another post, but I’d like to hit the ground running.&lt;/p&gt;
+
+&lt;p&gt;I’ll be showing you a chunk of code every week, and taking the time to break it down and explain exactly what it does. The goal is to have someone who has never written code understand what’s going on. I don’t ever want to confuse you, so I promise to never:&lt;/p&gt;
+
+&lt;p&gt;show you code blocks that are longer than 50 lines
+give you some long tutorial about how to build entire applications&lt;/p&gt;
+
+&lt;p&gt;This week, I’ll be showing you what happens when you want a label to show a countdown that updates every second.&lt;/p&gt;
+
+&lt;div class=&quot;language-objc highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;updateCountdown&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;NSTimeInterval&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;timeToClosing&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_deleteDate&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;timeIntervalSinceDate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NSDate&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;date&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]];&lt;/span&gt;
+    
+    &lt;span class=&quot;kt&quot;&gt;div_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;h&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;div&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;timeToClosing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3600&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;hours&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;quot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;div_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;div&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;60&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;minutes&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;quot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;seconds&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    
+    &lt;span class=&quot;n&quot;&gt;NSString&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hoursStr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;minutesStr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;secondsStr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hours&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;hoursStr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NSString&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;stringWithFormat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&quot;0%d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;hours&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;hoursStr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NSString&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;stringWithFormat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&quot;%d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;hours&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;minutes&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;minutesStr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NSString&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;stringWithFormat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&quot;0%d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;minutes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;minutesStr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NSString&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;stringWithFormat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&quot;%d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;minutes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;seconds&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;secondsStr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NSString&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;stringWithFormat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&quot;0%d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;seconds&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;secondsStr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NSString&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;stringWithFormat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&quot;%d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;seconds&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;seconds&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;self&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;dismissButtonTapped&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;countdownLabel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NSString&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;stringWithFormat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&quot;%@:%@:%@&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;hoursStr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;minutesStr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;secondsStr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;timeToClosing&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;30&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_switchTimer&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;invalidate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;_switchTimer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;UIView&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;animateWithDuration&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;
+                         &lt;span class=&quot;nf&quot;&gt;animations&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;^&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+                             &lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;eventEndsLabel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;alpha&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+                             &lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;countdownLabel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;alpha&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+                         &lt;span class=&quot;p&quot;&gt;}];&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/2014-03-06/fry.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;So! This is pretty intimidating at first. I’m going to make it as easy to understand as spoken word. Strap in.&lt;/p&gt;
+
+&lt;p&gt;Let’s start with the first line…&lt;/p&gt;
+&lt;div class=&quot;language-objc highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;updateCountdown&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;…wait - what did I even show you? A rule of thumb is that any block of code I ever show you will be a ‘method’. Think of this as an action that the program can do. I can make up things that exist in the program, but what good are they if they can’t do anything? They have many names (pointers, vars, ivars, etc.) but we’ll call them ‘things’ for now. In a program, ‘things’ have to ‘do’ stuff, and when you tell a ‘thing’ to ‘do’ something, you are ‘invoking a method’. A method is simply a directive for a ‘thing’ to do.&lt;/p&gt;
+
+&lt;p&gt;Let’s look at the ‘void’ part of this method. Think about this - when you ask someone to cook you a cheeseburger, you would expect a cheeseburger in return, right? But if you ask someone to fix something they already own, you would expect nothing in return. If this method was asking for a cheeseburger in return, then you would put a cheeseburger in those parentheses. However, we are asking something that already owns the label to simply update its own content. We aren’t asking for anything in return, so we say that by signifying (void) in the method signature.&lt;/p&gt;
+
+&lt;p&gt;The open bracket signifies the beginning of the method. You can tell when a method ends by searching for the ending bracket. Brackets are used commonly in code, so you have to keep track of how many brackets you use in code.&lt;/p&gt;
+
+&lt;p&gt;So, a ‘thing’ wants to update the countdown. Line 2 says…&lt;/p&gt;
+&lt;div class=&quot;language-objc highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;NSTimeInterval&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;timeToClosing&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_deleteDate&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;timeIntervalSinceDate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NSDate&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;date&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]];&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;timeToClosing&lt;/code&gt; is the name of the variable I have created. Everything to the left of the equal sign is for saying that there is a ‘thing’ of a ‘type’. The ‘thing’ is called &lt;code class=&quot;highlighter-rouge&quot;&gt;timeToClosing&lt;/code&gt;, and the ‘type’ is &lt;code class=&quot;highlighter-rouge&quot;&gt;NSTimeInterval&lt;/code&gt;. &lt;code class=&quot;highlighter-rouge&quot;&gt;NSTimeInterval&lt;/code&gt; is a type of ‘thing’ that is measured in seconds. I will need this later!&lt;/p&gt;
+
+&lt;p&gt;Everything to the right of the equal sign is how I figure out what the ‘thing’ will be defined by. &lt;code class=&quot;highlighter-rouge&quot;&gt;_deleteDate&lt;/code&gt; is a ‘thing’ that already exists in my program. &lt;code class=&quot;highlighter-rouge&quot;&gt;timeIntervalSinceDate:[xxxxxxx xxxxx]&lt;/code&gt; simply tells me how to calculate it based on &lt;code class=&quot;highlighter-rouge&quot;&gt;_deleteDate&lt;/code&gt;. This is another example of a method, that returns a ‘thing’ of type &lt;code class=&quot;highlighter-rouge&quot;&gt;NSTimeInterval&lt;/code&gt;. So when this line of code runs, I get back a &lt;code class=&quot;highlighter-rouge&quot;&gt;NSTimeInterval&lt;/code&gt; to work with. When you see &lt;code class=&quot;highlighter-rouge&quot;&gt;[NSDate date]&lt;/code&gt;, just assume that it invokes a method to get the current date in a format that’s easy for the computer to understand. So we can say that &lt;code class=&quot;highlighter-rouge&quot;&gt;timeToClosing&lt;/code&gt; is equal to a value that is in seconds from the current date to the value &lt;code class=&quot;highlighter-rouge&quot;&gt;_deleteDate&lt;/code&gt;, which has already been set as a type of &lt;code class=&quot;highlighter-rouge&quot;&gt;NSDate&lt;/code&gt;, which is a type of date.&lt;/p&gt;
+
+&lt;p&gt;Now we have THIS mess:&lt;/p&gt;
+&lt;div class=&quot;language-objc highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;kt&quot;&gt;div_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;h&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;div&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;timeToClosing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3600&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;hours&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;quot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;div_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;div&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;60&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;minutes&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;quot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;seconds&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;As you might have guessed, &lt;code class=&quot;highlighter-rouge&quot;&gt;div_t&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;int&lt;/code&gt;  are types of ‘things’. To get super technical, they are basic C-level structs, which is a step down from the typical Objective-C code that I write in…&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;int&lt;/code&gt; is just an integer. You only give it a number, nothing more.
+&lt;code class=&quot;highlighter-rouge&quot;&gt;div_t&lt;/code&gt; is slightly more complicated. You give a &lt;code class=&quot;highlighter-rouge&quot;&gt;div_t&lt;/code&gt; ‘thing’ two values: a dividend, and a divisor. A &lt;code class=&quot;highlighter-rouge&quot;&gt;div_t&lt;/code&gt; will give you a quotient and a remainder, if you ask nicely.
+…when you see something like &lt;code class=&quot;highlighter-rouge&quot;&gt;div(timeToClosing, 3600);&lt;/code&gt;, that is a way to show you what values you are assigning to a &lt;code class=&quot;highlighter-rouge&quot;&gt;div_t&lt;/code&gt; ‘thing’. The first line is making a &lt;code class=&quot;highlighter-rouge&quot;&gt;div_t&lt;/code&gt; ‘thing’ that is called &lt;code class=&quot;highlighter-rouge&quot;&gt;h&lt;/code&gt;. &lt;code class=&quot;highlighter-rouge&quot;&gt;h&lt;/code&gt; is created by giving the values of &lt;code class=&quot;highlighter-rouge&quot;&gt;timeToClosing&lt;/code&gt; and 3600 to a &lt;code class=&quot;highlighter-rouge&quot;&gt;div_t&lt;/code&gt;, and you can get the quotient and the remainder from that value. Here’s some simplification:&lt;/p&gt;
+&lt;div class=&quot;language-objc highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;quot&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;the&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;quotient&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;of&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;timeToClosing&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3600&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rem&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;the&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;remainder&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;of&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;timeToClosing&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3600&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;This is how we are able to discern the int values of hours, minutes, and seconds.&lt;/p&gt;
+
+&lt;p&gt;Here comes the fun part…&lt;/p&gt;
+&lt;div class=&quot;language-objc highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;n&quot;&gt;NSString&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hoursStr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;minutesStr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;secondsStr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hours&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;hoursStr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NSString&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;stringWithFormat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&quot;0%d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;hours&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;hoursStr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NSString&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;stringWithFormat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&quot;%d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;hours&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;minutes&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;minutesStr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NSString&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;stringWithFormat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&quot;0%d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;minutes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;minutesStr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NSString&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;stringWithFormat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&quot;%d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;minutes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;seconds&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;secondsStr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NSString&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;stringWithFormat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&quot;0%d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;seconds&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;secondsStr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NSString&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;stringWithFormat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&quot;%d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;seconds&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Let’s look at &lt;code class=&quot;highlighter-rouge&quot;&gt;NSString&lt;/code&gt; first. If you’ve been reading diligently, you recognize the NS. NS stands for NextStep, which is attributed to the computing company NeXt Computing, which Steve Jobs originally started after leaving Apple, and subsequently got acquired by Apple. NS is a tribute to that.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;NSString&lt;/code&gt; is a type of ‘thing’ that simply refers to a string of text. For example, you could say…&lt;/p&gt;
+&lt;div class=&quot;language-objc highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;NSString&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;example&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;@&quot;This is an example of a string.&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;…you can probably gather what it does at a high level, so you can ignore the other stuff going on there for now, but you should just understand that, when you create a &lt;code class=&quot;highlighter-rouge&quot;&gt;NSString&lt;/code&gt;, you are creating a string of text that you want to use elsewhere.&lt;/p&gt;
+
+&lt;p&gt;In our code example, you see some if-else stuff going on. When you see…&lt;/p&gt;
+&lt;div class=&quot;language-objc highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;something&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;…then that means that, whatever exists past that line of code will happen ONLY IF &lt;code class=&quot;highlighter-rouge&quot;&gt;something&lt;/code&gt; is true. In our example, we’ve already got a number for &lt;code class=&quot;highlighter-rouge&quot;&gt;hours&lt;/code&gt; assigned, and we are looking to see if it is less than 10 or not. If it is, infact, less than 10, as our code describes, then we assign the following value to &lt;code class=&quot;highlighter-rouge&quot;&gt;hoursStr&lt;/code&gt;, which we have declared as a &lt;code class=&quot;highlighter-rouge&quot;&gt;NSString&lt;/code&gt;…&lt;/p&gt;
+&lt;div class=&quot;language-objc highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NSString&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;stringWithFormat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&quot;0%d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;hours&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Don’t be scared! Let’s look at everything inside the &lt;code class=&quot;highlighter-rouge&quot;&gt;@&quot; &quot;&lt;/code&gt; marks. For right now, think of a string of text that the computer understands is &lt;code class=&quot;highlighter-rouge&quot;&gt;@&quot;string of text&quot;&lt;/code&gt;…&lt;/p&gt;
+
+&lt;p&gt;I say tomato…
+…the computer says &lt;code class=&quot;highlighter-rouge&quot;&gt;@&quot;tomato&quot;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;When you tell the program to do: &lt;code class=&quot;highlighter-rouge&quot;&gt;[NSString stringWithFormat:@&quot; &quot;];&lt;/code&gt;, that simply means you are making a string of text look exactly the way you want it to. Inside that &lt;code class=&quot;highlighter-rouge&quot;&gt;@&quot; &quot;&lt;/code&gt;, you will often see a &lt;code class=&quot;highlighter-rouge&quot;&gt;%&lt;/code&gt; sign followed by either the &lt;code class=&quot;highlighter-rouge&quot;&gt;@&lt;/code&gt; sign or a letter (usually f or d). Our example of &lt;code class=&quot;highlighter-rouge&quot;&gt;0%d&lt;/code&gt; means that you want to make a string that starts with the text “0” and then substitutes an &lt;code class=&quot;highlighter-rouge&quot;&gt;int&lt;/code&gt; thing that we already created. You can see that we use hours, something we created earlier, to substitute. This method CAN get more complex, but this lays the basic foundation for how it works. So, if, in our example, &lt;code class=&quot;highlighter-rouge&quot;&gt;hours = 9&lt;/code&gt;, then &lt;code class=&quot;highlighter-rouge&quot;&gt;hoursStr = @&quot;09&quot;&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Ok, cool story bro, but what if &lt;code class=&quot;highlighter-rouge&quot;&gt;hours = 13&lt;/code&gt;?&lt;/p&gt;
+&lt;div class=&quot;language-objc highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;hoursStr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NSString&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;stringWithFormat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&quot;%d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;hours&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;In this case, per our previous example, we would just create a string formatted according to the rules we created. Since there is no 0 in front of the &lt;code class=&quot;highlighter-rouge&quot;&gt;%d&lt;/code&gt;, and the value for hours did not satisfy the if statement earlier, we fall into the else statement. Since &lt;code class=&quot;highlighter-rouge&quot;&gt;hours = 13&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;hoursStr = @&quot;13&quot;&lt;/code&gt; in our situation. This applies for the next few lines of our example as well.&lt;/p&gt;
+
+&lt;p&gt;We’re close! Two more code examples from our block…&lt;/p&gt;
+&lt;div class=&quot;language-objc highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;seconds&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;self&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;dismissButtonTapped&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;countdownLabel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NSString&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;stringWithFormat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&quot;%@:%@:%@&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;hoursStr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;minutesStr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;secondsStr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;If the number of seconds we have is less than 0, we want to ‘call’ a method called &lt;code class=&quot;highlighter-rouge&quot;&gt;dismissButtonTapped&lt;/code&gt;. For posterity, this countdown timer determines how long you have to view a screen, and when the timer is up, you can no longer view the screen. Therefore, the time being up forces the user to dismiss the screen and no longer be able to view it. However, if the value for seconds is greater than zero, which it usually will be, as I am updating my timer every second, then I update the value of a thing called a &lt;code class=&quot;highlighter-rouge&quot;&gt;UILabel&lt;/code&gt; I created earlier called countdownLabel. A &lt;code class=&quot;highlighter-rouge&quot;&gt;UILabel&lt;/code&gt; contains a &lt;code class=&quot;highlighter-rouge&quot;&gt;NSString&lt;/code&gt;, and I can access that by writing the &lt;code class=&quot;highlighter-rouge&quot;&gt;.text&lt;/code&gt; property of it. Don’t worry about the &lt;code class=&quot;highlighter-rouge&quot;&gt;self&lt;/code&gt; part for now - just assume that we are talking about a label contained in the screen we are looking at.&lt;/p&gt;
+
+&lt;p&gt;When seconds is not less than zero, we update the label to show the proper kind of string with our hours, minutes, and seconds value, as calculated above. We do the math ahead of time so creating our string is nice and easy.&lt;/p&gt;
+
+&lt;p&gt;Last bit!&lt;/p&gt;
+&lt;div class=&quot;language-objc highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;timeToClosing&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;30&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_switchTimer&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;invalidate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;_switchTimer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;UIView&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;animateWithDuration&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;
+                         &lt;span class=&quot;nf&quot;&gt;animations&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;^&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+                             &lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;eventEndsLabel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;alpha&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+                             &lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;countdownLabel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;alpha&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+                         &lt;span class=&quot;p&quot;&gt;}];&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;In terms of necessity, this is purely optional, and only valuable to the code I’ve written in the rest of the app, but I’ll explain a little. I make sure that the countdown timer and a message explaining the countdown timer alternate in visibility, and when we get to less than 30 seconds, I only want the user to see the countdown timer. I use an &lt;code class=&quot;highlighter-rouge&quot;&gt;NSTimer&lt;/code&gt; called &lt;code class=&quot;highlighter-rouge&quot;&gt;_switchTimer&lt;/code&gt; to display the two in succession, and at &amp;lt; 30 seconds, I no longer want to switch.&lt;/p&gt;
+
+&lt;p&gt;Finally, the &lt;code class=&quot;highlighter-rouge&quot;&gt;.alpha&lt;/code&gt; property is how visible something is. For instance, if a &lt;code class=&quot;highlighter-rouge&quot;&gt;UILabel&lt;/code&gt; has an &lt;code class=&quot;highlighter-rouge&quot;&gt;alpha&lt;/code&gt; of &lt;code class=&quot;highlighter-rouge&quot;&gt;1.0f&lt;/code&gt;, it is 100% visible. If a &lt;code class=&quot;highlighter-rouge&quot;&gt;UILabel&lt;/code&gt; has an &lt;code class=&quot;highlighter-rouge&quot;&gt;alpha&lt;/code&gt; of &lt;code class=&quot;highlighter-rouge&quot;&gt;0.0f&lt;/code&gt;, it is 100% &lt;strong&gt;in&lt;/strong&gt;visible. Don’t stress too much over the &lt;code class=&quot;highlighter-rouge&quot;&gt;UIView&lt;/code&gt; gobble-de-gook for right now, but assume that it is a fancy way for me to make &lt;code class=&quot;highlighter-rouge&quot;&gt;eventEndsLabel&lt;/code&gt; invisible, and &lt;code class=&quot;highlighter-rouge&quot;&gt;countdownLabel&lt;/code&gt; totally visible.&lt;/p&gt;
+
+&lt;p&gt;Whew! You made it! I hope I was able to make sense of this for you. I promise to try and keep it simple for you at all times. Feel free to correct me with a comment, or email me a suggestion here with a code block to explain. Thanks for reading!&lt;/p&gt;</content><author><name>David Okun</name></author><summary type="html">Editor’s Note: This is from a blog I started back in 2014, when I aimed to teach Objective-C to people who were totally unfamiliar with programming. It’s verbose, and I’m sorry, but also I am not sorry.</summary></entry></feed>

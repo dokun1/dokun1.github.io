@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Developer Advocate at IBM">
+
+    <title>Generating a Client SDK For LoopBack with the Bluemix CLI - David Okun</title>
+
+    <link rel="canonical" href="http://localhost:4000/2017/07/20/generate-client-sdk-loopback-bluemix-cli/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/clean-blog.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Serif:400,400i,700,700i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="David Okun" />
+
+</head>
+
+
+<body>
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">David Okun</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="/">Home</a>
+                </li>
+                
+				
+                <li>
+                    <a href="/about/">About Me</a>
+                </li>
+				
+                
+				
+                <li>
+                    <a href="/contact/">Contact</a>
+                </li>
+				
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+
+    <!-- Post Header -->
+<header class="intro-header" style="background-image: url('/img/blogBackgrounds/05.jpeg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>Generating a Client SDK For LoopBack with the Bluemix CLI</h1>
+                    <!-- 
+                    <h2 class="subheading">Dude.</h2>
+                     -->
+                    <span class="meta">Posted by David Okun on July 20, 2017</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+				<p><strong>Editor’s Note: This is mirrored from <a href="https://strongloop.com/strongblog/generate-client-sdk-loopback-bluemix-cli">strongloop.com</a> here.</strong></p>
+
+<p><img src="http://i.imgur.com/WztyOGl.png" alt="" /></p>
+
+<p>If you’re reading this post, it’s entirely possible that you’ve been exposed to the goodness that is <a href="http://loopback.io/">LoopBack</a>. If not, I’d recommend checking out <a href="https://developer.ibm.com/apiconnect/2017/03/09/loopback-in-5-minutes/">my video showing you how you can create an API with LoopBack in just 5 minutes</a>.</p>
+
+<p>Having a RESTful API ready to go in such a short period of time is quite powerful, and it really reduces the time needed to get your backend up and running. But there’s an important part of your application that LoopBack neglects - your frontend.</p>
+
+<p><strong><em>(extremely documentary voice)</em></strong> What if I told you that you could use a command line interface to generate (code generation is kind of a thing around here) a client SDK for any application you create in LoopBack?</p>
+
+<p>Now that you’ve fallen out of your chair, get back in your seat and let’s get cracking. You’re going to love this &lt;3.</p>
+
+<p>(P.S. - I would like to thank <a href="https://twitter.com/Chris__Bailey">Chris Bailey</a> for the inspiration for this post - he gave a <a href="https://news.realm.io/news/altconf-2017-chris-bailey-full-stack-swift-in-30-minutes">great talk at AltConf about Full Stack Swift</a> and how you can do this.</p>
+
+<h3 id="setup">Setup</h3>
+
+<p>You’ll need to have a few things installed first.</p>
+
+<h4 id="loopback">LoopBack</h4>
+
+<p>Make sure you have Node.js and npm installed on your machine, then go to your command line and type in <code class="highlighter-rouge">npm install -g loopback-cli</code>. This should give you all you need to start generating RESTful APIs for Node.js.</p>
+
+<h4 id="bluemix-cli">Bluemix CLI</h4>
+
+<p>Go to <a href="https://console.bluemix.net/docs/cli/index.html#cli">this</a> website and install the appropriate CLI for your operating system. You don’t <em>need</em> an account in Bluemix to use the CLI, but as an IBM employee I am legally mandated to inform you that signing up for a <a href="https://console.ng.bluemix.net">Bluemix</a> account is a very good idea (just kidding about the legal mandate.) If you do, you’ll be able to manage your cloud applications with it, and you can find out more about that <a href="https://clis.ng.bluemix.net/ui/home.html">here</a>.</p>
+
+<h4 id="bluemix-sdk-generation-plugin"><a href="https://console.bluemix.net/docs/cloudnative/sdk_cli.html#sdk-cli">Bluemix SDK Generation Plugin</a></h4>
+
+<p>You have to have the Bluemix CLI installed first, but once you have it up and running, type <code class="highlighter-rouge">bx plugin install sdk-gen -r Bluemix</code> into your terminal, and let the plugin download and follow the resulting instructions. Your system should now be set up to do what it needs to do to generate a client SDK.</p>
+
+<h4 id="an-api-that-follows-the-openapi-spec">An API That Follows the OpenAPI Spec</h4>
+
+<p>All generated LoopBack APIs adhere to the <a href="https://github.com/OAI/OpenAPI-Specification">OpenAPI Specification</a>, which, for the purpose of this tutorial, means that you can represent the structure and capabilities of your API in a single .yml file. This also used to be called a “Swagger” file, but to be fair, you should feel pretty awesome being able to rep your API in a single file. For this tutorial, we’ll use <a href="https://github.com/StrongLoop-Evangelists/loopback-in-five">this</a> as an API to work with. You should be able to clone this git repo, and then run <code class="highlighter-rouge">npm install</code>.</p>
+
+<p>If you’ve done all this, you should be ready to go.</p>
+
+<h3 id="exporting-your-api-definition">Exporting your API Definition</h3>
+
+<p>LoopBack has a super easy way to do this. First, navigate to the root directory of your API, and type in <code class="highlighter-rouge">lb export-api-def</code>. Don’t be alarmed at the amount of text your terminal spits out - all your terminal has done is print out the generated specification file for your API. Since this file can be quite big, you can tell the top of the file by the first few lines if they look like this:</p>
+
+<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">swagger</span><span class="pi">:</span> <span class="s1">'</span><span class="s">2.0'</span>
+<span class="s">info</span><span class="pi">:</span>
+  <span class="s">version</span><span class="pi">:</span> <span class="s">1.0.0</span>
+  <span class="s">title</span><span class="pi">:</span> <span class="s">Loopback-in-five</span>
+<span class="s">basePath</span><span class="pi">:</span> <span class="s">/api</span>
+<span class="s">paths</span><span class="pi">:</span>
+</code></pre>
+</div>
+
+<p>If you want to avoid the big copy and paste job, decide on a file name first (Let’s go with AnimalAPIDefinition.yml) and type in <code class="highlighter-rouge">lb export-api-def --o AnimalAPIDefinition.yml</code>. The <code class="highlighter-rouge">--o</code> tag specifies where the output information should go to. For more information on working with Swagger documentation in LoopBack, read my friend <a href="https://twitter.com/raymondcamden">Raymond Camden’s</a> <a href="https://strongloop.com/strongblog/generating-swagger-openapi-specification-from-your-loopback-application/">post</a> on it.</p>
+
+<h3 id="generating-the-sdk">Generating the SDK</h3>
+
+<p>Ok, brace yourself. Stay in the root directory of your API, and, if you’ve followed the previous steps to a T, type <code class="highlighter-rouge">bx sdk generate --js -f ./AnimalAPIDefinition.yml</code> into your terminal. Let the CLI do its thing, and when you’re done, you should have a .zip file in your directory titled <code class="highlighter-rouge">AnimalAPIDefinition.zip</code>.</p>
+
+<p>Before we dive into the contents of that folder, let’s look at the command you just typed, and what some of your options are. The <code class="highlighter-rouge">bx sdk generate</code> command will always be the same regardless of your choices, but you likely noticed the <code class="highlighter-rouge">--js</code> flag right after. This means we will be generating a JavaScript SDK for the API. You aren’t limited to JavaScript though! You can make a Swift (<code class="highlighter-rouge">--ios</code>), Java/Android (<code class="highlighter-rouge">--android</code>), or even a GoLang (<code class="highlighter-rouge">--go</code>) SDK for any API that follows the OpenAPI spec. I love writing web service code, but you know what I like even more than that? Having web service code written for me.</p>
+
+<p>After that, you notice the <code class="highlighter-rouge">-f</code> flag. This indicates that you are generating an SDK based on a local spec file. You could instead choose to specify an app in your space with the <code class="highlighter-rouge">-a</code> flag. You can also use an API that is hosted somewhere with a URL, locally with <code class="highlighter-rouge">-l</code> or on the internet with <code class="highlighter-rouge">-r</code>. This means if you see an API somewhere in the wild, and you know the URL for it’s OpenAPI Specification document, then congratulations - you got yourself an SDK to connect with it!</p>
+
+<h3 id="what-you-made">What you made</h3>
+
+<p>The generated output is super clean. Each type of SDK has it’s own way of being implemented, which I’ll leave to you to figure out, but let’s take a look at the contents of the .zip folder.</p>
+
+<p><img src="http://i.imgur.com/SOQa20q.png" alt="" /></p>
+
+<p>This basically creates a ready-made npm module for you. Here’s what your package.json file looks like:</p>
+
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"loopback_in_five"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0.0"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ERROR_UNKNOWN"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"license"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unlicense"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"main"</span><span class="p">:</span><span class="w"> </span><span class="s2">"src/animalapidefinition/index.js"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"scripts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"test"</span><span class="p">:</span><span class="w"> </span><span class="s2">"./node_modules/mocha/bin/mocha --recursive"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"dependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"superagent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3.5.2"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"nconf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"~0.8.4"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"devDependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"mocha"</span><span class="p">:</span><span class="w"> </span><span class="s2">"~2.3.4"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"sinon"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.17.3"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"expect.js"</span><span class="p">:</span><span class="w"> </span><span class="s2">"~0.3.1"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>You even have a way to test it, built-in! Feel free to browse the source code, but what you’ll want to check out is the documentation, which is chock full of really useful instructions on how to use your API. Start at the <code class="highlighter-rouge">README.md</code> file for a really nice table of contents, and a GitHub-ready install guide:</p>
+
+<p><img src="http://i.imgur.com/pHKUQh1.png" alt="" /></p>
+
+<p>Go through all the pages so you can see how to get the most out of your newest SDK. Last, but certainly not least, you want to open up your <code class="highlighter-rouge">AnimalAPIDefinitionConfig.json</code> file, and look at its contents:</p>
+
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"loopback_in_fiveHost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://localhost/api"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>Scant on details, but this is important. Whenever you make use of your API, you only have to list the host URL for your LoopBack API here, and your SDK will simply work with it. This even works if you are testing on your local machine!</p>
+
+<h3 id="what-next">What Next?</h3>
+
+<p>Imagine being able to take this command and fit it into your Continuous Delivery  pipeline, and being able to walk up to the frontend devs on your team and say, “Don’t worry, y’all, I got this.” Imagine that, with every build, your team gets an updated SDK deployed into their workspace, and they never have to iterate web service code again. I believe in this world, and now you have the tools you need to make this happen! Make sure to follow me on Twitter <a href="https://twitter.com/dokun24">here</a> to find out more neat tips and tricks.</p>
+
+
+                <hr>
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2017/07/11/loopback-facebook-api-user-authentication/" data-toggle="tooltip" data-placement="top" title="Using LoopBack with Facebook’s Graph API for User Authentication">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+<hr>
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    <li>
+                        <a href="/feed.xml">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://twitter.com/dokun24">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    <li>
+                        <a href="https://github.com/dokun1">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li>
+                        <a href="mailto:david@okun.io">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li>
+                        <a href="https://stackoverflow.com/users/1756160/dokun1">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-stack-overflow fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+                <p class="copyright text-muted">Copyright &copy; David Okun 2017</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/clean-blog.min.js "></script>
+
+
+    
+
+
+</body>
+
+</html>

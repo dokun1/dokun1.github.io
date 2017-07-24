@@ -1,0 +1,26 @@
+# Site settings
+title: David Okun
+header-img: img/home-bg.jpg
+email: david@okun.io
+copyright_name: David Okun
+description: Developer Advocate at IBM
+baseurl: ""
+url: "http://okun.io"
+twitter_username: dokun24
+github_username:  dokun1
+instagram_username: dokun1
+email_username:  david@okun.io
+stack_overflow_username: 1756160/dokun1
+
+# Google Analytics
+# To enable google analytics, uncomment below line with a valid Google Tracking ID
+# google_tracking_id:
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+permalink: pretty
+paginate: 3
+exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
+
+plugins: [jekyll-paginate, jekyll-feed]
