@@ -14,7 +14,7 @@ stack_overflow_username: 1756160/dokun1
 
 # Google Analytics
 # To enable google analytics, uncomment below line with a valid Google Tracking ID
-# google_tracking_id:
+google_tracking_id:51731832 
 
 # Build settings
 markdown: kramdown
