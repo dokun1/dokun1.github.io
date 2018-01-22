@@ -1,7 +1,6 @@
 ---
 layout: post
-title: "Introducing David Okun"
-subtitle: "Strongloop Developer Evangelist"
+title: "Introducing David Okun To The Strongloop Team"
 date: 2017-01-10 12:00:00
 author: David Okun
 header-img: "img/blogBackgrounds/01.jpeg"

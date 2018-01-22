@@ -1,7 +1,6 @@
 ---
 layout: post
-title: Generating a Client SDK For LoopBack with the Bluemix CLI
-subtitle: Dude.
+title: Generating A Client SDK For LoopBack With The Bluemix CLI
 date: 2017-07-20 12:00:00
 author: David Okun
 header-img: "img/blogBackgrounds/05.jpeg"

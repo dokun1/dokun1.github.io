@@ -1,7 +1,6 @@
 ---
 layout: post
-title: Strongloop and IBM Do OSCON
-subtitle: API Management in the Midst of Cognitive Exhibits
+title: Strongloop And IBM Do OSCON
 date: 2017-06-16 12:00:00
 author: David Okun
 header-img: "img/blogBackgrounds/02.jpeg"

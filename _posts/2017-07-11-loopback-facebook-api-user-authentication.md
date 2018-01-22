@@ -1,7 +1,6 @@
 ---
 layout: post
-title: Using LoopBack with Facebook’s Graph API for User Authentication
-subtitle: Let the datasource connector do the REST.
+title: Using LoopBack With Facebook’s Graph API For User Authentication
 date: 2017-07-11 12:00:00
 author: David Okun & Manny Guerrero
 header-img: "img/blogBackgrounds/04.jpeg"

@@ -1,7 +1,6 @@
 ---
 layout: post
-title: "How A Countdown Label Works"
-subtitle: "Way too much information about how to count backwards"
+title: "How A Countdown Label Works In Objective-C"
 date: 2014-03-06 12:00:00
 author: David Okun
 header-img: "img/blogBackgrounds/06.jpeg"
