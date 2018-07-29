@@ -4,6 +4,7 @@ title: "How A Countdown Label Works In Objective-C"
 date: 2014-03-06 12:00:00
 author: David Okun
 header-img: "img/blogBackgrounds/06.jpeg"
+comments: true
 ---
 
 **Editor's Note: This is from a blog I started back in 2014, when I aimed to teach Objective-C to people who were totally unfamiliar with programming. It's verbose, and I'm sorry, but also I am not sorry.**

@@ -4,6 +4,7 @@ title: Introducing Lumina - The Fastest Way To Get Started With CoreML On iOS
 date: 2018-01-02 12:00:00
 author: David Okun
 header-img: "img/blogBackgrounds/06.jpeg"
+comments: true
 ---
 
 ## Demo Video

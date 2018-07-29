@@ -4,6 +4,7 @@ title: Strongloop And IBM Do OSCON
 date: 2017-06-16 12:00:00
 author: David Okun
 header-img: "img/blogBackgrounds/02.jpeg"
+comments: true
 ---
 
 **Editor's Note: This is mirrored from [strongloop.com](https://strongloop.com/strongblog/strongloop-and-ibm-do-oscon/) here.**

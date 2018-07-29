@@ -4,6 +4,7 @@ title: How To Create Environment Variables For Swift In Xcode
 date: 2017-11-12 12:00:00
 author: David Okun
 header-img: "img/blogBackgrounds/02.jpeg"
+comments: true
 ---
 
 When you need to switch between debug mode and release mode in Xcode, you have a ton of options at your disposal.

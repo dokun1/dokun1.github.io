@@ -4,6 +4,7 @@ title: Kitura Stencil Tutorial - How to make Websites with Swift
 date: 2018-04-03 12:00:00
 author: David Okun
 header-img: "img/blogBackgrounds/05.jpeg"
+comments: true
 ---
 
 {% raw %}

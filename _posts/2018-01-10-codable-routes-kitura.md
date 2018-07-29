@@ -4,6 +4,7 @@ title: Kitura 2.0 – Taking Advantage Of Codable Routes
 date: 2018-01-18 12:00:00
 author: David Okun
 header-img: "img/blogBackgrounds/01.jpeg"
+comments: true
 ---
 
 **Editor's Note: This is mirrored from the [IBM Cloud Blog](https://www.ibm.com/blogs/bluemix/2018/01/kitura-2-0-taking-advantage-of-codable-routes/).**

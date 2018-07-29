@@ -4,6 +4,7 @@ title: Loopback In Ten Minutes - Full REST API On The Cloud
 date: 2017-12-08 12:00:00
 author: David Okun
 header-img: "img/blogBackgrounds/01.jpeg"
+comments: true
 ---
 
 **Editor's Note: This is based on a blog post and series I wrote for [IBM DevWorks](https://strongloop.com/strongblog/strongloop-and-ibm-do-oscon/). The associate code repo is [here](https://github.com/IBM/loopback-in-five).**

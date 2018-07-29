@@ -4,6 +4,7 @@ title: The Pain Of Updating A Blog
 date: 2018-07-29 12:00:00
 author: David Okun
 header-img: "img/blogBackgrounds/02.jpeg"
+comments: true
 ---
 
 Finally!!!

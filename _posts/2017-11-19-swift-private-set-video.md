@@ -4,6 +4,7 @@ title: What Is 'private(set)' In Swift?
 date: 2017-11-19 12:00:00
 author: David Okun
 header-img: "img/blogBackgrounds/03.jpeg"
+comments: true
 ---
 
 Often times, if I can't sleep at night, I try thinking of unique ways in which I can make a property's setter private, but keep its getter public.

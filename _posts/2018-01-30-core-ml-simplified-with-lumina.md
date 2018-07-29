@@ -4,6 +4,7 @@ title: Core ML Simplified with Lumina
 date: 2018-01-30 12:00:00
 author: David Okun
 header-img: "img/blogBackgrounds/03.jpeg"
+comments: true
 ---
 
 **Editor's Note: This is mirrored from [Fritz.ai](https://heartbeat.fritz.ai/Core ML-simplified-with-lumina-745e61035f30).**

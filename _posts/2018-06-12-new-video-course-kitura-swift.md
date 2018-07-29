@@ -4,6 +4,7 @@ title: New Video Course - Server Side Swift with Kitura
 date: 2018-06-12 12:00:00
 author: David Okun
 header-img: "img/blogBackgrounds/01.jpeg"
+comments: true
 ---
 
 {% raw %}

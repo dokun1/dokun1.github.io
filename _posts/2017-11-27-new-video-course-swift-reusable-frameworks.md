@@ -4,6 +4,7 @@ title: New Lynda.com Video Course - Swift & Reusable Frameworks
 date: 2017-11-27 12:00:00
 author: David Okun
 header-img: "img/blogBackgrounds/07.jpeg"
+comments: true
 ---
 
 For the past few months, I've been putting together a video course on how to write Swift code in a truly unique way - a reusable framework.

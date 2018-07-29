@@ -4,6 +4,7 @@ title: "Introducing David Okun To The Strongloop Team"
 date: 2017-01-10 12:00:00
 author: David Okun
 header-img: "img/blogBackgrounds/01.jpeg"
+comments: true
 ---
 
 **Editor's Note: This is mirrored from [strongloop.com](https://strongloop.com/strongblog/introducing-david-okun-strongloop-developer-evangelist/) here.**

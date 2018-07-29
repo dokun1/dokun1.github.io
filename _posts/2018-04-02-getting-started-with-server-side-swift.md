@@ -4,6 +4,7 @@ title: Kitura Tutorial - Getting Started with Server-side Swift
 date: 2018-04-02 12:00:00
 author: David Okun
 header-img: "img/blogBackgrounds/05.jpeg"
+comments: true
 ---
 
 **Editor's Note: This is mirrored from [RayWenderlich.com](https://www.raywenderlich.com/180721/kitura-tutorial-getting-started-with-server-side-swift), and it was my first ever post on his website!.**
