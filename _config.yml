@@ -3,13 +3,14 @@ title: David Okun
 header-img: img/home-bg.jpg
 email: david@okun.io
 copyright_name: David Okun
-description: Developer Advocate at IBM
+description: insert description line here
 baseurl: ""
 url: "http://okun.io"
 twitter_username: dokun24
 github_username:  dokun1
 instagram_username: dokun1
 email_username:  david@okun.io
+linkedin_username: david-okun
 stack_overflow_username: 1604167/dokun1
 
 # Google Analytics
@@ -20,7 +21,7 @@ google_tracking_id: 51731832
 markdown: kramdown
 highlighter: rouge
 permalink: pretty
-paginate: 3
+paginate: 4
 exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
 
 plugins: [jekyll-paginate]
