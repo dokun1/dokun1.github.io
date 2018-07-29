@@ -140,14 +140,13 @@
 
 <p>LoopBack has a super easy way to do this. First, navigate to the root directory of your API, and type in <code class="highlighter-rouge">lb export-api-def</code>. Don’t be alarmed at the amount of text your terminal spits out - all your terminal has done is print out the generated specification file for your API. Since this file can be quite big, you can tell the top of the file by the first few lines if they look like this:</p>
 
-<div class="language-yaml highlighter-rouge"><pre class="highlight"><code><span class="s">swagger</span><span class="pi">:</span> <span class="s1">'</span><span class="s">2.0'</span>
-<span class="s">info</span><span class="pi">:</span>
-  <span class="s">version</span><span class="pi">:</span> <span class="s">1.0.0</span>
-  <span class="s">title</span><span class="pi">:</span> <span class="s">Loopback-in-five</span>
-<span class="s">basePath</span><span class="pi">:</span> <span class="s">/api</span>
-<span class="s">paths</span><span class="pi">:</span>
-</code></pre>
-</div>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">swagger</span><span class="pi">:</span> <span class="s1">'</span><span class="s">2.0'</span>
+<span class="na">info</span><span class="pi">:</span>
+  <span class="na">version</span><span class="pi">:</span> <span class="s">1.0.0</span>
+  <span class="na">title</span><span class="pi">:</span> <span class="s">Loopback-in-five</span>
+<span class="na">basePath</span><span class="pi">:</span> <span class="s">/api</span>
+<span class="na">paths</span><span class="pi">:</span>
+</code></pre></div></div>
 
 <p>If you want to avoid the big copy and paste job, decide on a file name first (Let’s go with AnimalAPIDefinition.yml) and type in <code class="highlighter-rouge">lb export-api-def --o AnimalAPIDefinition.yml</code>. The <code class="highlighter-rouge">--o</code> tag specifies where the output information should go to. For more information on working with Swagger documentation in LoopBack, read my friend <a href="https://twitter.com/raymondcamden">Raymond Camden’s</a> <a href="https://strongloop.com/strongblog/generating-swagger-openapi-specification-from-your-loopback-application/">post</a> on it.</p>
 
@@ -167,27 +166,26 @@
 
 <p>This basically creates a ready-made npm module for you. Here’s what your package.json file looks like:</p>
 
-<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"loopback_in_five"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0.0"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ERROR_UNKNOWN"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"license"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unlicense"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"main"</span><span class="p">:</span><span class="w"> </span><span class="s2">"src/animalapidefinition/index.js"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"scripts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"test"</span><span class="p">:</span><span class="w"> </span><span class="s2">"./node_modules/mocha/bin/mocha --recursive"</span><span class="w">
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"loopback_in_five"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0.0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ERROR_UNKNOWN"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"license"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unlicense"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"main"</span><span class="p">:</span><span class="w"> </span><span class="s2">"src/animalapidefinition/index.js"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"scripts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"test"</span><span class="p">:</span><span class="w"> </span><span class="s2">"./node_modules/mocha/bin/mocha --recursive"</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"dependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"superagent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3.5.2"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"nconf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"~0.8.4"</span><span class="w">
+    </span><span class="s2">"dependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"superagent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3.5.2"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"nconf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"~0.8.4"</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"devDependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"mocha"</span><span class="p">:</span><span class="w"> </span><span class="s2">"~2.3.4"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"sinon"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.17.3"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"expect.js"</span><span class="p">:</span><span class="w"> </span><span class="s2">"~0.3.1"</span><span class="w">
+    </span><span class="s2">"devDependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"mocha"</span><span class="p">:</span><span class="w"> </span><span class="s2">"~2.3.4"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"sinon"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.17.3"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"expect.js"</span><span class="p">:</span><span class="w"> </span><span class="s2">"~0.3.1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-</div>
+</span></code></pre></div></div>
 
 <p>You even have a way to test it, built-in! Feel free to browse the source code, but what you’ll want to check out is the documentation, which is chock full of really useful instructions on how to use your API. Start at the <code class="highlighter-rouge">README.md</code> file for a really nice table of contents, and a GitHub-ready install guide:</p>
 
@@ -195,11 +193,10 @@
 
 <p>Go through all the pages so you can see how to get the most out of your newest SDK. Last, but certainly not least, you want to open up your <code class="highlighter-rouge">AnimalAPIDefinitionConfig.json</code> file, and look at its contents:</p>
 
-<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"loopback_in_fiveHost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://localhost/api"</span><span class="w">
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"loopback_in_fiveHost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://localhost/api"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-</div>
+</span></code></pre></div></div>
 
 <p>Scant on details, but this is important. Whenever you make use of your API, you only have to list the host URL for your LoopBack API here, and your SDK will simply work with it. This even works if you are testing on your local machine!</p>
 

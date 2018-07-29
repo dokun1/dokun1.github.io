@@ -136,25 +136,22 @@
 
 <p>So here’s what my favorite part of working with Lumina has been. Let’s say you made an instance of Lumina like so:</p>
 
-<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="k">let</span> <span class="nv">camera</span> <span class="o">=</span> <span class="kt">LuminaViewController</span><span class="p">()</span>
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="nv">camera</span> <span class="o">=</span> <span class="kt">LuminaViewController</span><span class="p">()</span>
 <span class="n">camera</span><span class="o">.</span><span class="n">delegate</span> <span class="o">=</span> <span class="k">self</span>
 <span class="nf">present</span><span class="p">(</span><span class="n">camera</span><span class="p">,</span> <span class="nv">animated</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Now let’s say you have a model called <code class="highlighter-rouge">MobileNet.mlmodel</code> that you want to stream the video frames from Lumina through. After you import that model to your Xcode project, here’s all you have to do to get it streaming frames:</p>
 
-<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="n">camera</span><span class="o">.</span><span class="n">streamingModelTypes</span> <span class="o">=</span> <span class="p">[</span><span class="kt">MobileNet</span><span class="p">()]</span>
-</code></pre>
-</div>
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">camera</span><span class="o">.</span><span class="n">streamingModelTypes</span> <span class="o">=</span> <span class="p">[</span><span class="kt">MobileNet</span><span class="p">()]</span>
+</code></pre></div></div>
 
 <p>That’s it! You’ve done the heavy lifting! Now, results will be streamed back through this function in your delegate:</p>
 
-<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="kd">func</span> <span class="nf">streamed</span><span class="p">(</span><span class="nv">videoFrame</span><span class="p">:</span> <span class="kt">UIImage</span><span class="p">,</span> <span class="n">with</span> <span class="nv">predictions</span><span class="p">:</span> <span class="p">[([</span><span class="kt">LuminaPrediction</span><span class="p">]?,</span> <span class="kt">Any</span><span class="o">.</span><span class="k">Type</span><span class="p">)]?,</span> <span class="n">from</span> <span class="nv">controller</span><span class="p">:</span> <span class="kt">LuminaViewController</span><span class="p">)</span> <span class="p">{</span>
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">func</span> <span class="nf">streamed</span><span class="p">(</span><span class="nv">videoFrame</span><span class="p">:</span> <span class="kt">UIImage</span><span class="p">,</span> <span class="n">with</span> <span class="nv">predictions</span><span class="p">:</span> <span class="p">[([</span><span class="kt">LuminaPrediction</span><span class="p">]?,</span> <span class="kt">Any</span><span class="o">.</span><span class="k">Type</span><span class="p">)]?,</span> <span class="n">from</span> <span class="nv">controller</span><span class="p">:</span> <span class="kt">LuminaViewController</span><span class="p">)</span> <span class="p">{</span>
     <span class="nf">print</span><span class="p">(</span><span class="n">predictions</span><span class="o">!</span><span class="p">)</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Since this framework is written to work with iOS 11.0 and above, you’ll have to iterate through the tuple <code class="highlighter-rouge">predictions</code> to see which model your results are associated with, but this means you can load as many models as you want into Lumina, and each video frame will be processed through the collection of models.</p>
 
@@ -172,7 +169,7 @@
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2017/11/26/swift-for-where-screencast/" data-toggle="tooltip" data-placement="top" title="How To Use 'for where' In Swift">&larr; Previous Post</a>
+                        <a href="/2017/12/08/loopback-in-five-journey/" data-toggle="tooltip" data-placement="top" title="Loopback In Ten Minutes - Full REST API On The Cloud">&larr; Previous Post</a>
                     </li>
                     
                     

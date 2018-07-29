@@ -1,0 +1,16 @@
+language: ruby
+rvm:
+  - 2.4.1
+
+install:
+  - bundle install
+  - gem install jekyll
+
+branches:
+  only:
+    - master
+
+script:
+  - jekyll clean
+  - jekyll build
+  - find _site -type f -exec curl --user FTPUSERNAME:FTPPASSWORD --ftp-create-dirs -T {} ftp://ftp.okun.io/\{\} \;  

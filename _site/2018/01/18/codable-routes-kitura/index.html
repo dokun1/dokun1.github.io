@@ -117,18 +117,17 @@
 <h2 id="can-you-show-me-how">Can you show me how?</h2>
 <p>Let’s assume you have a struct called <code class="highlighter-rouge">Acronym</code>, defined like so:</p>
 
-<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="kd">struct</span> <span class="kt">Acronym</span><span class="p">:</span> <span class="kt">Codable</span> <span class="p">{</span>
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">struct</span> <span class="kt">Acronym</span><span class="p">:</span> <span class="kt">Codable</span> <span class="p">{</span>
     <span class="k">var</span> <span class="nv">id</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span>
     <span class="k">var</span> <span class="nv">short</span><span class="p">:</span> <span class="kt">String</span>
     <span class="k">var</span> <span class="nv">long</span><span class="p">:</span> <span class="kt">String</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 <p>In order for Codable routing to work, the object in question must conform to <code class="highlighter-rouge">Codable</code>, which is, in reality, a typealias of the combined protocols <code class="highlighter-rouge">Encodable</code> and <code class="highlighter-rouge">Decodable</code>. Conforming to these protocols means that the Swift runtime will be able to serialize the object into JSON, using the property names as tags, and back from JSON into a model object representation.</p>
 
 <p>Let’s look at an example of a basic <code class="highlighter-rouge">GET</code> route for your <code class="highlighter-rouge">Acronym</code> object from the previous version of Kitura:</p>
 
-<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="n">router</span><span class="o">.</span><span class="nf">get</span><span class="p">(</span><span class="s">"/acronyms"</span><span class="p">,</span> <span class="nv">handler</span><span class="p">:</span> <span class="n">getAcronyms</span><span class="p">)</span>
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">router</span><span class="o">.</span><span class="nf">get</span><span class="p">(</span><span class="s">"/acronyms"</span><span class="p">,</span> <span class="nv">handler</span><span class="p">:</span> <span class="n">getAcronyms</span><span class="p">)</span>
 
 <span class="kd">func</span> <span class="nf">getAcronyms</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="kt">RouterRequest</span><span class="p">,</span> <span class="nv">response</span><span class="p">:</span> <span class="kt">RouterResponse</span><span class="p">,</span> <span class="nv">next</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="k">throws</span> <span class="p">{</span>
     <span class="kt">Acronym</span><span class="o">.</span><span class="kt">Persistence</span><span class="o">.</span><span class="nf">getAll</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="n">database</span><span class="p">)</span> <span class="p">{</span> <span class="n">acronyms</span><span class="p">,</span> <span class="n">error</span> <span class="k">in</span>
@@ -141,8 +140,7 @@
         <span class="n">response</span><span class="o">.</span><span class="nf">send</span><span class="p">(</span><span class="kt">JSON</span><span class="p">:</span> <span class="p">[</span><span class="s">"acronyms"</span> <span class="p">:</span> <span class="n">acronyms</span><span class="o">.</span><span class="n">json</span><span class="p">])</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Let’s examine what this route is doing. If a client makes a <code class="highlighter-rouge">GET</code> request to this API at <code class="highlighter-rouge">/acronyms</code>, it calls the <code class="highlighter-rouge">getAcronyms</code> function, that you have designated as its handler. You then use a function on the <code class="highlighter-rouge">Acronym</code> type to get all acronyms you have saved to your database, aptly named <code class="highlighter-rouge">database</code>. This closure returns an optional collection of acronyms, and an optional error. You parse through them, send either the error or the acronym array back in the response, then call <code class="highlighter-rouge">next()</code> and you’re all set.</p>
 
@@ -150,15 +148,14 @@
 
 <p>Now, let’s take a look at how that same API call can be done with Codable routing:</p>
 
-<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="n">router</span><span class="o">.</span><span class="nf">get</span><span class="p">(</span><span class="s">"/acronyms"</span><span class="p">,</span> <span class="nv">handler</span><span class="p">:</span> <span class="n">getAcronyms</span><span class="p">)</span>
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">router</span><span class="o">.</span><span class="nf">get</span><span class="p">(</span><span class="s">"/acronyms"</span><span class="p">,</span> <span class="nv">handler</span><span class="p">:</span> <span class="n">getAcronyms</span><span class="p">)</span>
 
 <span class="kd">func</span> <span class="nf">getAcronyms</span><span class="p">(</span><span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">([</span><span class="kt">Acronym</span><span class="p">]?,</span> <span class="kt">RequestError</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="p">{</span>
     <span class="kt">Acronym</span><span class="o">.</span><span class="kt">Persistence</span><span class="o">.</span><span class="nf">getAll</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="n">database</span><span class="p">)</span> <span class="p">{</span> <span class="n">acronyms</span><span class="p">,</span> <span class="n">error</span> <span class="k">in</span>
         <span class="k">return</span> <span class="nf">completion</span><span class="p">(</span><span class="n">acronyms</span><span class="p">,</span> <span class="n">error</span> <span class="k">as?</span> <span class="kt">RequestError</span><span class="p">)</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Quite literally, Codable routing allows you to handle this <code class="highlighter-rouge">GET</code> request in half the amount code. You designate the route handler function just like before, and then call your function to get your acronyms from your database. The only difference is that Kitura will handle the response serialization for you now.</p>
 
@@ -176,7 +173,7 @@
 
 <p>This means you have to consider how your requests are being made from a web front end. Previous tutorials using a basic HTML form allowed you to just specify the REST verb and the API path, but including the content type is paramount now. For example, let’s say you also declared a route to add a new <code class="highlighter-rouge">Acronym</code> via a POST. Here’s how you would form your <code class="highlighter-rouge">XMLHTTPRequest</code> in your web front end:</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">submitForm</span><span class="p">()</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">submitForm</span><span class="p">()</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="kr">short</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">"shortField"</span><span class="p">).</span><span class="nx">value</span><span class="p">;</span>
     <span class="kd">var</span> <span class="kr">long</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">"longField"</span><span class="p">).</span><span class="nx">value</span><span class="p">;</span>
     <span class="kd">var</span> <span class="nx">xhr</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
@@ -189,20 +186,18 @@
     <span class="p">}</span>
     <span class="nx">xhr</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span> <span class="s2">"short"</span><span class="p">:</span> <span class="kr">short</span><span class="p">,</span> <span class="s2">"long"</span><span class="p">:</span> <span class="kr">long</span> <span class="p">}));</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Once you make this call, this function gets called in Kitura:</p>
 
-<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">post</span><span class="o">&lt;</span><span class="kt">I</span><span class="p">:</span> <span class="kt">Codable</span><span class="p">,</span> <span class="kt">O</span><span class="p">:</span> <span class="kt">Codable</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">route</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">handler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt">CodableClosure</span><span class="o">&lt;</span><span class="kt">I</span><span class="p">,</span> <span class="kt">O</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span>
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">post</span><span class="o">&lt;</span><span class="kt">I</span><span class="p">:</span> <span class="kt">Codable</span><span class="p">,</span> <span class="kt">O</span><span class="p">:</span> <span class="kt">Codable</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">route</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">handler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt">CodableClosure</span><span class="o">&lt;</span><span class="kt">I</span><span class="p">,</span> <span class="kt">O</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span>
     <span class="nf">postSafely</span><span class="p">(</span><span class="n">route</span><span class="p">,</span> <span class="nv">handler</span><span class="p">:</span> <span class="n">handler</span><span class="p">)</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Passing in your generic input JSON and output type expectation, this leads you to the culmination of our bullet list above, called at the very beginning of <code class="highlighter-rouge">postSafely</code>:</p>
 
-<div class="language-swift highlighter-rouge"><pre class="highlight"><code><span class="k">guard</span> <span class="k">self</span><span class="o">.</span><span class="nf">isContentTypeJson</span><span class="p">(</span><span class="n">request</span><span class="p">)</span> <span class="k">else</span> <span class="p">{</span>
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">guard</span> <span class="k">self</span><span class="o">.</span><span class="nf">isContentTypeJson</span><span class="p">(</span><span class="n">request</span><span class="p">)</span> <span class="k">else</span> <span class="p">{</span>
     <span class="n">response</span><span class="o">.</span><span class="nf">status</span><span class="p">(</span><span class="o">.</span><span class="n">unsupportedMediaType</span><span class="p">)</span>
     <span class="nf">next</span><span class="p">()</span>
     <span class="k">return</span>
@@ -212,8 +207,7 @@
     <span class="n">response</span><span class="o">.</span><span class="nf">status</span><span class="p">(</span><span class="o">.</span><span class="n">internalServerError</span><span class="p">)</span>
     <span class="k">return</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>We won’t dive into the specifics of <code class="highlighter-rouge">isContentTypeJson</code> and <code class="highlighter-rouge">hasBodyParserBeenUsed</code>, but you can take it on fair authority that they do what they say they do!</p>
 
@@ -230,6 +224,10 @@
                         <a href="/2018/01/02/introducing-lumina-swift-core-ml/" data-toggle="tooltip" data-placement="top" title="Introducing Lumina - The Fastest Way To Get Started With CoreML On iOS">&larr; Previous Post</a>
                     </li>
                     
+                    
+                    <li class="next">
+                        <a href="/2018/01/30/core-ml-simplified-with-lumina/" data-toggle="tooltip" data-placement="top" title="Core ML Simplified with Lumina">Next Post &rarr;</a>
+                    </li>
                     
                 </ul>
 
