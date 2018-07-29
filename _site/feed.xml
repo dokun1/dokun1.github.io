@@ -1,4 +1,366 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-07-29T10:20:51-07:00</updated><id>http://localhost:4000/</id><title type="html">David Okun</title><subtitle>insert description line here</subtitle><entry><title type="html">Kitura Stencil Tutorial - How to make Websites with Swift</title><link href="http://localhost:4000/2018/04/03/kitura-stencil-making-websites-with-swift/" rel="alternate" type="text/html" title="Kitura Stencil Tutorial - How to make Websites with Swift" /><published>2018-04-03T05:00:00-07:00</published><updated>2018-04-03T05:00:00-07:00</updated><id>http://localhost:4000/2018/04/03/kitura-stencil-making-websites-with-swift</id><content type="html" xml:base="http://localhost:4000/2018/04/03/kitura-stencil-making-websites-with-swift/">&lt;p&gt;&lt;strong&gt;Editor’s Note: This is mirrored from &lt;a href=&quot;https://www.raywenderlich.com/181130/kitura-stencil-tutorial-how-to-make-websites-with-swift&quot;&gt;RayWenderlich.com&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-07-29T10:40:46-07:00</updated><id>http://localhost:4000/</id><title type="html">David Okun</title><subtitle>insert description line here</subtitle><entry><title type="html">TCP Server With the SwiftNIO Networking Framework</title><link href="http://localhost:4000/2018/04/09/tcp-server-with-swift-nio/" rel="alternate" type="text/html" title="TCP Server With the SwiftNIO Networking Framework" /><published>2018-04-09T05:00:00-07:00</published><updated>2018-04-09T05:00:00-07:00</updated><id>http://localhost:4000/2018/04/09/tcp-server-with-swift-nio</id><content type="html" xml:base="http://localhost:4000/2018/04/09/tcp-server-with-swift-nio/">&lt;p&gt;&lt;strong&gt;Editor’s Note: This is mirrored from &lt;a href=&quot;https://www.raywenderlich.com/188345/swift-server-tutorial-tcp-server-with-the-swiftnio-networking-framework&quot;&gt;RayWenderlich.com&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Mobile developers often work with REST APIs or other networking protocols in their applications — whether it’s to retrieve data, communicate with other devices, or something else. &lt;em&gt;&lt;a href=&quot;https://github.com/apple/swift-nio/&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;SwiftNIO&lt;/a&gt;&lt;/em&gt;, written by Apple, is a low-level networking framework that makes writing Swift servers even easier than before, empowering Swift developers to leverage their skills on the server side.&lt;/p&gt;
+
+&lt;p&gt;In this tutorial, you’ll:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Learn about what purpose SwiftNIO serves and why Apple made and open-sourced it.&lt;/li&gt;
+  &lt;li&gt;Practice working within a SwiftNIO framework by creating a &lt;em&gt;Quote Of The Day&lt;/em&gt; Swift TCP server that you’ll connect to using a provided iOS app.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;To start, you’ll need a Mac running at least macOS 10.12 Sierra with Xcode 9.3 or later. You’ll also use the command line, so be sure to open up Terminal, and check the command line utility for Swift is installed. You can check this by entering &lt;code class=&quot;highlighter-rouge&quot;&gt;swift --version&lt;/code&gt;. It must be version 4.1 or later.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: The command line tool you need should be installed with Xcode. If you don’t successfully see your version of Swift when running the &lt;code class=&quot;highlighter-rouge&quot;&gt;swift --version&lt;/code&gt; command, go &lt;a href=&quot;https://developer.apple.com/library/content/technotes/tn2339/_index.html#//apple_ref/doc/uid/DTS40014588-CH1-DOWNLOADING_COMMAND_LINE_TOOLS_IS_NOT_AVAILABLE_IN_XCODE_FOR_MACOS_10_9__HOW_CAN_I_INSTALL_THEM_ON_MY_MACHINE_&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt; for more information.&lt;/p&gt;
+
+&lt;h2 id=&quot;getting-started&quot;&gt;Getting Started&lt;/h2&gt;
+
+&lt;p&gt;First, it’s helpful to understand exactly how the SwiftNIO framework differs from other Swift frameworks.&lt;/p&gt;
+
+&lt;h3 id=&quot;swift-on-the-server-status-quo&quot;&gt;Swift-on-the-Server Status Quo&lt;/h3&gt;
+
+&lt;p&gt;If you’re a Swift developer, it’s very likely you’ve focused only on mobile applications. This makes servers in the cloud seem like voodoo magic — or at least a little confusing at first.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+	&lt;img src=&quot;https://koenig-media.raywenderlich.com/uploads/2018/03/cloudConfused-500x500.jpg&quot; alt=&quot;SwiftNIO&quot; width=&quot;300&quot; height=&quot;300&quot; class=&quot;size-large wp-image-188663&quot; /&gt;I don't get you, cloud.
+&lt;/p&gt;
+
+&lt;p&gt;Thankfully, if you know Swift, frameworks like &lt;a href=&quot;http://kitura.io&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;Kitura&lt;/a&gt; and &lt;a href=&quot;https://vapor.codes/&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;Vapor&lt;/a&gt; make writing a web service easier.&lt;/p&gt;
+
+&lt;p&gt;However, these frameworks operate as a convenient layer on top of some sophisticated and low-level socket networking code, much of which interoperates with C. In the case of Kitura, once Swift became open sourced and available for Linux, IBM wrote &lt;em&gt;&lt;a href=&quot;https://github.com/IBM-Swift/BlueSocket&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;BlueSocket&lt;/a&gt;&lt;/em&gt; to serve as its low-level socket networking layer.&lt;/p&gt;
+
+&lt;h3 id=&quot;how-swiftnio-differs&quot;&gt;How SwiftNIO Differs&lt;/h3&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+	&lt;img src=&quot;https://koenig-media.raywenderlich.com/uploads/2018/03/cloudHappy-500x500.jpg&quot; alt=&quot;SwiftNIO&quot; width=&quot;300&quot; class=&quot;size-large wp-image-188664&quot; /&gt;You complete me, NIO.
+&lt;/p&gt;
+
+&lt;p&gt;BlueSocket is great, but it doesn’t fill in all the blanks when it comes to server-side Swift. For example, Kitura not only included the work of BlueSocket, but it also implemented the entire HTTP stack under the hood, so incoming communication would be routed the right way. Now, Apple has raised the bar, introducing &lt;em&gt;SwiftNIO&lt;/em&gt; and essentially handling socket communication and HTTP for us.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: SwiftNIO has been written as a port of &lt;a href=&quot;https://netty.io/&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;Netty&lt;/a&gt;, a Java low-level networking framework, but in Swift.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+    &lt;img src=&quot;https://koenig-media.raywenderlich.com/uploads/2018/03/normansDiagram-650x358.jpg&quot; alt=&quot;&quot; width=&quot;650&quot; height=&quot;358&quot; class=&quot;size-large wp-image-188746&quot; /&gt; This is a diagram taken from &lt;a href=&quot;https://www.youtube.com/watch?v=QJ3WG9kRLMo&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;Norman Maurer's talk&lt;/a&gt; on SwiftNIO, given March 1, 2018, in Tokyo.
+&lt;/p&gt;
+
+&lt;p&gt;This tutorial won’t go into great detail about every piece of the above diagram but, as you work your way through, each piece should begin to make sense. However, it’s worth explaining what an &lt;code&gt;EventLoopGroup&lt;/code&gt; is and, thus, what a &lt;code&gt;MultiThreadedEventLoopGroup&lt;/code&gt; accomplishes with this class.&lt;/p&gt;
+
+&lt;h3 id=&quot;eventloopgroup-and-multithreadedeventloopgroup&quot;&gt;EventLoopGroup and MultiThreadedEventLoopGroup&lt;/h3&gt;
+
+&lt;p&gt;An &lt;code&gt;EventLoop&lt;/code&gt; runs in a loop, looking for new tasks to handle that have come in from a new client via a network connection. Think of an &lt;code&gt;EventLoop&lt;/code&gt; like a serial &lt;code&gt;DispatchQueue&lt;/code&gt;, which allows you to delegate blocks of code for execution at a time of your choosing. As multiple &lt;code&gt;EventLoop&lt;/code&gt; instances cycle through your thread, they look for tasks to execute.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+    &lt;img src=&quot;https://koenig-media.raywenderlich.com/uploads/2018/03/runLoop-1.png&quot; alt=&quot;&quot; width=&quot;650&quot; height=&quot;240&quot; class=&quot;size-full wp-image-189249&quot; /&gt;After an EventLoop searches for tasks and schedules them, it executes them one by one.
+&lt;/p&gt;
+
+&lt;p&gt;When you put these &lt;code&gt;EventLoop&lt;/code&gt; instances into an &lt;code&gt;EventLoopGroup&lt;/code&gt;, the handler looks more like a concurrent &lt;code&gt;DispatchQueue&lt;/code&gt;. You can also think of this like a thread pool. This means you can submit multiple tasks to the group and, depending on the time it takes to complete each task, the order of completed tasks may not be what you initially submitted to the group.&lt;/p&gt;
+
+&lt;p&gt;This is where the &lt;code&gt;MultiThreadedEventLoopGroup&lt;/code&gt; class comes in. This specifies the &lt;code&gt;EventLoopGroup&lt;/code&gt; that’s created will tie each group to a specific thread, further streamlining your asynchronous operations that come in. Think of it like an upgraded &lt;code&gt;EventLoopGroup&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+    &lt;img src=&quot;https://koenig-media.raywenderlich.com/uploads/2018/03/runLoopGroup.png&quot; alt=&quot;&quot; width=&quot;650&quot; height=&quot;416&quot; class=&quot;size-full wp-image-189251&quot; /&gt;Each task gets taken care of in its own discrete group.
+&lt;/p&gt;
+
+&lt;h3 id=&quot;synchronousasynchronous-example&quot;&gt;Synchronous/Asynchronous Example&lt;/h3&gt;
+
+&lt;p&gt;Let’s say you’re at a food truck operated by one person. The person at the front of the line orders his food. He pays; he waits. He gets his food. The next person repeats this same process. The food truck delivers everyone’s order correctly, but it’s very slow. If you’re at the end of the line, you are pretty unhappy.&lt;/p&gt;
+
+&lt;p&gt;This is an example of a synchronous operation — something that blocks all other work until the current request is completed. A connection to a PostgreSQL database is another example.&lt;/p&gt;
+
+&lt;p&gt;Now, imagine the same food truck has an order-taker &lt;em&gt;and&lt;/em&gt; two chefs. The person at the front of the line orders his food.  He pays; he waits. But wait! The second person can now order his food without having to wait for the operator to complete the order for the first person. And the first person only has to wait for one other person. Here, the chefs are the EventLoopGroups making the food.&lt;/p&gt;
+
+&lt;p&gt;This is an example of a set of asynchronous operations. Ultimately, you’re waiting on the available resources of the service. But this new setup can handle multiple requests at the same time. The end user will see an increase in performance.&lt;/p&gt;
+
+&lt;p&gt;Another example of this is… well, SwiftNIO!&lt;/p&gt;
+
+&lt;h2 id=&quot;setting-up-quote-of-the-day&quot;&gt;Setting Up Quote of the Day&lt;/h2&gt;
+
+&lt;p&gt;To kick things off, download the materials for this tutorial; you can find a link at the top or bottom of this tutorial. You’ll be implementing a server called &lt;em&gt;Quote of the Day&lt;/em&gt; — believe it or not, &lt;em&gt;Quote of the Day (QOTD)&lt;/em&gt; is a real internet standard (RFC). You can read the protocol spec &lt;em&gt;&lt;a href=&quot;https://tools.ietf.org/html/rfc865&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;The flow of information from the server works as follows:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Open a TCP connection upon request.&lt;/li&gt;
+  &lt;li&gt;Write a random quote to the response.&lt;/li&gt;
+  &lt;li&gt;Send the response.&lt;/li&gt;
+  &lt;li&gt;Close the connection.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;If you take a look at the RFC for &lt;em&gt;Quote of the Day&lt;/em&gt;, you’ll notice two key things that you’ll do differently in this tutorial:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;You’ll use port 1717 instead of 17. Port 17 is locked down, requiring root permissions on macOS.&lt;/li&gt;
+  &lt;li&gt;You’ll only create a TCP/IP connection, not a UDP connection. As of this writing, UDP is still a WIP on SwiftNIO (so many acronyms!).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;For this tutorial, you’ll also use an iOS client to check that the server works properly. This iOS client uses &lt;em&gt;&lt;a href=&quot;https://github.com/IBM-Swift/BlueSocket&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;BlueSocket&lt;/a&gt;&lt;/em&gt; — you won’t be making any changes to the iOS app, but feel free to look through the source code on your own.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: SwiftNIO also has the ability to act as a client for network communication and not just as a server. This means you could, in theory, write an iOS client using SwiftNIO, too.&lt;/p&gt;
+
+&lt;h2 id=&quot;running-the-ios-client&quot;&gt;Running the iOS Client&lt;/h2&gt;
+
+&lt;p&gt;In the starter project, go to the &lt;code&gt;Mobile/&lt;/code&gt; directory and open up the &lt;code&gt;swift-nio-qotd-client.xcodeproj&lt;/code&gt; file. In Xcode, run this on a simulator of your choosing. However, don’t run this on a device, as you won’t easily be able to connect with a local server connection on your machine from your device.&lt;/p&gt;
+
+&lt;p&gt;When the simulator boots up, tap the refresh icon in the upper right-hand corner of the screen. You should see the following error underneath the &lt;em&gt;Quote&lt;/em&gt; heading:&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+    &lt;img src=&quot;https://koenig-media.raywenderlich.com/uploads/2018/03/Swift-NIO-error-281x500.png&quot; alt=&quot;&quot; width=&quot;281&quot; height=&quot;500&quot; class=&quot;aligncenter size-large bordered wp-image-189185&quot; /&gt;Fear not! This is normal.
+&lt;/p&gt;
+
+&lt;p&gt;Keep this simulator open, but minimize it on your machine. You’ll come back to this later when you get your server up and running.&lt;/p&gt;
+
+&lt;h2 id=&quot;setting-up-your-server-project&quot;&gt;Setting Up Your Server Project&lt;/h2&gt;
+
+&lt;p&gt;Open Terminal and navigate to the root directory of the starter project. Enter the following commands:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;Server/
+swift build
+swift package generate-xcodeproj
+open QOTD-NIO.xcodeproj
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: If you have &lt;em&gt;MacPorts&lt;/em&gt; installed on your machine you may have to use the following in place of &lt;code&gt;swift build&lt;/code&gt; above: &lt;code&gt;rm -rf .build &amp;amp;&amp;amp; unset PKG_CONFIG_PATH &amp;amp;&amp;amp; swift build&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Once Xcode opens, go to the top of the window and, in the scheme selector, select &lt;code&gt;QOTD-NIO&lt;/code&gt; and &lt;code&gt;My Mac&lt;/code&gt; like so:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://koenig-media.raywenderlich.com/uploads/2018/03/schemeSelectorStarter.jpg&quot; alt=&quot;&quot; class=&quot;bordered aligncenter size-full&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Build and run the project. At the bottom of the debugger, you should see a single printed message: &lt;em&gt;This server will be… the one!!!&lt;/em&gt; If you see this, you’re ready to dive in.&lt;/p&gt;
+
+&lt;h2 id=&quot;bootstrapping-a-server&quot;&gt;Bootstrapping a Server&lt;/h2&gt;
+
+&lt;p&gt;In Xcode, open &lt;em&gt;QuoteServer.swift&lt;/em&gt;. This is where you’re going to set up your server to bind to a port.&lt;/p&gt;
+
+&lt;p&gt;Replace the code in this file with the following:&lt;/p&gt;
+
+&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Foundation&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// 1&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;NIO&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;enum&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;QOTDError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Error&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;invalidHost&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;invalidPort&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;QuoteServer&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// 2&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;group&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;MultiThreadedEventLoopGroup&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;numThreads&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;coreCount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;host&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?&lt;/span&gt;
+  
+  &lt;span class=&quot;nf&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;host&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 3&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;host&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;host&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;port&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;port&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;What this code is doing:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;You import the NIO module in this class — you won’t get far without it!&lt;/li&gt;
+  &lt;li&gt;You specify a &lt;code&gt;MultiThreadedEventLoopGroup&lt;/code&gt; when you run your server, as you learned earlier. You can run as many threads as your system will allow you here — use the &lt;code&gt;System&lt;/code&gt; API for this.&lt;/li&gt;
+  &lt;li&gt;You set the host and port the server will listen on. You could perform validation logic on your host and port here, if needed.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Now, you’ll add a private variable for an object that you need called a &lt;code&gt;ServerBootstrap&lt;/code&gt;. Think of this class as a helper class that sets up a server for you to serve information that you delegate. Inside your class declaration, but below &lt;code&gt;init(host:port:)&lt;/code&gt;, add this:&lt;/p&gt;
+
+&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;serverBootstrap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;ServerBootstrap&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// 1&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;ServerBootstrap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;group&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;group&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;serverChannelOption&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;ChannelOptions&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;backlog&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;256&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 2&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;serverChannelOption&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;ChannelOptions&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;socket&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;SocketOptionLevel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;SOL_SOCKET&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;SO_REUSEADDR&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;childChannelInitializer&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;channel&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;// 3&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;channel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pipeline&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;handler&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;BackPressureHandler&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;then&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// 4&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;channel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pipeline&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;handler&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;QuoteHandler&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 5&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;childChannelOption&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;ChannelOptions&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;socket&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;IPPROTO_TCP&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;TCP_NODELAY&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;childChannelOption&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;ChannelOptions&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;socket&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;SocketOptionLevel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;SOL_SOCKET&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;SO_REUSEADDR&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;childChannelOption&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;ChannelOptions&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;maxMessagesPerRead&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;16&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;childChannelOption&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;ChannelOptions&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;recvAllocator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;AdaptiveRecvByteBufferAllocator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Looking at the code above:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;You assign the bootstrap a &lt;code&gt;MultiThreadedEventLoopGroup&lt;/code&gt; — it needs to know which run loops to utilize on your machine.&lt;/li&gt;
+  &lt;li&gt;You specify you want your channel — or your communication pipe — to connect with a networking socket available on your machine and to reuse the local address on your machine (REUSEADDR).&lt;/li&gt;
+  &lt;li&gt;Once communications come through the bootstrap, the channels that are the children of this bootstrap also need work to do — the &lt;code&gt;BackPressureHandler()&lt;/code&gt; basically ensures that reading a new request only happens as fast as the server is writing a response.&lt;/li&gt;
+  &lt;li&gt;You then specify that you want to write your own custom class to handle incoming communication from the outside world — you’ll work on this class shortly.&lt;/li&gt;
+  &lt;li&gt;Finally, you specify that your server will operate on TCP and that you won’t delay the sending of any packets of information as a response.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: In the code block above, the explanation covers only the options that directly affect this tutorial. However, to learn more about the others, refer to the official &lt;a href=&quot;https://apple.github.io/swift-nio/docs/current/NIO/index.html&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;Apple SwiftNIO Docs&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Build and run your project. You should see the same result as before. You still have a few more steps to complete your working QOTD server.&lt;/p&gt;
+
+&lt;h2 id=&quot;handling-incoming-requests-with-channelinboundhandler&quot;&gt;Handling Incoming Requests With ChannelInboundHandler&lt;/h2&gt;
+
+&lt;p&gt;In Xcode, open &lt;em&gt;QuoteHandler.swift&lt;/em&gt;. Notice you already have a stubbed class that conforms to &lt;code&gt;ChannelInboundHandler&lt;/code&gt;. This protocol gives you access to a series of methods that handle communication with the associated &lt;code&gt;ServerBootstrap&lt;/code&gt; you set up. You’ll implement two of these shortly.&lt;/p&gt;
+
+&lt;p&gt;Notice the following two lines are already in the class:&lt;/p&gt;
+
+&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;typealias&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;InboundIn&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;ByteBuffer&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;typealias&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;OutboundOut&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;ByteBuffer&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;These are convenience typealiases that are required to declare to conform to &lt;code&gt;ChannelInboundHandler&lt;/code&gt; so you can specify what kind of data comes into and out of your handler. You’re using &lt;code&gt;ByteBuffer&lt;/code&gt;, which stores contiguously allocated raw bytes of data. This is straight-forward to work with when you’re writing a &lt;code&gt;String&lt;/code&gt; to your response, as you’ll soon see.&lt;/p&gt;
+
+&lt;p&gt;Inside your class and underneath your &lt;code&gt;typealias&lt;/code&gt; declarations, add the following:&lt;/p&gt;
+
+&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// 1&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;channelRegistered&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;ChannelHandlerContext&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Incoming connection registered - sending Quote of the Day&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// 2&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;quote&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;QuoteGenerator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// 3&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;buffer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;channel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;allocator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;buffer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;capacity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;quote&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;utf8&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// 4&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;buffer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;quote&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Sending quote&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// 5&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;writeAndFlush&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;wrapOutboundOut&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;buffer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;whenComplete&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Closing connection&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 6&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;close&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;promise&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 7&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;errorCaught&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;ChannelHandlerContext&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;error: &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;close&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;promise&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Let’s take a look at what you’ve just added:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;code&gt;channelRegistered&lt;/code&gt; is one of the methods in &lt;code&gt;ChannelInboundHandler&lt;/code&gt;. Since you want to send a quote as a response when a connection is a requested, this method is quite convenient.&lt;/li&gt;
+  &lt;li&gt;You get a random quote from &lt;code&gt;QuoteGenerator&lt;/code&gt;, a class that’s been provided for you that selects a quote from an array of them. Feel free to add any others you like.&lt;/li&gt;
+  &lt;li&gt;You get a handle for your response byte buffer from the incoming channel (communication pipe).&lt;/li&gt;
+  &lt;li&gt;You write your quote, which is a &lt;code&gt;string&lt;/code&gt;, to the response buffer.&lt;/li&gt;
+  &lt;li&gt;Now that you’ve written to your buffer, you need to write the buffer to the channel, and then flush the communication pipe. Whatever you flush down the pipe is going to come out the other end, but this doesn’t guarantee the next line of code you write will wait for that to finish. This is where &lt;code&gt;.whenComplete&lt;/code&gt; comes in.&lt;/li&gt;
+  &lt;li&gt;Inside your handler for &lt;code&gt;.whenComplete&lt;/code&gt;, you’re establishing what you want to do when the previous operation is complete. In this case, to follow the requirements of the QOTD protocol, you close the channel connection.&lt;/li&gt;
+  &lt;li&gt;You also implement another method in &lt;code&gt;ChannelInboundHandler&lt;/code&gt; for handling — you guessed it — errors! Notice you actually get a handy-dandy, Swifty &lt;code&gt;Error&lt;/code&gt; type instead of something in C!&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;From this example, you can see that, anytime you want to handle incoming information from a client, you need to write a handler that conforms to &lt;code&gt;ChannelInboundHandler&lt;/code&gt; to do so. From here, the possibilities are endless.&lt;/p&gt;
+
+&lt;h2 id=&quot;polishing-off-your-server-functionality&quot;&gt;Polishing Off Your Server Functionality&lt;/h2&gt;
+
+&lt;p&gt;In Xcode, go back to &lt;code&gt;QuoteServer.swift&lt;/code&gt; and, in between your &lt;code&gt;init(host:port:)&lt;/code&gt; method and your &lt;code&gt;serverBootstrap&lt;/code&gt; var, add the following:&lt;/p&gt;
+
+&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// 1&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// 2&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;guard&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;host&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;host&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;QOTDError&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;invalidHost&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;guard&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;port&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;port&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;QOTDError&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;invalidPort&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 3&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;channel&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;serverBootstrap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;bind&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;host&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;host&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;wait&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;channel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;localAddress&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; is now open&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;channel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;closeFuture&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;wait&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;error&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;error&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Breaking down what you’ve done:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;You don’t want to put this code inside &lt;code&gt;init(host:port:)&lt;/code&gt; method because it’s not ideal to let code that runs “forever” reside in a constructor. This makes it easy to debug issues, too.&lt;/li&gt;
+  &lt;li&gt;You check for port and host using two guard statements.&lt;/li&gt;
+  &lt;li&gt;With values for host and port ensured, you bind the &lt;code&gt;ServerBootstrap&lt;/code&gt; instance you create in this class to a host and port that you specify. Calling &lt;code&gt;wait()&lt;/code&gt; at the end of this means you’re waiting for the “promise” to be fulfilled. This means you’re waiting for your server to start.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Poetic as it sounds, you can’t run forever; you need a graceful way to shut down your server. In the same class, after &lt;code&gt;run()&lt;/code&gt;, add the following:&lt;/p&gt;
+
+&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;shutdown&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 1&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;group&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;syncShutdownGracefully&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;error&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Could not shutdown gracefully - forcing exit (&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;localizedDescription&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;)&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 2&lt;/span&gt;
+    &lt;span class=&quot;nf&quot;&gt;exit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Server closed&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Here’s what you’ve just added:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;You try the friendly API for the &lt;code&gt;MultiThreadedEventLoopGroup&lt;/code&gt; for shutting down without causing any issues. This means it’ll wrap up any last tasks it might have to execute, and then it shuts itself down.&lt;/li&gt;
+  &lt;li&gt;Of course, if that just won’t fly, you hit the power button yourself and shut down the server “un-gracefully.”&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;running-your-server&quot;&gt;Running Your Server&lt;/h2&gt;
+
+&lt;p&gt;You’ve got yourself a server! Only one more change before we run it.&lt;/p&gt;
+
+&lt;p&gt;In Xcode, open &lt;em&gt;main.swift&lt;/em&gt;. Delete the lone print statement at the bottom and replace it with the following:&lt;/p&gt;
+
+&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// 1&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;server&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;QuoteServer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;host&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;localhost&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1717&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// 2&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;error&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Error: &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;localizedDescription&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// 3&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;shutdown&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;And here’s what this code does:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;You create an instance of your &lt;code&gt;server&lt;/code&gt;, passing host and port.&lt;/li&gt;
+  &lt;li&gt;You run your server. Note, if this call works successfully, which it should, then the application will run infinitely until you shut it down or until something breaks.&lt;/li&gt;
+  &lt;li&gt;You check for any errors and, if you detect any, you make use of your handy-dandy &lt;code&gt;shutdown()&lt;/code&gt; method.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: Remember you might not want to start your server from inside the constructor? The above code is a great example of this. A separate &lt;code&gt;run()&lt;/code&gt; method allows us to make changes to other properties of your server before running it.&lt;/p&gt;
+
+&lt;p&gt;Build and run your project. You should see a line in the debugger about your server being open on port 1717.&lt;/p&gt;
+
+&lt;p&gt;Pull your iOS client back up. Build and run it if you stopped the project. Tap the refresh button and…&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+    &lt;img src=&quot;https://koenig-media.raywenderlich.com/uploads/2018/03/Swift-NIO-quote-281x500.png&quot; alt=&quot;&quot; width=&quot;281&quot; height=&quot;500&quot; class=&quot;bordered aligncenter size-large wp-image-189184&quot; /&gt;Voilà! A quote.
+&lt;/p&gt;
+
+&lt;p&gt;Your Swift TCP server is running! Check the logs on your Xcode project running your debugger and you should see the following output:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Incoming connection registered - sending Quote of the Day
+Sending quote
+Closing connection
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;where-to-go-from-here&quot;&gt;Where to Go From Here?&lt;/h2&gt;
+
+&lt;p&gt;You can download the final project using the link at the top or bottom of this tutorial. I encourage you to build on this and play with the available APIs to see what else you can do.&lt;/p&gt;
+
+&lt;p&gt;Additionally, if you clone the &lt;a href=&quot;https://github.com/apple/swift-nio&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;SwiftNIO&lt;/a&gt; project from source, there are a couple of demos you can try right inside the project itself. If you open Xcode, you can see the executables listed in the scheme selector:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://koenig-media.raywenderlich.com/uploads/2018/03/nioOtherExecutables.jpg&quot; alt=&quot;Try running some of these executables either from Xcode or the command line.&quot; class=&quot;aligncenter bordered size-full&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;For more information on SwiftNIO from Apple itself, check out the full &lt;a href=&quot;https://apple.github.io/swift-nio/docs/current/NIO/index.html&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;Apple SwiftNIO Docs&lt;/a&gt; on Apple’s GitHub.&lt;/p&gt;
+
+&lt;p&gt;It’s an exciting time for Swift as it stretches past mobile development and into the rest of the programming world. Let us know what Swift projects you’re working on, your thoughts on the future of Swift, or leave us your favorite Quote of the Day in the forum discussion below!&lt;/p&gt;</content><author><name>David Okun</name></author><summary type="html"></summary></entry><entry><title type="html">Kitura Stencil Tutorial - How to make Websites with Swift</title><link href="http://localhost:4000/2018/04/03/kitura-stencil-making-websites-with-swift/" rel="alternate" type="text/html" title="Kitura Stencil Tutorial - How to make Websites with Swift" /><published>2018-04-03T05:00:00-07:00</published><updated>2018-04-03T05:00:00-07:00</updated><id>http://localhost:4000/2018/04/03/kitura-stencil-making-websites-with-swift</id><content type="html" xml:base="http://localhost:4000/2018/04/03/kitura-stencil-making-websites-with-swift/">&lt;p&gt;&lt;strong&gt;Editor’s Note: This is mirrored from &lt;a href=&quot;https://www.raywenderlich.com/181130/kitura-stencil-tutorial-how-to-make-websites-with-swift&quot;&gt;RayWenderlich.com&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;IBM’s &lt;a href=&quot;http://kitura.io&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;Kitura&lt;/a&gt; is a very popular and exciting server framework, but did you know it can be used to create web apps?&lt;/p&gt;
 
@@ -1712,106 +2074,4 @@ First, I create a struct for my result type called &lt;code class=&quot;highligh
 
 &lt;p&gt;I made a quick screencast below to show you one way how to do it. Enjoy!&lt;/p&gt;
 
-&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/BdxAe0O357Q&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;</content><author><name>David Okun</name></author><summary type="html">When you need to switch between debug mode and release mode in Xcode, you have a ton of options at your disposal.</summary></entry><entry><title type="html">Generating A Client SDK For LoopBack With The Bluemix CLI</title><link href="http://localhost:4000/2017/07/20/generate-client-sdk-loopback-bluemix-cli/" rel="alternate" type="text/html" title="Generating A Client SDK For LoopBack With The Bluemix CLI" /><published>2017-07-20T05:00:00-07:00</published><updated>2017-07-20T05:00:00-07:00</updated><id>http://localhost:4000/2017/07/20/generate-client-sdk-loopback-bluemix-cli</id><content type="html" xml:base="http://localhost:4000/2017/07/20/generate-client-sdk-loopback-bluemix-cli/">&lt;p&gt;&lt;strong&gt;Editor’s Note: This is mirrored from &lt;a href=&quot;https://strongloop.com/strongblog/generate-client-sdk-loopback-bluemix-cli&quot;&gt;strongloop.com&lt;/a&gt; here.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/WztyOGl.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;If you’re reading this post, it’s entirely possible that you’ve been exposed to the goodness that is &lt;a href=&quot;http://loopback.io/&quot;&gt;LoopBack&lt;/a&gt;. If not, I’d recommend checking out &lt;a href=&quot;https://developer.ibm.com/apiconnect/2017/03/09/loopback-in-5-minutes/&quot;&gt;my video showing you how you can create an API with LoopBack in just 5 minutes&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Having a RESTful API ready to go in such a short period of time is quite powerful, and it really reduces the time needed to get your backend up and running. But there’s an important part of your application that LoopBack neglects - your frontend.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;(extremely documentary voice)&lt;/em&gt;&lt;/strong&gt; What if I told you that you could use a command line interface to generate (code generation is kind of a thing around here) a client SDK for any application you create in LoopBack?&lt;/p&gt;
-
-&lt;p&gt;Now that you’ve fallen out of your chair, get back in your seat and let’s get cracking. You’re going to love this &amp;lt;3.&lt;/p&gt;
-
-&lt;p&gt;(P.S. - I would like to thank &lt;a href=&quot;https://twitter.com/Chris__Bailey&quot;&gt;Chris Bailey&lt;/a&gt; for the inspiration for this post - he gave a &lt;a href=&quot;https://news.realm.io/news/altconf-2017-chris-bailey-full-stack-swift-in-30-minutes&quot;&gt;great talk at AltConf about Full Stack Swift&lt;/a&gt; and how you can do this.&lt;/p&gt;
-
-&lt;h3 id=&quot;setup&quot;&gt;Setup&lt;/h3&gt;
-
-&lt;p&gt;You’ll need to have a few things installed first.&lt;/p&gt;
-
-&lt;h4 id=&quot;loopback&quot;&gt;LoopBack&lt;/h4&gt;
-
-&lt;p&gt;Make sure you have Node.js and npm installed on your machine, then go to your command line and type in &lt;code class=&quot;highlighter-rouge&quot;&gt;npm install -g loopback-cli&lt;/code&gt;. This should give you all you need to start generating RESTful APIs for Node.js.&lt;/p&gt;
-
-&lt;h4 id=&quot;bluemix-cli&quot;&gt;Bluemix CLI&lt;/h4&gt;
-
-&lt;p&gt;Go to &lt;a href=&quot;https://console.bluemix.net/docs/cli/index.html#cli&quot;&gt;this&lt;/a&gt; website and install the appropriate CLI for your operating system. You don’t &lt;em&gt;need&lt;/em&gt; an account in Bluemix to use the CLI, but as an IBM employee I am legally mandated to inform you that signing up for a &lt;a href=&quot;https://console.ng.bluemix.net&quot;&gt;Bluemix&lt;/a&gt; account is a very good idea (just kidding about the legal mandate.) If you do, you’ll be able to manage your cloud applications with it, and you can find out more about that &lt;a href=&quot;https://clis.ng.bluemix.net/ui/home.html&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h4 id=&quot;bluemix-sdk-generation-plugin&quot;&gt;&lt;a href=&quot;https://console.bluemix.net/docs/cloudnative/sdk_cli.html#sdk-cli&quot;&gt;Bluemix SDK Generation Plugin&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;You have to have the Bluemix CLI installed first, but once you have it up and running, type &lt;code class=&quot;highlighter-rouge&quot;&gt;bx plugin install sdk-gen -r Bluemix&lt;/code&gt; into your terminal, and let the plugin download and follow the resulting instructions. Your system should now be set up to do what it needs to do to generate a client SDK.&lt;/p&gt;
-
-&lt;h4 id=&quot;an-api-that-follows-the-openapi-spec&quot;&gt;An API That Follows the OpenAPI Spec&lt;/h4&gt;
-
-&lt;p&gt;All generated LoopBack APIs adhere to the &lt;a href=&quot;https://github.com/OAI/OpenAPI-Specification&quot;&gt;OpenAPI Specification&lt;/a&gt;, which, for the purpose of this tutorial, means that you can represent the structure and capabilities of your API in a single .yml file. This also used to be called a “Swagger” file, but to be fair, you should feel pretty awesome being able to rep your API in a single file. For this tutorial, we’ll use &lt;a href=&quot;https://github.com/StrongLoop-Evangelists/loopback-in-five&quot;&gt;this&lt;/a&gt; as an API to work with. You should be able to clone this git repo, and then run &lt;code class=&quot;highlighter-rouge&quot;&gt;npm install&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;If you’ve done all this, you should be ready to go.&lt;/p&gt;
-
-&lt;h3 id=&quot;exporting-your-api-definition&quot;&gt;Exporting your API Definition&lt;/h3&gt;
-
-&lt;p&gt;LoopBack has a super easy way to do this. First, navigate to the root directory of your API, and type in &lt;code class=&quot;highlighter-rouge&quot;&gt;lb export-api-def&lt;/code&gt;. Don’t be alarmed at the amount of text your terminal spits out - all your terminal has done is print out the generated specification file for your API. Since this file can be quite big, you can tell the top of the file by the first few lines if they look like this:&lt;/p&gt;
-
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;swagger&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;2.0'&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;info&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;1.0.0&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Loopback-in-five&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;basePath&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/api&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;paths&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;If you want to avoid the big copy and paste job, decide on a file name first (Let’s go with AnimalAPIDefinition.yml) and type in &lt;code class=&quot;highlighter-rouge&quot;&gt;lb export-api-def --o AnimalAPIDefinition.yml&lt;/code&gt;. The &lt;code class=&quot;highlighter-rouge&quot;&gt;--o&lt;/code&gt; tag specifies where the output information should go to. For more information on working with Swagger documentation in LoopBack, read my friend &lt;a href=&quot;https://twitter.com/raymondcamden&quot;&gt;Raymond Camden’s&lt;/a&gt; &lt;a href=&quot;https://strongloop.com/strongblog/generating-swagger-openapi-specification-from-your-loopback-application/&quot;&gt;post&lt;/a&gt; on it.&lt;/p&gt;
-
-&lt;h3 id=&quot;generating-the-sdk&quot;&gt;Generating the SDK&lt;/h3&gt;
-
-&lt;p&gt;Ok, brace yourself. Stay in the root directory of your API, and, if you’ve followed the previous steps to a T, type &lt;code class=&quot;highlighter-rouge&quot;&gt;bx sdk generate --js -f ./AnimalAPIDefinition.yml&lt;/code&gt; into your terminal. Let the CLI do its thing, and when you’re done, you should have a .zip file in your directory titled &lt;code class=&quot;highlighter-rouge&quot;&gt;AnimalAPIDefinition.zip&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Before we dive into the contents of that folder, let’s look at the command you just typed, and what some of your options are. The &lt;code class=&quot;highlighter-rouge&quot;&gt;bx sdk generate&lt;/code&gt; command will always be the same regardless of your choices, but you likely noticed the &lt;code class=&quot;highlighter-rouge&quot;&gt;--js&lt;/code&gt; flag right after. This means we will be generating a JavaScript SDK for the API. You aren’t limited to JavaScript though! You can make a Swift (&lt;code class=&quot;highlighter-rouge&quot;&gt;--ios&lt;/code&gt;), Java/Android (&lt;code class=&quot;highlighter-rouge&quot;&gt;--android&lt;/code&gt;), or even a GoLang (&lt;code class=&quot;highlighter-rouge&quot;&gt;--go&lt;/code&gt;) SDK for any API that follows the OpenAPI spec. I love writing web service code, but you know what I like even more than that? Having web service code written for me.&lt;/p&gt;
-
-&lt;p&gt;After that, you notice the &lt;code class=&quot;highlighter-rouge&quot;&gt;-f&lt;/code&gt; flag. This indicates that you are generating an SDK based on a local spec file. You could instead choose to specify an app in your space with the &lt;code class=&quot;highlighter-rouge&quot;&gt;-a&lt;/code&gt; flag. You can also use an API that is hosted somewhere with a URL, locally with &lt;code class=&quot;highlighter-rouge&quot;&gt;-l&lt;/code&gt; or on the internet with &lt;code class=&quot;highlighter-rouge&quot;&gt;-r&lt;/code&gt;. This means if you see an API somewhere in the wild, and you know the URL for it’s OpenAPI Specification document, then congratulations - you got yourself an SDK to connect with it!&lt;/p&gt;
-
-&lt;h3 id=&quot;what-you-made&quot;&gt;What you made&lt;/h3&gt;
-
-&lt;p&gt;The generated output is super clean. Each type of SDK has it’s own way of being implemented, which I’ll leave to you to figure out, but let’s take a look at the contents of the .zip folder.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/SOQa20q.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;This basically creates a ready-made npm module for you. Here’s what your package.json file looks like:&lt;/p&gt;
-
-&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;loopback_in_five&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;version&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;1.0.0&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;description&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;ERROR_UNKNOWN&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;license&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Unlicense&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;main&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;src/animalapidefinition/index.js&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;scripts&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;test&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;./node_modules/mocha/bin/mocha --recursive&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;dependencies&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;superagent&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;3.5.2&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;nconf&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;~0.8.4&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;devDependencies&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;mocha&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;~2.3.4&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;sinon&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;1.17.3&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;expect.js&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;~0.3.1&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;You even have a way to test it, built-in! Feel free to browse the source code, but what you’ll want to check out is the documentation, which is chock full of really useful instructions on how to use your API. Start at the &lt;code class=&quot;highlighter-rouge&quot;&gt;README.md&lt;/code&gt; file for a really nice table of contents, and a GitHub-ready install guide:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/pHKUQh1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Go through all the pages so you can see how to get the most out of your newest SDK. Last, but certainly not least, you want to open up your &lt;code class=&quot;highlighter-rouge&quot;&gt;AnimalAPIDefinitionConfig.json&lt;/code&gt; file, and look at its contents:&lt;/p&gt;
-
-&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;loopback_in_fiveHost&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://localhost/api&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Scant on details, but this is important. Whenever you make use of your API, you only have to list the host URL for your LoopBack API here, and your SDK will simply work with it. This even works if you are testing on your local machine!&lt;/p&gt;
-
-&lt;h3 id=&quot;what-next&quot;&gt;What Next?&lt;/h3&gt;
-
-&lt;p&gt;Imagine being able to take this command and fit it into your Continuous Delivery  pipeline, and being able to walk up to the frontend devs on your team and say, “Don’t worry, y’all, I got this.” Imagine that, with every build, your team gets an updated SDK deployed into their workspace, and they never have to iterate web service code again. I believe in this world, and now you have the tools you need to make this happen! Make sure to follow me on Twitter &lt;a href=&quot;https://twitter.com/dokun24&quot;&gt;here&lt;/a&gt; to find out more neat tips and tricks.&lt;/p&gt;</content><author><name>David Okun</name></author><summary type="html">Editor’s Note: This is mirrored from strongloop.com here.</summary></entry></feed>
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/BdxAe0O357Q&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;</content><author><name>David Okun</name></author><summary type="html">When you need to switch between debug mode and release mode in Xcode, you have a ton of options at your disposal.</summary></entry></feed>
