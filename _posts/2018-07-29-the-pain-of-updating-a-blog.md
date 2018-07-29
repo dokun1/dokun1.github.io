@@ -101,6 +101,13 @@ addons:
       - ncftp
 ```
 
-And now, all I have to do is commit to my repo - Travis CI does the rest, and things get updated in about a minute.
+And that deploy script? Two lines:
+
+```bash
+cd _site || exit
+ncftpput -R -v -u "$FTPUSERNAME" -p "$FTPPASSWORD" "ftp.okun.io" ./ .
+```
+
+Now, all I have to do is commit to my repo - Travis CI does the rest, and things get updated in about a minute.
 
 Whew! Now I have more to say here. Again, thank you Erin and Tim for your help/rubber-ducking/calmness.
