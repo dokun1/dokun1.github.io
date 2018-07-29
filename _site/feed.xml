@@ -1,4 +1,96 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-07-29T11:13:53-07:00</updated><id>http://localhost:4000/</id><title type="html">David Okun</title><subtitle>insert description line here</subtitle><entry><title type="html">New Video Course - Server Side Swift with Kitura</title><link href="http://localhost:4000/2018/06/12/new-video-course-kitura-swift/" rel="alternate" type="text/html" title="New Video Course - Server Side Swift with Kitura" /><published>2018-06-12T05:00:00-07:00</published><updated>2018-06-12T05:00:00-07:00</updated><id>http://localhost:4000/2018/06/12/new-video-course-kitura-swift</id><content type="html" xml:base="http://localhost:4000/2018/06/12/new-video-course-kitura-swift/">&lt;p&gt;&lt;strong&gt;Editor’s Note: This is mirrored from &lt;a href=&quot;https://www.raywenderlich.com/196340/new-course-server-side-swift-with-kitura&quot;&gt;RayWenderlich.com&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-07-29T12:06:42-07:00</updated><id>http://localhost:4000/</id><title type="html">David Okun</title><subtitle>insert description line here</subtitle><entry><title type="html">The Pain Of Updating A Blog</title><link href="http://localhost:4000/2018/07/29/the-pain-of-updating-a-blog/" rel="alternate" type="text/html" title="The Pain Of Updating A Blog" /><published>2018-07-29T05:00:00-07:00</published><updated>2018-07-29T05:00:00-07:00</updated><id>http://localhost:4000/2018/07/29/the-pain-of-updating-a-blog</id><content type="html" xml:base="http://localhost:4000/2018/07/29/the-pain-of-updating-a-blog/">&lt;p&gt;Finally!!!&lt;/p&gt;
+
+&lt;p&gt;Tech debt is one thing, but when it’s something you care personally about, it’s insidious at worst. I’ve not been doing a good job keeping this here web log updated, but I finally had some time (and some help!) to do it this weekend while at an event in San Francisco, and I’m thrilled I automated some things.&lt;/p&gt;
+
+&lt;h2 id=&quot;thank-yous&quot;&gt;Thank Yous&lt;/h2&gt;
+
+&lt;p&gt;I really need to give major props to &lt;a href=&quot;https://twitter.com/emckean&quot;&gt;Erin McKean&lt;/a&gt; and &lt;a href=&quot;https://twitter.com/timroexp&quot;&gt;Tim Robinson&lt;/a&gt; for helping me get over the hump. Their tremendous calmness and poise helped me get out from behind the 8-ball, and helped me serve as the basis for this post, as well as what I am hoping will be more material in the future!!&lt;/p&gt;
+
+&lt;h2 id=&quot;the-problem&quot;&gt;The Problem&lt;/h2&gt;
+
+&lt;p&gt;I use &lt;a href=&quot;https://hostgator.com&quot;&gt;HostGator&lt;/a&gt; for my web hosting, and while I work for &lt;a href=&quot;https://www.ibm.com&quot;&gt;TEH CL0UD&lt;/a&gt; and could probably do something different, I’m stuck in my ways here. About a year ago, I finally got used to using &lt;a href=&quot;https://jekyllrb.com&quot;&gt;Jekyll&lt;/a&gt; for my website, and for the most part it’s been working great. I’ve never been a &lt;em&gt;huge&lt;/em&gt; fan of Ruby, but this definitely gets the job done.&lt;/p&gt;
+
+&lt;p&gt;You can always see a local mirror of this website &lt;a href=&quot;https://dokun1.github.io&quot;&gt;here&lt;/a&gt; as well as the repo for this site &lt;a href=&quot;https://github.com/dokun1/dokun1.github.io&quot;&gt;here&lt;/a&gt;, but I wanted it on my actual domain, and I wanted to not limit myself to a GitHub page. That meant I was building my site with Jekyll on my machine…and manually FTP’ing the generated site to my host via Cyberduck…&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+    &lt;img src=&quot;https://media.cyberduck.io/img/cyberduck-icon-384.png&quot; /&gt;Can't bounce any new ideas off this one...
+&lt;/p&gt;
+
+&lt;p&gt;Furthermore, I had some issue with Jekyll that made things look UGLY unless I manually went in and changed things to remove a fledgling comment line. I’m not even going to post a photo of it here, because the sooner I can forget about it, the better.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-solution&quot;&gt;The Solution&lt;/h2&gt;
+
+&lt;p&gt;Well, Erin was gracious enough to sit with me and point out where the bug was coming from. Sometimes, you feel dumb when you see a solution to a bug you &lt;strong&gt;should&lt;/strong&gt; have fixed 7 months ago, but I was so overjoyed fixing this that I didn’t care. Still, the process of updating the blog was a pain, and I had to automate it.&lt;/p&gt;
+
+&lt;p&gt;Erin suggested a Travis CI job that uploads it for me. Truthfully, she suggested triggering an OpenWhisk action every time I committed a change to my blog, and using that to upload it to my host. “That would be more bloggable.” One day!&lt;/p&gt;
+
+&lt;p&gt;First off, &lt;code class=&quot;highlighter-rouge&quot;&gt;curl&lt;/code&gt; and FTP. I tried uploading one file with &lt;code class=&quot;highlighter-rouge&quot;&gt;curl&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl &lt;span class=&quot;nt&quot;&gt;-T&lt;/span&gt; file.jpg ftp://ftp.okun.io &lt;span class=&quot;nt&quot;&gt;--user&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$username&lt;/span&gt;:&lt;span class=&quot;nv&quot;&gt;$password&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This works for one file. Want to upload a directory? Too bad. Time to furiously Google things and try them, being able to taste sweet victory not far off.&lt;/p&gt;
+
+&lt;p&gt;I tried some things with the &lt;code class=&quot;highlighter-rouge&quot;&gt;find&lt;/code&gt; command, but largely proved unsuccessful. Then I asked &lt;a href=&quot;https://stackoverflow.com/questions/51575574/curl-ftp-for-directory-containing-files-and-directories#51581328&quot;&gt;a question&lt;/a&gt; on StackOverflow, and that’s where Tim came in. I tried his command on the CLI:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;find _site &lt;span class=&quot;nt&quot;&gt;-type&lt;/span&gt; f &lt;span class=&quot;nt&quot;&gt;-exec&lt;/span&gt; curl &lt;span class=&quot;nt&quot;&gt;--user&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$username&lt;/span&gt;:&lt;span class=&quot;nv&quot;&gt;$password&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--ftp-create-dirs&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-T&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{}&lt;/span&gt; ftp://ftp.okun.io/&lt;span class=&quot;o&quot;&gt;{}&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;I can taste it! So I wrote this into a script on Travis CI, and the file ultimately looked like this:&lt;/p&gt;
+
+&lt;div class=&quot;language-yml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; 
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;bundle install&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;gem install jekyll&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;find _site -type f -exec curl --user $FTPUSERNAME:$FTPPASSWORD --ftp-create-dirs -T {} ftp://ftp.okun.io/{} \;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Aaaaaaand…nope. Code 430 errors all around - access denied. Panic. I was so close!!! But then I took a breath, and read a blog post that Tim sent me (which you can read &lt;a href=&quot;http://ajaykarwal.com/deploying-jekyll-using-travis-ci/&quot;&gt;here&lt;/a&gt;).&lt;/p&gt;
+
+&lt;p&gt;If you’re reading this, you now know that more than half of all software development is just being really good at searching for things on search engines.&lt;/p&gt;
+
+&lt;p&gt;A little bit more work, and ultimately my &lt;code class=&quot;highlighter-rouge&quot;&gt;.travis.yml&lt;/code&gt; file looks like this now:&lt;/p&gt;
+
+&lt;div class=&quot;language-yml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;language&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ruby&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;rvm&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;2.4.1&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;install&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;bundle install&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;gem install jekyll&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;branches&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;only&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;master&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;global&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;JEKYLL_ENV=production&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;notifications&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;email&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;recipients&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;david@okun.io&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;on_success&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;always&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;on_failure&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;always&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;chmod +x _scripts/build.sh&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;_scripts/build.sh&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;after_success&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;chmod +x _scripts/deploy.sh&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;_scripts/deploy.sh&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;sudo&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;false&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;addons&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;apt&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;packages&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ncftp&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;And now, all I have to do is commit to my repo - Travis CI does the rest, and things get updated in about a minute.&lt;/p&gt;
+
+&lt;p&gt;Whew! Now I have more to say here. Again, thank you Erin and Tim for your help/rubber-ducking/calmness.&lt;/p&gt;</content><author><name>David Okun</name></author><summary type="html">Finally!!!</summary></entry><entry><title type="html">New Video Course - Server Side Swift with Kitura</title><link href="http://localhost:4000/2018/06/12/new-video-course-kitura-swift/" rel="alternate" type="text/html" title="New Video Course - Server Side Swift with Kitura" /><published>2018-06-12T05:00:00-07:00</published><updated>2018-06-12T05:00:00-07:00</updated><id>http://localhost:4000/2018/06/12/new-video-course-kitura-swift</id><content type="html" xml:base="http://localhost:4000/2018/06/12/new-video-course-kitura-swift/">&lt;p&gt;&lt;strong&gt;Editor’s Note: This is mirrored from &lt;a href=&quot;https://www.raywenderlich.com/196340/new-course-server-side-swift-with-kitura&quot;&gt;RayWenderlich.com&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;If you’re ready to level up your skills to become a full stack developer, we’re releasing a brand new course for you today: &lt;a href=&quot;https://videos.raywenderlich.com/courses/123-server-side-swift-with-kitura/lessons/1&quot;&gt;Server Side Swift with Kitura&lt;/a&gt;!&lt;/p&gt;
 
@@ -2139,8 +2231,4 @@ First, I create a struct for my result type called &lt;code class=&quot;highligh
 
 &lt;p&gt;Swift has a neat way to avoid looping through every single element by setting a condition at the same time as you set up your loop. I recorded a screencast about it for you, and you can watch it right here. Enjoy!&lt;/p&gt;
 
-&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/Rk2hCTioAWM&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;</content><author><name>David Okun</name></author><summary type="html">When you can’t afford to loop through every single element of a collection, it helps to set conditions.</summary></entry><entry><title type="html">What Is ‘private(set)’ In Swift?</title><link href="http://localhost:4000/2017/11/19/swift-private-set-video/" rel="alternate" type="text/html" title="What Is 'private(set)' In Swift?" /><published>2017-11-19T04:00:00-08:00</published><updated>2017-11-19T04:00:00-08:00</updated><id>http://localhost:4000/2017/11/19/swift-private-set-video</id><content type="html" xml:base="http://localhost:4000/2017/11/19/swift-private-set-video/">&lt;p&gt;Often times, if I can’t sleep at night, I try thinking of unique ways in which I can make a property’s setter private, but keep its getter public.&lt;/p&gt;
-
-&lt;p&gt;If you have the same issue, then the short screencast video below is for you!&lt;/p&gt;
-
-&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/XwqDDo2MI6s&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;</content><author><name>David Okun</name></author><summary type="html">Often times, if I can’t sleep at night, I try thinking of unique ways in which I can make a property’s setter private, but keep its getter public.</summary></entry></feed>
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/Rk2hCTioAWM&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;</content><author><name>David Okun</name></author><summary type="html">When you can’t afford to loop through every single element of a collection, it helps to set conditions.</summary></entry></feed>
