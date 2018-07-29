@@ -9,5 +9,5 @@ then
 EOF
 
     cd _site || exit
-    ncftpput -R -v -u "$FTPUSERNAME" -p "$FTPPASSWORD" "ftp.okun.io" /public_html .
+    ncftpput -R -v -u "$FTPUSERNAME" -p "$FTPPASSWORD" "ftp.okun.io" public_html/ .
 fi
