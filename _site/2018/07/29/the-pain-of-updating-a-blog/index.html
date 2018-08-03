@@ -190,7 +190,13 @@
       <span class="pi">-</span> <span class="s">ncftp</span>
 </code></pre></div></div>
 
-<p>And now, all I have to do is commit to my repo - Travis CI does the rest, and things get updated in about a minute.</p>
+<p>And that deploy script? Two lines:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>_site <span class="o">||</span> <span class="nb">exit
+</span>ncftpput <span class="nt">-R</span> <span class="nt">-v</span> <span class="nt">-u</span> <span class="s2">"</span><span class="nv">$FTPUSERNAME</span><span class="s2">"</span> <span class="nt">-p</span> <span class="s2">"</span><span class="nv">$FTPPASSWORD</span><span class="s2">"</span> <span class="s2">"ftp.okun.io"</span> ./ <span class="nb">.</span>
+</code></pre></div></div>
+
+<p>Now, all I have to do is commit to my repo - Travis CI does the rest, and things get updated in about a minute.</p>
 
 <p>Whew! Now I have more to say here. Again, thank you Erin and Tim for your help/rubber-ducking/calmness.</p>
 
@@ -203,6 +209,10 @@
                         <a href="/2018/06/12/new-video-course-kitura-swift/" data-toggle="tooltip" data-placement="top" title="New Video Course - Server Side Swift with Kitura">&larr; Previous Post</a>
                     </li>
                     
+                    
+                    <li class="next">
+                        <a href="/2018/08/02/live-demo-swift-nio/" data-toggle="tooltip" data-placement="top" title="Video - Live Demo of Swift NIO In An Xcode Playground">Next Post &rarr;</a>
+                    </li>
                     
                     
                     <div id="disqus_thread"></div>
