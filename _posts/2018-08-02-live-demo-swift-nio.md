@@ -15,3 +15,4 @@ Anyway, if you want to see how you can make a TCP server in an Xcode playground,
 
 <iframe src="https://player.vimeo.com/video/267825628" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 
+This talk was based on a tutorial I wrote for [raywenderlich.com](raywenderlich.com), which you can read [here](http://okun.io/2018/04/09/tcp-server-with-swift-nio/).
