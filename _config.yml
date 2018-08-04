@@ -3,7 +3,7 @@ title: David Okun
 header-img: img/home-bg.jpg
 email: david@okun.io
 copyright_name: David Okun
-description: insert description line here
+description: Constantly Trying New Stuff For You
 baseurl: ""
 url: "http://okun.io"
 twitter_username: dokun24
@@ -12,16 +12,17 @@ instagram_username: dokun1
 email_username:  david@okun.io
 linkedin_username: david-okun
 stack_overflow_username: 1604167/dokun1
+collections:
+  speaking:
+    output: true
 
-# Google Analytics
-# To enable google analytics, uncomment below line with a valid Google Tracking ID
-google_tracking_id: 51731832 
+
 
 # Build settings
 markdown: kramdown
 highlighter: rouge
 permalink: pretty
 paginate: 4
-exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
+exclude: ["less","node_modules","Gruntfile.js","package.json", "package-lock.json","README.md"]
 
 plugins: [jekyll-paginate]
