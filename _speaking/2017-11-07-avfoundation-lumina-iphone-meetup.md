@@ -1,6 +1,7 @@
 ---
 title: "AVFoundation, iOS 11, & Lumina"
 date: 2017-11-07
+abstract: Come learn about what’s new in iOS 11 with AVFoundation, as David Okun walks us through new ways to capture still images, live photos, and depth maps via his open source framework, Lumina.
 author: David Okun
 geo: Austin, TX, USA
 location: Austin iPhone Developer Group
