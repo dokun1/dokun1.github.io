@@ -6,4 +6,5 @@ author: David Okun
 geo: San Francisco, CA, USA
 location: IndexConf 2018
 location_url: https://developer.ibm.com/indexconf/sessions/
+slide_url: https://ibm.biz/nothotdog
 ---
