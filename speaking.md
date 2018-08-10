@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Speaking"
+title: "Talks"
 header-img: "img/blogBackgrounds/01.jpeg"
 ---
 
