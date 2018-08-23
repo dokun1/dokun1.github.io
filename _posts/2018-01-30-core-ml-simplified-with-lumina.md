@@ -180,4 +180,4 @@ Lumina is still under active development on GitHub, and as the capabilities of C
 
 I wrote a separate blog post about the capabilities of Lumina on my own website, so feel free to give it a read, and more importantly, give Lumina a try! Follow me on Twitter to see what I'm up to next!
 
-NB: Thank you to [Nathan Gitter](https://twitter.com/nathangitter), [Canberk Özçelik](https://twitter.com/canberkozcelik), [Aide Gutierrez](https://iaskalotofquestions.com/), and [Raymond Camden](https://twitter.com/raymondcamden) for their help editing this article!
+NB: Thank you to [Nathan Gitter](https://twitter.com/nathangitter), [Canberk Özçelik](https://twitter.com/canberkozcelik), and [Raymond Camden](https://twitter.com/raymondcamden) for their help editing this article!
