@@ -40,7 +40,7 @@ canvas.addEventListener("mouseout", function (e) {
 }, false);
 ```
 
-(**NB:** By the way, most of this I was able to find in a great StackOverflow post which you can check out [here](https://stackoverflow.com/questions/2368784/draw-on-html5-canvas-using-a-mouse).
+(**NB:** By the way, most of this I was able to find in a great StackOverflow post which you can check out [here](https://stackoverflow.com/questions/2368784/draw-on-html5-canvas-using-a-mouse).)
 
 In short, whenever the `mousedown` event registers, and is followed by subsequent `mousemove` events, you can tell the canvas to draw a path from pixel to pixel. Anytime a `mouseup` or `mouseout` event registers, you don't draw any pixels until `mousedown` comes up again.
 
