@@ -264,9 +264,13 @@
     }
     
     function send() {
+        var name = document.getElementById('canvasNameField').value
+        if (name == "") {
+            alert("You need to enter a name before you send me your picture!");
+            return;
+        }
         var image = canvas.toDataURL();
         var request = new XMLHttpRequest();
-        var name = document.getElementById('canvasNameField').value
         var data = JSON.stringify({'name': name, 'image': image})
         var button = document.getElementById('savebtn')
         request.open("POST", "https://openwhisk.ng.bluemix.net/api/v1/web/david.okun_blogging/default/WebsiteDrawingsSwift.json");
@@ -274,6 +278,7 @@
             if (request.readyState == 4) {
                 button.disabled = false;
                 button.value = "Send";
+                alert("Thank you for your art!");
             }
         }
         request.setRequestHeader("Content-Type", "application/json");
