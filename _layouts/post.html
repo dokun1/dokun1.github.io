@@ -13,6 +13,29 @@ layout: default
                     <h2 class="subheading">{{ page.subtitle }}</h2>
                     {% endif %} -->
                     <span class="meta">Posted by {% if page.author %}{{ page.author }}{% else %}{{ site.title }}{% endif %} on {{ page.date | date: "%B %-d, %Y" }}</span>
+                    <meta name="twitter:card" content="summary">
+                    <meta name="twitter:site" content="@dokun24">
+                    <meta name="twitter:creator" content="@dokun24">
+                    {% if page.title %}
+                        <meta name="twitter:title" content="{{ page.title }}">
+                    {% else %}
+                        <meta name="twitter:title" content="{{ site.title }}">
+                    {% endif %}
+                    {% if page.url %}
+                        <meta name="twitter:url" content="{{ site.url }}{{ page.url }}">
+                    {% endif %}
+                    <!--
+                    {% if page.description %}
+                        <meta name="twitter:description" content="{{ page.description }}">
+                    {% else %}
+                        <meta name="twitter:description" content="{{ site.description }}">
+                    {% endif %}
+                    -->
+                    {% if page.image %}
+                        <meta name="twitter:image:src" content="{{ site.url }}/{{ page.header-img }}">
+                    {% else %}
+                        <meta name="twitter:image:src" content="{{ site.url }}/img/blogBackgrounds/04.jpeg">
+                    {% endif %}
                 </div>
             </div>
         </div>

@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Constantly Trying New Stuff For You">
+
+    <title>How You Can Draw On My Homepage And Email It To Me - David Okun</title>
+
+    <link rel="canonical" href="http://localhost:4000/2018/08/25/invoking-open-whisk-from-an-html-canvas/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/clean-blog.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Serif:400,400i,700,700i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+
+<body>
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">David Okun</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="/">Home</a>
+                </li>
+                
+				
+                <li>
+                    <a href="/about/">About Me</a>
+                </li>
+				
+                
+				
+                <li>
+                    <a href="/talks/">Talks</a>
+                </li>
+				
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+
+    <!-- Post Header -->
+<header class="intro-header" style="background-image: url('/img/blogBackgrounds/01.jpeg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>How You Can Draw On My Homepage And Email It To Me</h1>
+                    <!--  -->
+                    <span class="meta">Posted by David Okun on August 25, 2018</span>
+                    <meta name="twitter:card" content="summary">
+                    <meta name="twitter:site" content="@dokun24">
+                    <meta name="twitter:creator" content="@dokun24">
+                    
+                        <meta name="twitter:title" content="How You Can Draw On My Homepage And Email It To Me">
+                    
+                    
+                        <meta name="twitter:url" content="http://localhost:4000/2018/08/25/invoking-open-whisk-from-an-html-canvas/">
+                    
+                    <!--
+                    
+                        <meta name="twitter:description" content="Constantly Trying New Stuff For You">
+                    
+                    -->
+                    
+                        <meta name="twitter:image:src" content="http://localhost:4000/img/blogBackgrounds/04.jpeg">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+				<p>As I start getting more comfortable with web technology, both on the front end and the back end, I get curious about trying new things. Who doesn’t love drawing On The Internet (© 2018)?</p>
+
+<p>I wanted to put a canvas on my homepage that you could draw on, and I wanted to be able to see your images. I mean…this <em>shouldn’t</em> be too complicated, right? Draw an image and send it somewhere, right?</p>
+
+<p>…did I see an opportunity to severely overcomplicate it and write a blog post about it? Did I find a way to shoehorn Swift into it when Node.js would have probably been fine? You bet I did!!</p>
+
+<p align="center">
+    <img src="https://media.giphy.com/media/l2JdXrDsG0DiTxXK8/giphy.gif" />
+</p>
+
+<p>Ok, we have to draw a canvas first.</p>
+
+<h2 id="the-canvas">The Canvas</h2>
+
+<p>HTML has a great way to easily draw just about anything with a built-in tool called <a href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API">Canvas</a>. There are at least 6 tutorials on the internet (possibly more) about Canvas, so I won’t dive deep into how the API works, but focus on how I used mine.</p>
+
+<p>So I went to DuckDuckGo and I sear–I mean, I dutifully read the documentation on MDN about Canvas. It was somewhat straightforward to draw the canvas on the main part of the page (all of the source code for this entire blog is <a href="https://github.com/dokun1/dokun1.github.io">here</a>), but what I needed to make drawing with your mouse possible was to set up <code class="highlighter-rouge">eventListener</code>s on the canvas.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">canvas</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"mousemove"</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">findxy</span><span class="p">(</span><span class="s1">'move'</span><span class="p">,</span> <span class="nx">e</span><span class="p">,</span> <span class="nx">canvas</span><span class="p">)</span>
+<span class="p">},</span> <span class="kc">false</span><span class="p">);</span>
+<span class="nx">canvas</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"mousedown"</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">findxy</span><span class="p">(</span><span class="s1">'down'</span><span class="p">,</span> <span class="nx">e</span><span class="p">,</span> <span class="nx">canvas</span><span class="p">)</span>
+<span class="p">},</span> <span class="kc">false</span><span class="p">);</span>
+<span class="nx">canvas</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"mouseup"</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">findxy</span><span class="p">(</span><span class="s1">'up'</span><span class="p">,</span> <span class="nx">e</span><span class="p">,</span> <span class="nx">canvas</span><span class="p">)</span>
+<span class="p">},</span> <span class="kc">false</span><span class="p">);</span>
+<span class="nx">canvas</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"mouseout"</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">findxy</span><span class="p">(</span><span class="s1">'out'</span><span class="p">,</span> <span class="nx">e</span><span class="p">,</span> <span class="nx">canvas</span><span class="p">)</span>
+<span class="p">},</span> <span class="kc">false</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>(<strong>NB:</strong> By the way, most of this I was able to find in a great StackOverflow post which you can check out <a href="https://stackoverflow.com/questions/2368784/draw-on-html5-canvas-using-a-mouse">here</a>.</p>
+
+<p>In short, whenever the <code class="highlighter-rouge">mousedown</code> event registers, and is followed by subsequent <code class="highlighter-rouge">mousemove</code> events, you can tell the canvas to draw a path from pixel to pixel. Anytime a <code class="highlighter-rouge">mouseup</code> or <code class="highlighter-rouge">mouseout</code> event registers, you don’t draw any pixels until <code class="highlighter-rouge">mousedown</code> comes up again.</p>
+
+<p>Ok, sweet! So we have our picture. I can’t wait to see what my friends draw, and I’m certain that none of my friends will abuse this. (future blog post about image detection and conditional rejection?!?)</p>
+
+<p>Now, how do I get it to my email inbox?</p>
+
+<h2 id="openwhisk">OpenWhisk</h2>
+
+<p><a href="https://openwhisk.apache.org">Apache OpenWhisk</a> is a really awesome platform that allows you to write functions in just about any programming language you want, and to have them made available in a cloud of your choosing. We have them available as Cloud Functions at <a href="https://console.bluemix.net/openwhisk/">IBM</a>, and I decided I was going to use a <code class="highlighter-rouge">XMLHTTPRequest</code> to send it to an action on OpenWhisk. After that, I use <a href="https://sendgrid.com">SendGrid</a> to send an email to myself.</p>
+
+<p>Swift is natively supported in IBM’s build of OpenWhisk, so I thought I’d give that a shot! Here’s what the function looks like in the absence of the <code class="highlighter-rouge">sendImage</code> function I wrote for it:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">struct</span> <span class="kt">Input</span><span class="p">:</span> <span class="kt">Codable</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span>
+    <span class="k">let</span> <span class="nv">image</span><span class="p">:</span> <span class="kt">String</span>
+<span class="p">}</span>
+<span class="kd">struct</span> <span class="kt">Output</span><span class="p">:</span> <span class="kt">Codable</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">message</span><span class="p">:</span> <span class="kt">String</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">(</span><span class="nv">param</span><span class="p">:</span> <span class="kt">Input</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Output</span><span class="p">?,</span> <span class="kt">Error</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span> <span class="p">{</span>
+    <span class="nf">sendImage</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="n">param</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="nv">image</span><span class="p">:</span> <span class="n">param</span><span class="o">.</span><span class="n">image</span><span class="p">,</span> <span class="nv">callback</span><span class="p">:</span> <span class="p">{</span> <span class="n">success</span> <span class="k">in</span>
+        <span class="k">if</span> <span class="n">success</span> <span class="p">{</span>
+            <span class="nf">completion</span><span class="p">(</span><span class="kt">Output</span><span class="p">(</span><span class="nv">message</span><span class="p">:</span> <span class="s">"Sent message to David from: </span><span class="se">\(</span><span class="n">param</span><span class="o">.</span><span class="n">name</span><span class="se">)</span><span class="s">"</span><span class="p">),</span> <span class="kc">nil</span><span class="p">)</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nf">completion</span><span class="p">(</span><span class="kt">Output</span><span class="p">(</span><span class="nv">message</span><span class="p">:</span> <span class="s">"Had an error sending message to David from: </span><span class="se">\(</span><span class="n">param</span><span class="o">.</span><span class="n">name</span><span class="se">)</span><span class="s">"</span><span class="p">),</span> <span class="kc">nil</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">})</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The only requirement for an OpenWhisk function is the <code class="highlighter-rouge">main</code> function, and IBM’s deployment with Swift 4 makes use of the Codable Routing feature in <a href="https://kitura.io">Kitura</a>, which strongly types the expected input and output of your web API that you set up.</p>
+
+<p>SendGrid has some good SDKs, but most importantly they have an API that shows you how to use cURL! Here’s what my function to invoke their <code class="highlighter-rouge">create</code> API:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">func</span> <span class="nf">sendImage</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">image</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">callback</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">headers</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s">"Authorization"</span><span class="p">:</span> <span class="s">"Bearer xxxxxx----apikey-goes-here-xxxxxxx"</span><span class="p">,</span>
+        <span class="s">"Content-Type"</span><span class="p">:</span> <span class="s">"application/json"</span>
+    <span class="p">]</span>
+    <span class="k">let</span> <span class="nv">parameters</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s">"personalizations"</span><span class="p">:</span> <span class="p">[[</span><span class="s">"to"</span><span class="p">:</span> <span class="p">[[</span><span class="s">"email"</span><span class="p">:</span> <span class="s">"david@okun.io"</span><span class="p">,</span> <span class="s">"name"</span><span class="p">:</span> <span class="s">"David Okun"</span><span class="p">]]]],</span>
+        <span class="s">"from"</span><span class="p">:</span> <span class="p">[</span><span class="s">"email"</span><span class="p">:</span> <span class="s">"website@okun.io"</span><span class="p">,</span><span class="s">"name"</span><span class="p">:</span> <span class="s">"Your Website"</span><span class="p">],</span>
+        <span class="s">"subject"</span><span class="p">:</span> <span class="s">"</span><span class="se">\(</span><span class="n">name</span><span class="se">)</span><span class="s"> drew a picture on your website!"</span><span class="p">,</span>
+        <span class="s">"content"</span><span class="p">:</span> <span class="p">[[</span><span class="s">"type"</span><span class="p">:</span> <span class="s">"text/html"</span><span class="p">,</span> <span class="s">"value"</span><span class="p">:</span> <span class="s">"&lt;img alt=</span><span class="se">\"</span><span class="s">My Image</span><span class="se">\"</span><span class="s"> src=</span><span class="se">\"\(</span><span class="n">image</span><span class="se">)\"</span><span class="s">/&gt;"</span><span class="p">]]</span>
+        <span class="p">]</span> <span class="k">as</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">]</span>
+    <span class="k">let</span> <span class="nv">postData</span> <span class="o">=</span> <span class="k">try!</span> <span class="kt">JSONSerialization</span><span class="o">.</span><span class="nf">data</span><span class="p">(</span><span class="nv">withJSONObject</span><span class="p">:</span> <span class="n">parameters</span><span class="p">,</span> <span class="nv">options</span><span class="p">:</span> <span class="p">[])</span>
+    <span class="k">guard</span> <span class="k">let</span> <span class="nv">url</span> <span class="o">=</span> <span class="kt">URL</span><span class="p">(</span><span class="nv">string</span><span class="p">:</span> <span class="s">"https://api.sendgrid.com/v3/mail/send"</span><span class="p">)</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nf">callback</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="k">var</span> <span class="nv">request</span> <span class="o">=</span> <span class="kt">URLRequest</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="n">url</span><span class="p">)</span>
+    <span class="n">request</span><span class="o">.</span><span class="n">httpMethod</span> <span class="o">=</span> <span class="s">"POST"</span>
+    <span class="n">request</span><span class="o">.</span><span class="n">allHTTPHeaderFields</span> <span class="o">=</span> <span class="n">headers</span>
+    <span class="n">request</span><span class="o">.</span><span class="n">httpBody</span> <span class="o">=</span> <span class="n">postData</span> <span class="k">as</span> <span class="kt">Data</span>
+    <span class="k">let</span> <span class="nv">session</span> <span class="o">=</span> <span class="kt">URLSession</span><span class="o">.</span><span class="n">shared</span>
+    <span class="k">let</span> <span class="nv">dataTask</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="nf">dataTask</span><span class="p">(</span><span class="nv">with</span><span class="p">:</span> <span class="n">request</span><span class="p">,</span> <span class="nv">completionHandler</span><span class="p">:</span> <span class="p">{</span> <span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">response</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span> <span class="k">in</span>
+        <span class="nf">callback</span><span class="p">(</span><span class="n">error</span> <span class="o">==</span> <span class="kc">nil</span><span class="p">)</span>
+    <span class="p">})</span>
+    <span class="n">dataTask</span><span class="o">.</span><span class="nf">resume</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Ok, neat. So all I have to do is send a JSON payload with a <code class="highlighter-rouge">name</code> and an <code class="highlighter-rouge">image</code> (formatted as a base64 string) and I’m good to go, right?</p>
+
+<p align="center">
+    <img src="https://media.giphy.com/media/3o6Mb43PiNTQS5WgLu/giphy.gif" />Nope.
+</p>
+
+<p>It turns out that, in order to send a request using a <code class="highlighter-rouge">XMLHTTPRequest</code> inside a browser, you need to have CORS (Cross Origin Resource Sharing) turned on. Thankfully, OpenWhisk has a way to do that, and by foregoing authorization, I was able to turn it on as a “Web Action” in the web GUI. I would like to thank my colleague Kevin Hoyt for this great <a href="https://www.kevinhoyt.com/2017/06/15/async-openwhisk-web-action-with-cors/">blog post</a> on the topic.</p>
+
+<p>After that, all I had to do was disable the button while the request is in the air and…</p>
+
+<p align="center">
+    <img src="/img/2018-08-25/openWhiskResult.jpg" />Nice.
+</p>
+
+<p>And there you go! Again, all of the code for this post is on the GitHub repo for this site right <a href="https://github.com/dokun1/dokun1.github.io">here</a>. I hope you have even more fun on my website than you were already having :-]</p>
+
+
+                <hr>
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2018/08/02/live-demo-swift-nio/" data-toggle="tooltip" data-placement="top" title="Video - Live Demo of Swift NIO In An Xcode Playground">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    
+                    <div id="disqus_thread"></div>
+                        <script>
+
+                        /**
+                        *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                        *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+                        /*
+                        var disqus_config = function () {
+                        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+                        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                        };
+                        */
+                        (function() { // DON'T EDIT BELOW THIS LINE
+                        var d = document, s = d.createElement('script');
+                        s.src = 'https://davidokunblog.disqus.com/embed.js';
+                        s.setAttribute('data-timestamp', +new Date());
+                        (d.head || d.body).appendChild(s);
+                        })();
+                        </script>
+                        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                                                
+                    
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+<hr>
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                    <li>
+                        <a href="https://twitter.com/dokun24">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li>
+                        <a href="https://www.instagram.com/dokun1">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    <li>
+                        <a href="https://github.com/dokun1">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li>
+                        <a href="mailto:david@okun.io">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li>
+                        <a href="https://stackoverflow.com/users/1604167/dokun1">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-stack-overflow fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li>
+                        <a href="https://linkedin.com/in/david-okun">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+                <p class="copyright text-muted">Copyright &copy; David Okun 2018</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/clean-blog.min.js "></script>
+
+
+    
+
+
+</body>
+
+</html>

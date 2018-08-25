@@ -3,7 +3,31 @@ layout: page
 description: Developer/Advocate
 ---
 
-<p>Hi! I'm glad you could make it. You can check out a few things:</p>
+<p>Hi! Thanks for coming all the way over here.</p>
+
+<p>Are you feeling creative? Draw something in the box below and send it to me by clicking the Send button!</p>
+<body onload="init()">
+    <div align="center">
+        <div style="display: inline-block;">Choose Color</div>
+        <div style="display:inline-block;width:15px;height:15px;background:green;border: 1px solid" id="green" onclick="color(this)"></div>
+        <div style="display:inline-block;width:15px;height:15px;background:blue;border: 1px solid" id="blue" onclick="color(this)"></div>
+        <div style="display:inline-block;width:15px;height:15px;background:red;border: 1px solid" id="red" onclick="color(this)"></div>
+        <div style="display:inline-block;width:15px;height:15px;background:yellow;border: 1px solid" id="yellow" onclick="color(this)"></div>
+        <div style="display:inline-block;width:15px;height:15px;background:orange;border: 1px solid" id="orange" onclick="color(this)"></div>
+        <div style="display:inline-block;width:15px;height:15px;background:black;border: 1px solid" id="black" onclick="color(this)"></div>
+        <div style="display:inline-block;">Eraser</div>
+        <div style="display: inline-block;width:15px;height:15px;background:white;border:1px solid;" id="white" onclick="color(this)"></div>
+        <div></div>
+        <canvas id="can" width="400" height="400" style="border:2px solid"></canvas>
+        <img id="canvasimg" width="400" height="400">
+        <div></div>
+        <input type="text" placeholder="Enter name" id="canvasNameField" size="30" style="display: inline-block;">
+        <input type="button" value="Send" id="savebtn" size="30" onclick="send()" style="display:inline-block;">
+        <input type="button" value="Clear" id="clr" size="23" onclick="erase()" style="display: inline-block;">
+    </div>
+</body>
+
+<p>You can check out a few other things here:</p>
 <ul>
     <li>My blog is below - I try to post everything that I write either here or elsewhere.</li>
     <li>I have an open source iOS camera framework called Lumina <a href="https://github.com/dokun1/Lumina">(click here!)</a> that is the fastest way (in my opinion) to get started with Core ML.</li>
@@ -38,3 +62,133 @@ description: Developer/Advocate
     {% endif %}
 </ul>
 {% endif %}
+
+<script type="text/javascript">
+    var canvas, ctx, flag = false,
+        prevX = 0,
+        currX = 0,
+        prevY = 0,
+        currY = 0,
+        dot_flag = false;
+
+    var x = "black",
+        y = 2;
+    
+    function init() {
+        canvas = document.getElementById('can');
+        ctx = canvas.getContext("2d");
+        w = canvas.width;
+        h = canvas.height;
+    
+        canvas.addEventListener("mousemove", function (e) {
+            findxy('move', e, canvas)
+        }, false);
+        canvas.addEventListener("mousedown", function (e) {
+            findxy('down', e, canvas)
+        }, false);
+        canvas.addEventListener("mouseup", function (e) {
+            findxy('up', e, canvas)
+        }, false);
+        canvas.addEventListener("mouseout", function (e) {
+            findxy('out', e, canvas)
+        }, false);
+    }
+    
+    function color(obj) {
+        switch (obj.id) {
+            case "green":
+                x = "green";
+                break;
+            case "blue":
+                x = "blue";
+                break;
+            case "red":
+                x = "red";
+                break;
+            case "yellow":
+                x = "yellow";
+                break;
+            case "orange":
+                x = "orange";
+                break;
+            case "black":
+                x = "black";
+                break;
+            case "white":
+                x = "white";
+                break;
+        }
+        if (x == "white") y = 14;
+        else y = 2;
+    
+    }
+    
+    function draw() {
+        ctx.beginPath();
+        ctx.moveTo(prevX, prevY);
+        ctx.lineTo(currX, currY);
+        ctx.strokeStyle = x;
+        ctx.lineWidth = y;
+        ctx.stroke();
+        ctx.closePath();
+    }
+    
+    function erase() {
+        var m = confirm("Are you sure you want to erase your wonderful drawing?");
+        if (m) {
+            ctx.clearRect(0, 0, w, h);
+            document.getElementById("canvasimg").style.display = "none";
+        }
+    }
+    
+    function send() {
+        var image = canvas.toDataURL();
+        var request = new XMLHttpRequest();
+        var name = document.getElementById('canvasNameField').value
+        var data = JSON.stringify({'name': name, 'image': image})
+        var button = document.getElementById('savebtn')
+        request.open("POST", "https://openwhisk.ng.bluemix.net/api/v1/web/david.okun_blogging/default/WebsiteDrawingsSwift.json");
+        request.onreadystatechange = function() {
+            if (request.readyState == 4) {
+                button.disabled = false;
+                button.value = "Send";
+            }
+        }
+        request.setRequestHeader("Content-Type", "application/json");
+        button.disabled = true;
+        button.value = "Sending...";
+        request.send(data);
+    }
+    
+    function findxy(res, e, canvas) {
+        var rect = canvas.getBoundingClientRect();
+        if (res == 'down') {
+            prevX = currX;
+            prevY = currY;
+            currX = e.clientX - rect.left;
+            currY = e.clientY - rect.top;
+    
+            flag = true;
+            dot_flag = true;
+            if (dot_flag) {
+                ctx.beginPath();
+                ctx.fillStyle = x;
+                ctx.fillRect(currX, currY, 2, 2);
+                ctx.closePath();
+                dot_flag = false;
+            }
+        }
+        if (res == 'up' || res == "out") {
+            flag = false;
+        }
+        if (res == 'move') {
+            if (flag) {
+                prevX = currX;
+                prevY = currY;
+                currX = e.clientX - rect.left;
+                currY = e.clientY - rect.top;
+                draw();
+            }
+        }
+    }
+    </script>
