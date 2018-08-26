@@ -40,6 +40,27 @@ canvas.addEventListener("mouseout", function (e) {
 }, false);
 ```
 
+And what if I want to detect touches on a mobile device? Well, those events have different names, so you can add listeners for them as well, and you can tell the document to not scroll around, or to prevent the default action, so it stays still while you draw:
+
+```javascript
+        canvas.addEventListener("touchstart", function(e) {
+            e.preventDefault();
+            findxy('touchdown', e, canvas);
+        }, false);
+        canvas.addEventListener("touchmove", function(e) {
+            e.preventDefault();
+            findxy('touchmove', e, canvas);
+        }, false);
+        canvas.addEventListener("touchcancel", function(e) {
+            e.preventDefault();
+            findxy('up', e, canvas);
+        }, false);
+        canvas.addEventListener("touchend", function(e) {
+            e.preventDefault();
+            findxy('up', e, canvas);
+        }, false);
+```
+
 (**NB:** By the way, most of this I was able to find in a great StackOverflow post which you can check out [here](https://stackoverflow.com/questions/2368784/draw-on-html5-canvas-using-a-mouse).)
 
 In short, whenever the `mousedown` event registers, and is followed by subsequent `mousemove` events, you can tell the canvas to draw a path from pixel to pixel. Anytime a `mouseup` or `mouseout` event registers, you don't draw any pixels until `mousedown` comes up again.

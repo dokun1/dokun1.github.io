@@ -89,6 +89,19 @@
                     <hr class="small">
                     <span class="subheading">Developer/Advocate</span>
                 </div>
+                <span class="meta">Posted by David Okun on </span>
+                <meta name="twitter:card" content="summary">
+                <meta name="twitter:site" content="@dokun24">
+                <meta name="twitter:creator" content="@dokun24">
+                
+                    <meta name="twitter:title" content="David Okun">
+                
+                
+                    <meta name="twitter:url" content="http://localhost:4000/page2/">
+                
+                
+                    <meta name="twitter:image:src" content="http://localhost:4000/img/blogBackgrounds/04.jpeg">
+                
             </div>
         </div>
     </div>
@@ -104,16 +117,17 @@
 <body onload="init()">
     <div align="center">
         <div style="display: inline-block;">Choose Color</div>
-        <div style="display:inline-block;width:15px;height:15px;background:green;border: 1px solid" id="green" onclick="color(this)"></div>
-        <div style="display:inline-block;width:15px;height:15px;background:blue;border: 1px solid" id="blue" onclick="color(this)"></div>
-        <div style="display:inline-block;width:15px;height:15px;background:red;border: 1px solid" id="red" onclick="color(this)"></div>
-        <div style="display:inline-block;width:15px;height:15px;background:yellow;border: 1px solid" id="yellow" onclick="color(this)"></div>
-        <div style="display:inline-block;width:15px;height:15px;background:orange;border: 1px solid" id="orange" onclick="color(this)"></div>
-        <div style="display:inline-block;width:15px;height:15px;background:black;border: 1px solid" id="black" onclick="color(this)"></div>
+        <div style="display:inline-block;width:17px;height:17px;background:red;border: 1px solid" id="red" onclick="color(this)"></div>
+        <div style="display:inline-block;width:17px;height:17px;background:orange;border: 1px solid" id="orange" onclick="color(this)"></div>
+        <div style="display:inline-block;width:17px;height:17px;background:yellow;border: 1px solid" id="yellow" onclick="color(this)"></div>
+        <div style="display:inline-block;width:17px;height:17px;background:green;border: 1px solid" id="green" onclick="color(this)"></div>
+        <div style="display:inline-block;width:17px;height:17px;background:blue;border: 1px solid" id="blue" onclick="color(this)"></div>
+        <div style="display:inline-block;width:17px;height:17px;background:indigo;border: 1px solid" id="indigo" onclick="color(this)"></div>
+        <div style="display:inline-block;width:17px;height:17px;background:violet;border: 1px solid" id="violet" onclick="color(this)"></div>
         <div style="display:inline-block;">Eraser</div>
-        <div style="display: inline-block;width:15px;height:15px;background:white;border:1px solid;" id="white" onclick="color(this)"></div>
+        <div style="display: inline-block;width:17px;height:17px;background:white;border:1px solid;" id="white" onclick="color(this)"></div>
         <div></div>
-        <canvas id="can" width="400" height="400" style="border:2px solid"></canvas>
+        <canvas id="can" width="400" height="400" style="border:2px solid;max-width: 400px;position: relative;min-width: 200px;margin: 0"></canvas>
         <img id="canvasimg" width="400" height="400">
         <div></div>
         <input type="text" placeholder="Enter name" id="canvasNameField" size="30" style="display: inline-block;">
@@ -201,7 +215,23 @@
         ctx = canvas.getContext("2d");
         w = canvas.width;
         h = canvas.height;
-    
+
+        canvas.addEventListener("touchstart", function(e) {
+            e.preventDefault();
+            findxy('touchdown', e, canvas);
+        }, false);
+        canvas.addEventListener("touchmove", function(e) {
+            e.preventDefault();
+            findxy('touchmove', e, canvas);
+        }, false);
+        canvas.addEventListener("touchcancel", function(e) {
+            e.preventDefault();
+            findxy('up', e, canvas);
+        }, false);
+        canvas.addEventListener("touchend", function(e) {
+            e.preventDefault();
+            findxy('up', e, canvas);
+        }, false);
         canvas.addEventListener("mousemove", function (e) {
             findxy('move', e, canvas)
         }, false);
@@ -218,23 +248,26 @@
     
     function color(obj) {
         switch (obj.id) {
+            case "red":
+                x = "red";
+                break;
+            case "orange":
+                x = "orange";
+                break;
+            case "yellow":
+                x = "yellow";
+                break;
             case "green":
                 x = "green";
                 break;
             case "blue":
                 x = "blue";
                 break;
-            case "red":
-                x = "red";
+            case "indigo":
+                x = "indigo";
                 break;
-            case "yellow":
-                x = "yellow";
-                break;
-            case "orange":
-                x = "orange";
-                break;
-            case "black":
-                x = "black";
+            case "violet":
+                x = "violet";
                 break;
             case "white":
                 x = "white";
@@ -242,7 +275,19 @@
         }
         if (x == "white") y = 14;
         else y = 2;
-    
+        updateColorBox(obj);
+    }
+
+    function updateColorBox(obj) {
+        document.getElementById("red").setAttribute("style", "display:inline-block;width:17px;height:17px;background:red;border: 1px solid");
+        document.getElementById("orange").setAttribute("style", "display:inline-block;width:17px;height:17px;background:orange;border: 1px solid");
+        document.getElementById("yellow").setAttribute("style", "display:inline-block;width:17px;height:17px;background:yellow;border: 1px solid");
+        document.getElementById("green").setAttribute("style", "display:inline-block;width:17px;height:17px;background:green;border: 1px solid");
+        document.getElementById("blue").setAttribute("style", "display:inline-block;width:17px;height:17px;background:blue;border: 1px solid");
+        document.getElementById("indigo").setAttribute("style", "display:inline-block;width:17px;height:17px;background:indigo;border: 1px solid");
+        document.getElementById("violet").setAttribute("style", "display:inline-block;width:17px;height:17px;background:violet;border: 1px solid");
+        document.getElementById("white").setAttribute("style", "display:inline-block;width:17px;height:17px;background:white;border: 1px solid");
+        obj.setAttribute("style", "display:inline-block;width:20px;height:20px;background:" + obj.id + ";border: 3px groove black");
     }
     
     function draw() {
@@ -278,7 +323,7 @@
             if (request.readyState == 4) {
                 button.disabled = false;
                 button.value = "Send";
-                alert("Thank you for your art!");
+                alert("Thank you for your art, " + name + "!");
             }
         }
         request.setRequestHeader("Content-Type", "application/json");
@@ -289,11 +334,16 @@
     
     function findxy(res, e, canvas) {
         var rect = canvas.getBoundingClientRect();
-        if (res == 'down') {
+        if (res == 'down' || res == 'touchdown') {
             prevX = currX;
             prevY = currY;
-            currX = e.clientX - rect.left;
-            currY = e.clientY - rect.top;
+            if (res == 'touchdown') {
+                currX = e.touches[0].clientX - rect.left;
+                currY = e.touches[0].clientY - rect.top;
+            } else {
+                currX = e.clientX - rect.left;
+                currY = e.clientY - rect.top;
+            }
     
             flag = true;
             dot_flag = true;
@@ -308,12 +358,18 @@
         if (res == 'up' || res == "out") {
             flag = false;
         }
-        if (res == 'move') {
+        if (res == 'move' || res == 'touchmove') {
             if (flag) {
                 prevX = currX;
                 prevY = currY;
-                currX = e.clientX - rect.left;
-                currY = e.clientY - rect.top;
+                if (res == 'touchmove') {
+                    currX = e.touches[0].clientX - rect.left;
+                    currY = e.touches[0].clientY - rect.top;
+                } else {
+                    currX = e.clientX - rect.left;
+                    currY = e.clientY - rect.top;
+                }
+                
                 draw();
             }
         }
