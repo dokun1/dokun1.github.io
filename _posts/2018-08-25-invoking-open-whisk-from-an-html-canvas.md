@@ -97,7 +97,7 @@ func main(param: Input, completion: @escaping (Output?, Error?) -> Void) -> Void
 
 The only requirement for an OpenWhisk function is the `main` function, and IBM's deployment with Swift 4 makes use of the Codable Routing feature in [Kitura](https://kitura.io), which strongly types the expected input and output of your web API that you set up.
 
-SendGrid has some good SDKs, but most importantly they have an API that shows you how to use cURL! Here's what my function to invoke their `create` API:
+SendGrid has some good SDKs, but most importantly they have an API that shows you how to use cURL! Here's what my function to invoke their `create` API looks like:
 
 ```swift
 func sendImage(name: String, image: String, callback: @escaping (Bool) -> Void) {
