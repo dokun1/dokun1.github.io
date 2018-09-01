@@ -97,11 +97,6 @@
                     
                         <meta name="twitter:url" content="http://localhost:4000/2018/08/25/invoking-open-whisk-from-an-html-canvas/">
                     
-                    <!--
-                    
-                        <meta name="twitter:description" content="Constantly Trying New Stuff For You">
-                    
-                    -->
                     
                         <meta name="twitter:image:src" content="http://localhost:4000/img/blogBackgrounds/04.jpeg">
                     
@@ -149,6 +144,26 @@
 <span class="p">},</span> <span class="kc">false</span><span class="p">);</span>
 </code></pre></div></div>
 
+<p>And what if I want to detect touches on a mobile device? Well, those events have different names, so you can add listeners for them as well, and you can tell the document to not scroll around, or to prevent the default action, so it stays still while you draw:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">canvas</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"touchstart"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+    <span class="nx">findxy</span><span class="p">(</span><span class="s1">'touchdown'</span><span class="p">,</span> <span class="nx">e</span><span class="p">,</span> <span class="nx">canvas</span><span class="p">);</span>
+<span class="p">},</span> <span class="kc">false</span><span class="p">);</span>
+<span class="nx">canvas</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"touchmove"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+    <span class="nx">findxy</span><span class="p">(</span><span class="s1">'touchmove'</span><span class="p">,</span> <span class="nx">e</span><span class="p">,</span> <span class="nx">canvas</span><span class="p">);</span>
+<span class="p">},</span> <span class="kc">false</span><span class="p">);</span>
+<span class="nx">canvas</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"touchcancel"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+    <span class="nx">findxy</span><span class="p">(</span><span class="s1">'up'</span><span class="p">,</span> <span class="nx">e</span><span class="p">,</span> <span class="nx">canvas</span><span class="p">);</span>
+<span class="p">},</span> <span class="kc">false</span><span class="p">);</span>
+<span class="nx">canvas</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"touchend"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+    <span class="nx">findxy</span><span class="p">(</span><span class="s1">'up'</span><span class="p">,</span> <span class="nx">e</span><span class="p">,</span> <span class="nx">canvas</span><span class="p">);</span>
+<span class="p">},</span> <span class="kc">false</span><span class="p">);</span>
+</code></pre></div></div>
+
 <p>(<strong>NB:</strong> By the way, most of this I was able to find in a great StackOverflow post which you can check out <a href="https://stackoverflow.com/questions/2368784/draw-on-html5-canvas-using-a-mouse">here</a>.)</p>
 
 <p>In short, whenever the <code class="highlighter-rouge">mousedown</code> event registers, and is followed by subsequent <code class="highlighter-rouge">mousemove</code> events, you can tell the canvas to draw a path from pixel to pixel. Anytime a <code class="highlighter-rouge">mouseup</code> or <code class="highlighter-rouge">mouseout</code> event registers, you don’t draw any pixels until <code class="highlighter-rouge">mousedown</code> comes up again.</p>
@@ -184,7 +199,7 @@
 
 <p>The only requirement for an OpenWhisk function is the <code class="highlighter-rouge">main</code> function, and IBM’s deployment with Swift 4 makes use of the Codable Routing feature in <a href="https://kitura.io">Kitura</a>, which strongly types the expected input and output of your web API that you set up.</p>
 
-<p>SendGrid has some good SDKs, but most importantly they have an API that shows you how to use cURL! Here’s what my function to invoke their <code class="highlighter-rouge">create</code> API:</p>
+<p>SendGrid has some good SDKs, but most importantly they have an API that shows you how to use cURL! Here’s what my function to invoke their <code class="highlighter-rouge">create</code> API looks like:</p>
 
 <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">func</span> <span class="nf">sendImage</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">image</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">callback</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">let</span> <span class="nv">headers</span> <span class="o">=</span> <span class="p">[</span>
