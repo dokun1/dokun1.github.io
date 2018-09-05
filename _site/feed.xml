@@ -1,4 +1,87 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-09-01T15:44:48-05:00</updated><id>http://localhost:4000/</id><title type="html">David Okun</title><subtitle>Constantly Trying New Stuff For You</subtitle><entry><title type="html">How You Can Draw On My Homepage And Email It To Me</title><link href="http://localhost:4000/2018/08/25/invoking-open-whisk-from-an-html-canvas/" rel="alternate" type="text/html" title="How You Can Draw On My Homepage And Email It To Me" /><published>2018-08-25T07:00:00-05:00</published><updated>2018-08-25T07:00:00-05:00</updated><id>http://localhost:4000/2018/08/25/invoking-open-whisk-from-an-html-canvas</id><content type="html" xml:base="http://localhost:4000/2018/08/25/invoking-open-whisk-from-an-html-canvas/">&lt;p&gt;As I start getting more comfortable with web technology, both on the front end and the back end, I get curious about trying new things. Who doesn’t love drawing On The Internet (© 2018)?&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-09-05T00:13:44-05:00</updated><id>http://localhost:4000/</id><title type="html">David Okun</title><subtitle>Constantly Trying New Stuff For You</subtitle><entry><title type="html">The Importance Of Trying New Things</title><link href="http://localhost:4000/2018/09/04/importance-of-trying-new-things/" rel="alternate" type="text/html" title="The Importance Of Trying New Things" /><published>2018-09-04T07:00:00-05:00</published><updated>2018-09-04T07:00:00-05:00</updated><id>http://localhost:4000/2018/09/04/importance-of-trying-new-things</id><content type="html" xml:base="http://localhost:4000/2018/09/04/importance-of-trying-new-things/">&lt;h2 id=&quot;taking-the-broccoli&quot;&gt;Taking The Broccoli&lt;/h2&gt;
+
+&lt;p&gt;When I was about 8 years old and living in Houston, my family friend Barnet took me to the grocery store. I lost a bet. I don’t remember what the bet was, but I know I lost, because my end of the bargain was that I had to eat broccoli for lunch. I distinctly remember the schadenfreude in Barnet’s laughter as he made me pick out my own stalk of broccoli to eat.&lt;/p&gt;
+
+&lt;p&gt;We went home and he steamed the broccoli. I sat down, and chewed on the first forkful for at least 5 minutes. Barnet always tells me that I looked like I was taking medicine, so he loves telling people that I told my mom that, having lost the bet, “I took the broccoli.”&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;http://www.stjhs.org/images/2015-Dec/kid-broccoli[2].JPG&quot; /&gt; &quot;Mom, I took the broccoli.&quot;
+&lt;/p&gt;
+
+&lt;p&gt;It’s probably not the craziest thing in the world to imagine parent-figures taking drastic measures to get a young person to try new foods. People being picky about what they eat isn’t exactly breaking news either. However, this stuck with me for a while.&lt;/p&gt;
+
+&lt;p&gt;I gained a reputation amongst my friends regarding the way I ate my burgers in high school and university (plain and dry), and I often was tricked into going to certain restaurants by other friends because they knew I would suggest the same old boring places I’d always suggested if they asked where I wanted to go.&lt;/p&gt;
+
+&lt;p&gt;This limited me in more ways than one. However, the most obvious of these was my weight - I weighed 247 pounds two years after I graduated from my undergraduate degree program! One day I got tired of this and started making changes with more exercise, counting calories, etc. I did lose a lot of weight, and I feel healthier now, but that’s not the point of this blog post.&lt;/p&gt;
+
+&lt;h2 id=&quot;a-leap-of-faith&quot;&gt;A Leap Of Faith&lt;/h2&gt;
+
+&lt;p&gt;I reached my goal weight in 2012 (three cheers for losing 80 pounds!), but I still limited myself to only eating certain foods. I could still tell that something was off, because I was an adult by that point and I couldn’t figure out why I kept such a limited diet. Fast forward to 2013 - I moved to Oklahoma City for a contract job, and my friend Danny moved there at the same time as I did. He asked me if we could meet for dinner, and I asked him where. “Let’s go to this Ethiopian restaurant.”&lt;/p&gt;
+
+&lt;p&gt;Panic. What was I going to do? Reading the menu ahead of time didn’t help - I had no idea what anything on the menu was to begin with. I was literally sweating alone in my apartment because of plans I had made. Why am I acting like this? Maybe I can just go to dinner and eat nothing. “I’m honestly not that hungry,” I thought I could say.&lt;/p&gt;
+
+&lt;p&gt;We sit down. I haven’t seen Danny in a little bit, but he can tell something’s up. He asks me what I’m gonna get, I try to mumble “I’m honestly not that hungry,” so he might misunderstand me and stop asking me.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“Dude, people all over the world eat this stuff - if they enjoy it, why shouldn’t we?”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;It’s weird to say that I felt what I can only describe as enlightenment when he said this, but that’s how it felt. I felt stupid after feeling that, but I’ll never forget the way it felt to have such a clear realization after the fact. Since then, I’ve loved trying new foods and I’m not as lean as I was in 2012, but I definitely feel like I eat better.&lt;/p&gt;
+
+&lt;p&gt;By this point, you may be wondering, “I come here for the software blogging - what does this have to do with anything?”&lt;/p&gt;
+
+&lt;h2 id=&quot;fitting-this-into-the-software-blog&quot;&gt;Fitting This Into The Software Blog&lt;/h2&gt;
+
+&lt;p&gt;In 2013, I was almost exclusively a mobile developer. Whenever I applied for jobs, I made it very clear that I wasn’t able to do much else for a company other than Objective-C or some very &lt;strong&gt;very&lt;/strong&gt; loose C++. I did ok, but I always felt judged a little bit for putting up those barriers and limiting myself.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;I want to point out that this is just my story - if you’ve found your niche and feel value to the world around you by staying in your niche, then you &lt;em&gt;OWN&lt;/em&gt; your niche. You do you, always.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;I wanted more. This isn’t a commentary on the field of mobile development, which is rich and carries a ton of new things to learn every day for any platform. However, I think back to when I was developing an app with some friends called &lt;a href=&quot;afterparty.io&quot;&gt;Afterparty&lt;/a&gt;. This app was all about taking photos and showing people what was going on around you geographically for a brief period of time (and we released it in January 2015, Evan Speigel.)&lt;/p&gt;
+
+&lt;p&gt;To accomplish the social aspect of Afterparty, we needed a place to save photos in the cloud so others who had the mobile app could also see them. I was out of my league, and in no position to be putting code together for a server. Thank god for &lt;a href=&quot;http://www.parse.com&quot;&gt;Parse&lt;/a&gt;, which gave me an easy way to manage a REST API for Afterparty and write &lt;strong&gt;zero&lt;/strong&gt; server-side code. We shipped the initial release of the app on Parse, and it performed just fine. All I had to do was hope that Parse would always stay afloat.&lt;/p&gt;
+
+&lt;p&gt;Well…&lt;/p&gt;
+
+&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;Congrats &lt;a href=&quot;https://twitter.com/ParseIt?ref_src=twsrc%5Etfw&quot;&gt;@ParseIt&lt;/a&gt; on acquisition by Facebook. Also the 1st exit for &lt;a href=&quot;https://twitter.com/hashtag/MenloTalentFund?src=hash&amp;amp;ref_src=twsrc%5Etfw&quot;&gt;#MenloTalentFund&lt;/a&gt; - Blog post by &lt;a href=&quot;https://twitter.com/shervin?ref_src=twsrc%5Etfw&quot;&gt;@shervin&lt;/a&gt; here: &lt;a href=&quot;http://t.co/GTGwezidJf&quot;&gt;http://t.co/GTGwezidJf&lt;/a&gt;&lt;/p&gt;&amp;mdash; Menlo Ventures (@MenloVentures) &lt;a href=&quot;https://twitter.com/MenloVentures/status/328918091323027456?ref_src=twsrc%5Etfw&quot;&gt;April 29, 2013&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async=&quot;&quot; src=&quot;https://platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;Hey, if Facebook is buying them, they must be staying up forever!&lt;/p&gt;
+
+&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;We&amp;#39;re retiring our services on January 28, 2017. Here are two tools to help you transition: &lt;a href=&quot;https://t.co/BiAR6menJc&quot;&gt;https://t.co/BiAR6menJc&lt;/a&gt; &lt;a href=&quot;https://t.co/knR4dRVkCX&quot;&gt;pic.twitter.com/knR4dRVkCX&lt;/a&gt;&lt;/p&gt;&amp;mdash; Parse (@ParseIt) &lt;a href=&quot;https://twitter.com/ParseIt/status/692868030485831681?ref_src=twsrc%5Etfw&quot;&gt;January 29, 2016&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async=&quot;&quot; src=&quot;https://platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;Oh. Well that sucks.&lt;/p&gt;
+
+&lt;h2 id=&quot;trying-other-things&quot;&gt;Trying Other Things&lt;/h2&gt;
+
+&lt;p&gt;In 2015, when I was working for IDscan, I had a little pet project to enable a potential customer to use our SDK. He needed it to work via a web service.&lt;/p&gt;
+
+&lt;p&gt;I remembered reading an article about Node.js and Express by &lt;a href=&quot;https://www.raywenderlich.com/2663-how-to-write-a-simple-node-js-mongodb-web-service-for-an-ios-app&quot;&gt;Michael Katz&lt;/a&gt; which, ironically, starts with a link to an article I wrote about server-side Swift. I credit his article, which came out in 2014, with being my first exposure to Node.js and Express.&lt;/p&gt;
+
+&lt;p&gt;In 2015, I leaned on this article heavily as I stumbled my way through an Express app prototype for this potential customer. I felt in over my head, but I remembered what Danny told me, and simply applied the same logic to the software I was trying to write. &lt;strong&gt;“People all over the world try Node.js - if they enjoy it, why shouldn’t I?”&lt;/strong&gt; I am 100% confident I wouldn’t have even tried to take on the project if he hadn’t said that to me years earlier. The prototype worked and I moved on from the project, and I was so happy I had written something other than code for a mobile phone.&lt;/p&gt;
+
+&lt;p&gt;Though my mention of Parse earlier may seem critical, they’ve done an excellent job releasing their API solution as an open source &lt;a href=&quot;https://github.com/parse-community/parse-server&quot;&gt;Node.js framework&lt;/a&gt;, and it was time to keep Afterparty alive. I didn’t have to change much code, but the functionality I did have to write felt more natural. I actually felt like I could eventually figure out what I was doing, even if I didn’t know at the time.&lt;/p&gt;
+
+&lt;p&gt;Here’s the kicker - I wasn’t really &lt;em&gt;supposed&lt;/em&gt; to be working on that web service at IDscan. I did it because I wanted to prove to myself that I could step up if I needed to, and that &lt;em&gt;I wasn’t going to be afraid anymore of trying new things&lt;/em&gt;. I probably should have devoted my time to other things on the priority list, but I felt an urge to learn Node by diving in and doing it. It seems ridiculous on its face to be afraid to try software, but the walls can close in on you quickly when you are around people who know what they’re doing, and nobody likes feeling totally lost with no way out.&lt;/p&gt;
+
+&lt;p&gt;After writing that Express app, I no longer feel afraid to try anything I can get my hands on with work. It’s not always been easy, and there have been times where the fear will creep up again. The fear of being judged by someone else for your attempts at trying something in software is based in reality, and it’s encouraging to see networks like &lt;a href=&quot;https://stackoverflow.com/conduct&quot;&gt;Stack Overflow&lt;/a&gt; starting to take measures towards fostering an emotionally safe environment to learn and collaborate. Ash Furrow gave a great talk on this at &lt;a href=&quot;https://www.raywenderlich.com/422-rwdevcon-2017-inspiration-talk-building-compassionate-software-by-ash-furrow&quot;&gt;RWDevCon ‘17&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;However, the whole experience taught me a &lt;strong&gt;ton&lt;/strong&gt; about having some success getting an app to work outside the mobile ecosystem I was so used to. I don’t think its fair to say that my career growth has a linear relationship with the experiences I’ve had outside mobile development, but I wonder what would have happened if I forced myself to stay in my niche. This brings me to my last point.&lt;/p&gt;
+
+&lt;h2 id=&quot;staying-in-my-niche&quot;&gt;Staying In My Niche&lt;/h2&gt;
+
+&lt;p&gt;Swift was announced as a programming language in 2014, and I flipped out. I had spent so much time learning Objective-C, and I felt like it was going away as soon as Apple announced an alternative. It took a couple of months, but I finally figured I wasn’t going to get anywhere by only using Objective-C, so over the next two years of employment with IDscan, I started writing Swift during my free time to try and learn it. When you work with a team to develop a cross-platform framework in C++, Swift is rarely, if ever, part of the picture - I had no opportunities at work to grow my knowledge of Swift.&lt;/p&gt;
+
+&lt;p&gt;On my own time, I developed &lt;a href=&quot;https://github.com/dokun1/fingerlock&quot;&gt;three&lt;/a&gt; &lt;a href=&quot;https://github.com/dokun1/firstRuleFireplace&quot;&gt;free&lt;/a&gt; (and &lt;a href=&quot;https://github.com/dokun1/jordan-meme-ios&quot;&gt;open source&lt;/a&gt;) apps, one of which gained some &lt;a href=&quot;http://www.nytimes.com/2016/06/04/arts/crying-jordan-the-meme-that-just-wont-die.html?_r=0&quot;&gt;notoriety&lt;/a&gt;, but all of which likely feature absolutely terribly written code. I knew I had to try, though. 2012 David wouldn’t have even tried. I am pleased with how my career has grown since then, and I struggle to think of the experiences I would have missed out on if I hadn’t gone to dinner with Danny.&lt;/p&gt;
+
+&lt;p&gt;I hope you take the following things away from this:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;You are never just a &lt;em&gt;(insert last project you worked on)&lt;/em&gt; developer.&lt;/li&gt;
+  &lt;li&gt;If you want to try &lt;em&gt;anything&lt;/em&gt; new, find someone who’s good at it or does it a lot, ask them how to start, and lean on them.&lt;/li&gt;
+  &lt;li&gt;Don’t be afraid, because you’ll make tons of mistakes as you learn and get better at whatever you’re trying.&lt;/li&gt;
+  &lt;li&gt;Mustard and pickles are trash, but Ethiopian Chicken Tagine is actually pretty delicious if you give it a shot.&lt;/li&gt;
+  &lt;li&gt;A little bit of butter and Parmesan cheese makes broccoli taste pretty good.&lt;/li&gt;
+&lt;/ol&gt;</content><author><name>David Okun</name></author><summary type="html">Taking The Broccoli</summary></entry><entry><title type="html">How You Can Draw On My Homepage And Email It To Me</title><link href="http://localhost:4000/2018/08/25/invoking-open-whisk-from-an-html-canvas/" rel="alternate" type="text/html" title="How You Can Draw On My Homepage And Email It To Me" /><published>2018-08-25T07:00:00-05:00</published><updated>2018-08-25T07:00:00-05:00</updated><id>http://localhost:4000/2018/08/25/invoking-open-whisk-from-an-html-canvas</id><content type="html" xml:base="http://localhost:4000/2018/08/25/invoking-open-whisk-from-an-html-canvas/">&lt;p&gt;As I start getting more comfortable with web technology, both on the front end and the back end, I get curious about trying new things. Who doesn’t love drawing On The Internet (© 2018)?&lt;/p&gt;
 
 &lt;p&gt;I wanted to put a canvas on my homepage that you could draw on, and I wanted to be able to see your images. I mean…this &lt;em&gt;shouldn’t&lt;/em&gt; be too complicated, right? Draw an image and send it somewhere, right?&lt;/p&gt;
 
@@ -2290,65 +2373,4 @@ First, I create a struct for my result type called &lt;code class=&quot;highligh
 
 &lt;h2 id=&quot;neat---how-can-i-get-started&quot;&gt;Neat - how can I get started?&lt;/h2&gt;
 
-&lt;p&gt;We’ve built a tutorial entirely predicated on the use of Codable routes - &lt;a href=&quot;https://github.com/IBM/FoodTrackerBackend&quot;&gt;FoodTracker&lt;/a&gt;. You can clone the repository and follow along with the entire tutorial to get your own Swift API up and running in no time with Codable routing.&lt;/p&gt;</content><author><name>David Okun</name></author><summary type="html">Editor’s Note: This is mirrored from the IBM Cloud Blog.</summary></entry><entry><title type="html">Introducing Lumina - The Fastest Way To Get Started With CoreML On iOS</title><link href="http://localhost:4000/2018/01/02/introducing-lumina-swift-core-ml/" rel="alternate" type="text/html" title="Introducing Lumina - The Fastest Way To Get Started With CoreML On iOS" /><published>2018-01-02T06:00:00-06:00</published><updated>2018-01-02T06:00:00-06:00</updated><id>http://localhost:4000/2018/01/02/introducing-lumina-swift-core-ml</id><content type="html" xml:base="http://localhost:4000/2018/01/02/introducing-lumina-swift-core-ml/">&lt;h2 id=&quot;demo-video&quot;&gt;Demo Video&lt;/h2&gt;
-
-&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/8eEAvcy708s&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
-
-&lt;h2 id=&quot;re-writing-avfoundation-code-can-be-a-hassle&quot;&gt;Re-Writing AVFoundation Code Can Be A Hassle&lt;/h2&gt;
-
-&lt;p&gt;It’s not that &lt;code class=&quot;highlighter-rouge&quot;&gt;AVFoundation&lt;/code&gt; is bad. &lt;code class=&quot;highlighter-rouge&quot;&gt;AVFoundation&lt;/code&gt;, in fact, is very very good. Great, even.&lt;/p&gt;
-
-&lt;p&gt;However, it’s not ideal to have to write the same chunk of code over and over again. In my experience, I’ve had to do this a lot when it comes to cameras. Having to re-write logic around filtering company names is one thing - this is a bit more…involved.&lt;/p&gt;
-
-&lt;p&gt;Then came &lt;code class=&quot;highlighter-rouge&quot;&gt;CoreML&lt;/code&gt; in iOS 11. This rules! It’s put the power of machine learning in the hands of a mobile developer, and it’s quite easy to get started. Audrey Tam from &lt;a href=&quot;https://www.raywenderlich.com/u/audrey&quot;&gt;raywenderlich.com&lt;/a&gt; wrote a really great tutorial on getting started with &lt;code class=&quot;highlighter-rouge&quot;&gt;Vision&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;CoreML&lt;/code&gt;, and you can read it &lt;a href=&quot;https://www.raywenderlich.com/164213/coreml-and-vision-machine-learning-in-ios-11-tutorial&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;As neat as this tutorial is, I still was struck by how much code you had to write in order to get to a place where you can recognize a single still image. This is where my framework, &lt;a href=&quot;https://github.com/dokun1/Lumina&quot;&gt;Lumina&lt;/a&gt; comes in.&lt;/p&gt;
-
-&lt;h2 id=&quot;what-does-lumina-do&quot;&gt;What Does Lumina Do?&lt;/h2&gt;
-
-&lt;p&gt;Lumina can be a drop-in camera framework for you in apps that need iOS 10 or above. Aside from &lt;code class=&quot;highlighter-rouge&quot;&gt;CoreML&lt;/code&gt;, its features are:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;configurable pinch to zoom&lt;/li&gt;
-  &lt;li&gt;video &amp;amp; still image capture&lt;/li&gt;
-  &lt;li&gt;image streaming via delegate (for post-processing)&lt;/li&gt;
-  &lt;li&gt;live photo capture&lt;/li&gt;
-  &lt;li&gt;configurable frame rate&lt;/li&gt;
-  &lt;li&gt;QR code/barcode/face detection&lt;/li&gt;
-  &lt;li&gt;capture &amp;amp; stream &lt;code class=&quot;highlighter-rouge&quot;&gt;AVDepthData&lt;/code&gt; (for iOS 11)&lt;/li&gt;
-  &lt;li&gt;configurable text prompt view&lt;/li&gt;
-  &lt;li&gt;configurable logging&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;I still have many features I’d like to add over time, such as configurable exposure, white balance, and others! If you’d like to contribute, feel free to dive in.&lt;/p&gt;
-
-&lt;h2 id=&quot;ok-butcoreml&quot;&gt;Ok But…CoreML?&lt;/h2&gt;
-
-&lt;p&gt;So here’s what my favorite part of working with Lumina has been. Let’s say you made an instance of Lumina like so:&lt;/p&gt;
-
-&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;camera&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;LuminaViewController&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;camera&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;delegate&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;self&lt;/span&gt;
-&lt;span class=&quot;nf&quot;&gt;present&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;camera&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;animated&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Now let’s say you have a model called &lt;code class=&quot;highlighter-rouge&quot;&gt;MobileNet.mlmodel&lt;/code&gt; that you want to stream the video frames from Lumina through. After you import that model to your Xcode project, here’s all you have to do to get it streaming frames:&lt;/p&gt;
-
-&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;camera&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;streamingModelTypes&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;MobileNet&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;That’s it! You’ve done the heavy lifting! Now, results will be streamed back through this function in your delegate:&lt;/p&gt;
-
-&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;streamed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;videoFrame&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;UIImage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;predictions&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[([&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;LuminaPrediction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]?,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Any&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;Type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)]?,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;controller&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;LuminaViewController&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;predictions&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Since this framework is written to work with iOS 11.0 and above, you’ll have to iterate through the tuple &lt;code class=&quot;highlighter-rouge&quot;&gt;predictions&lt;/code&gt; to see which model your results are associated with, but this means you can load as many models as you want into Lumina, and each video frame will be processed through the collection of models.&lt;/p&gt;
-
-&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
-
-&lt;p&gt;I released a video that walks through how to set up and use Lumina. You can watch it again here:&lt;/p&gt;
-
-&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/8eEAvcy708s&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
-
-&lt;p&gt;Please feel free to check the repository &lt;a href=&quot;https://github.com/dokun1/Lumina&quot;&gt;here&lt;/a&gt; if you want to check the progress of the framework, or if you want to help out - I’d love to see other contributors hop on!&lt;/p&gt;</content><author><name>David Okun</name></author><summary type="html">Demo Video</summary></entry></feed>
+&lt;p&gt;We’ve built a tutorial entirely predicated on the use of Codable routes - &lt;a href=&quot;https://github.com/IBM/FoodTrackerBackend&quot;&gt;FoodTracker&lt;/a&gt;. You can clone the repository and follow along with the entire tutorial to get your own Swift API up and running in no time with Codable routing.&lt;/p&gt;</content><author><name>David Okun</name></author><summary type="html">Editor’s Note: This is mirrored from the IBM Cloud Blog.</summary></entry></feed>

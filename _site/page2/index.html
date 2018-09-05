@@ -116,7 +116,7 @@
 <p>Are you feeling creative? Draw something in the box below and send it to me by clicking the Send button!</p>
 <body onload="init()">
     <div align="center">
-        <div style="display: inline-block;">Choose Color</div>
+        <div style="display:inline-block;">Color</div>
         <div style="display:inline-block;width:17px;height:17px;background:red;border: 1px solid" id="red" onclick="color(this)"></div>
         <div style="display:inline-block;width:17px;height:17px;background:orange;border: 1px solid" id="orange" onclick="color(this)"></div>
         <div style="display:inline-block;width:17px;height:17px;background:yellow;border: 1px solid" id="yellow" onclick="color(this)"></div>
@@ -124,11 +124,12 @@
         <div style="display:inline-block;width:17px;height:17px;background:blue;border: 1px solid" id="blue" onclick="color(this)"></div>
         <div style="display:inline-block;width:17px;height:17px;background:indigo;border: 1px solid" id="indigo" onclick="color(this)"></div>
         <div style="display:inline-block;width:17px;height:17px;background:violet;border: 1px solid" id="violet" onclick="color(this)"></div>
+        <div style="display:inline-block;width:20px;height:20px;background:black;border: 3px groove black" id="black" onclick="color(this)"></div>
         <div style="display:inline-block;">Eraser</div>
         <div style="display: inline-block;width:17px;height:17px;background:white;border:1px solid;" id="white" onclick="color(this)"></div>
         <div></div>
-        <canvas id="can" width="400" height="400" style="border:2px solid;max-width: 400px;position: relative;min-width: 200px;margin: 0"></canvas>
-        <img id="canvasimg" width="400" height="400">
+        <canvas id="can" width="380" height="380" style="border:2px solid;width:100%;max-width:400px;position:relative;display:inline-block;min-width: 200px"></canvas>
+        <img id="canvasimg" width="380" height="380">
         <div></div>
         <input type="text" placeholder="Enter name" id="canvasNameField" size="30" style="display: inline-block;">
         <input type="button" value="Send" id="savebtn" size="30" onclick="send()" style="display:inline-block;">
@@ -145,6 +146,15 @@
 
 <p>If you'd like, there is some more information about me up in the top right hand corner. Have fun!</p>
 
+
+<div class="post-preview">
+    <a href="/2018/06/12/new-video-course-kitura-swift/">
+        <h2 class="post-title">            New Video Course - Server Side Swift with Kitura
+        </h2>
+    </a>
+    <p class="post-meta">Posted by David Okun on June 12, 2018</p>
+</div>
+<hr>
 
 <div class="post-preview">
     <a href="/2018/04/09/tcp-server-with-swift-nio/">
@@ -170,15 +180,6 @@
         </h2>
     </a>
     <p class="post-meta">Posted by David Okun on April 2, 2018</p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2018/01/30/core-ml-simplified-with-lumina/">
-        <h2 class="post-title">            Core ML Simplified with Lumina
-        </h2>
-    </a>
-    <p class="post-meta">Posted by David Okun on January 30, 2018</p>
 </div>
 <hr>
 
@@ -269,6 +270,9 @@
             case "violet":
                 x = "violet";
                 break;
+            case "black":
+                x = "black";
+                break;
             case "white":
                 x = "white";
                 break;
@@ -286,6 +290,7 @@
         document.getElementById("blue").setAttribute("style", "display:inline-block;width:17px;height:17px;background:blue;border: 1px solid");
         document.getElementById("indigo").setAttribute("style", "display:inline-block;width:17px;height:17px;background:indigo;border: 1px solid");
         document.getElementById("violet").setAttribute("style", "display:inline-block;width:17px;height:17px;background:violet;border: 1px solid");
+        document.getElementById("black").setAttribute("style", "display:inline-block;width:17px;height:17px;background:black;border: 1px solid");
         document.getElementById("white").setAttribute("style", "display:inline-block;width:17px;height:17px;background:white;border: 1px solid");
         obj.setAttribute("style", "display:inline-block;width:20px;height:20px;background:" + obj.id + ";border: 3px groove black");
     }
