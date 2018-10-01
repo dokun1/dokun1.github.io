@@ -5,7 +5,7 @@ abstract: In this streaming session, I'll cover how facial recognition actually 
 author: David Okun
 geo: Austin, TX, USA
 location: IBMDeveloper Twitch / Call For Code Fridays
-video_url: https://www.twitch.tv/videos/301320746
+video_url: https://www.youtube.com/watch?v=s3JrctlQ2iw
 location_url: https://callforcode.org/fridays
 slide_url: https://speakerdeck.com/dokun1/hacking-facial-recognition-with-beards
 ---
