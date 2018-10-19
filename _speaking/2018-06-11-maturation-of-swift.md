@@ -7,4 +7,5 @@ geo: Tokyo, Japan
 location: Think Japan Developer Day
 slide_url: https://speakerdeck.com/dokun1/the-maturation-of-swift
 location_url: https://ibmevent.jp/thinkjapan2018devday/
+video_url: https://www.youtube.com/watch?v=VSzIOs-nCnE&index=42&list=PLoELubR45xwXBx8AFuZNmyCXg4zVsnFVK&t=0s
 ---
