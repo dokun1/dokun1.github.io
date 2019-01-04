@@ -29,7 +29,7 @@ after_success:
   - chmod +x _scripts/deploy.sh
   - _scripts/deploy.sh
 
-sudo: false
+sudo: true
 addons:
   apt:
     packages:
