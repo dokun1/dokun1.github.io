@@ -1,0 +1,10 @@
+I"A<p>I recently spoke at a meetup in Austin about Apple’s <a href="https://github.com/apple/swift-nio">Swift NIO</a> framework and what it means for the networking landscape in Swift.</p>
+
+<p>I took some inspiration from <a href="https://twitter.com/chriseidhof">Chris Eidhof</a> and <a href="https://twitter.com/icanzilb">Marin Todorov</a> to level up my live demo game, and I hope it paid off. I would also like to thank an unnamed person for making the playground part of this possible - this person knows who this person is, but I can’t say their name publicly :-D</p>
+
+<p>Anyway, if you want to see how you can make a TCP server in an Xcode playground, here’s something relevant to your interests. Enjoy!!</p>
+
+<iframe src="https://player.vimeo.com/video/267825628" width="640" height="360" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+
+<p>This talk was based on a tutorial I wrote for <a href="raywenderlich.com">raywenderlich.com</a>, which you can read <a href="http://okun.io/2018/04/09/tcp-server-with-swift-nio/">here</a>.</p>
+:ET

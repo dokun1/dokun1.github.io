@@ -1,0 +1,449 @@
+I"��<p><strong>Editor’s Note: This is mirrored from <a href="https://strongloop.com/strongblog/loopback-facebook-api-user-authentication/">strongloop.com</a> here.</strong></p>
+
+<p>When you use LoopBack to set up your API, you can integrate it with <a href="https://passportjs.org">Passport</a> to enable your application for third party logins. But what if that just doesn’t cut it for you? Do you need to roll something custom-made?</p>
+
+<p>In this post, we’ll show you how you can use the REST connector in LoopBack to connect with the Facebook Graph API, and how you can leverage that connection for user authentication in a server application primarily for mobile clients.</p>
+
+<p>You may have heard that <a href="http://tsl.io">The SilverLogic</a> have made the decision to use LoopBack as a key component of their new game, <a href="https://strongloop.com/strongblog/loopback-open-source-xtra-points/">XtraPoints</a>. You’ll be using that application as context for this post.</p>
+
+<h2 id="setup">Setup</h2>
+
+<p>To get started, create a basic LoopBack application with the <code class="highlighter-rouge">lb</code> command. You’ll need Node.js and npm to do this, and you’ll have to have run <code class="highlighter-rouge">npm install -g loopback-cli</code> first.</p>
+
+<h2 id="creating-an-extended-user-object">Creating An Extended User Object</h2>
+
+<p>After you do this, you’re going to create a new model object that extends the built-in User class. Enter <code class="highlighter-rouge">lb model</code> into your terminal, and follow the steps so your choices look like so:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>? Enter the model name: FBUser
+? Select the data-source to attach FBUser to: db (memory)
+? Select model's base class User
+? Expose FBUser via the REST API? Yes
+? Custom plural form (used to build REST URL):
+? Common model or server only? common
+</code></pre></div></div>
+
+<p>Then, you’ll start adding some properties to this object. Here’s what your final choices will look like:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Enter an empty property name when done.
+? Property name: fullName
+   invoke   loopback:property
+? Property type: string
+? Required? Yes
+? Default value[leave blank for none]:
+
+Let's add another FBUser property.
+Enter an empty property name when done.
+? Property name: email
+   invoke   loopback:property
+? Property type: string
+? Required? Yes
+? Default value[leave blank for none]:
+
+Let's add another FBUser property.
+Enter an empty property name when done.
+? Property name: facebookPicUrl
+   invoke   loopback:property
+? Property type: string
+? Required? No
+? Default value[leave blank for none]:
+</code></pre></div></div>
+
+<p>This is so that the properties you need are returned from the OAuth connection with Facebook, and your LoopBack server can properly handle them.</p>
+
+<h2 id="setting-up-your-facebook-application">Setting up your Facebook Application</h2>
+
+<p>Next, you’re going to go to <a href="https://developer.facebook.com">https://developer.facebook.com</a> and create a new application. Make sure you take note of the App ID you create here:</p>
+
+<p><img src="http://i.imgur.com/myB9wIR.png" alt="appIDPhoto" /></p>
+
+<p>When you are asked to choose a platform for your application, select “Other”:</p>
+
+<p><img src="http://i.imgur.com/eG35O8k.png" alt="selectOther" /></p>
+
+<p>You’ll then have to go to the settings for your application to enter your redirect URI. Make sure you have one of these set beforehand. This is so that, when your application goes to Facebook (or any other third party OAuth login), it knows where to return to when it’s done authenticating. You’ll enter that here:</p>
+
+<p><img src="http://i.imgur.com/iQeRFws.png" alt="redirectURIPhoto" /></p>
+
+<p>You’re done with Facebook now! Everything else can be done from the comfort of the LoopBack CLI now.</p>
+
+<h2 id="setting-up-your-rest-connector">Setting up your REST Connector</h2>
+
+<p>Go back to your command line and type in <code class="highlighter-rouge">lb datasource</code> to add another connector. For this, you’ll be adding a connector to REST Services. Your options should look like this when you’re done adding it:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>? Enter the data-source name: Facebook
+? Select the connector for Facebook: REST services (supported by StrongLoop)
+Connector-specific configuration:
+? Base URL for the REST service:
+? Default options for the request:
+? An array of operation templates:
+? Use default CRUD mapping: No
+? Install loopback-connector-rest@^2.0 Yes
+</code></pre></div></div>
+
+<p>If you’re wondering why this looks pretty barren, don’t fret. After npm finishes installing the REST Connector, find your <code class="highlighter-rouge">datasources.json</code> file inside your <code class="highlighter-rouge">server/</code> directory, and go to your new datasource. The file should look like so:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"db"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"db"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"localStorage"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"file"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"connector"</span><span class="p">:</span><span class="w"> </span><span class="s2">"memory"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"Facebook"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Facebook"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"baseURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"crud"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"connector"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rest"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h2 id="configuring-your-datasource-with-operations">Configuring your Datasource with Operations</h2>
+
+<p>You’re going to add a new key in your Facebook datasource for operations, like so:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">"Facebook"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Facebook"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"baseURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"crud"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"connector"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rest"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"operations"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>You’re then going to add three separate operations in this array, and we’ll step through them one by one.</p>
+
+<h3 id="exchanging-your-oauth-token">Exchanging your OAuth Token</h3>
+
+<p>The first operation will be responsible for exchanging an OAuth token from the client into an access token. Add the following to your empty array:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"template"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://graph.facebook.com/v2.9/oauth/access_token?client_id={appId}&amp;redirect_uri={redirectUri}&amp;client_secret={appSecret}&amp;code={codeParameter}"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"headers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"accept"</span><span class="p">:</span><span class="w"> </span><span class="s2">"application/json"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"functions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"accessToken"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"appId"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"appSecret"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"redirectUri"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"codeParameter"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Make sure that your parameter fields here in brackets are spelled correctly, as these will be passed in via a remote method later on.</p>
+
+<h3 id="getting-the-current-user">Getting the Current User</h3>
+
+<p>The next operation will be responsible for retrieving the currently logged in user, so that you can get their Facebook ID. Add the following after the previous operation, in the same array:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"template"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://graph.facebook.com/v2.9/me?access_token={accessToken}"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"headers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"accept"</span><span class="p">:</span><span class="w"> </span><span class="s2">"application/json"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"functions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"me"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"accessToken"</span><span class="w">
+    </span><span class="p">]</span><span class="w"> 
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Once again, take note that your parameters are spelled correctly.</p>
+
+<h3 id="getting-your-user-information">Getting your User Information</h3>
+
+<p>Finally, your third operation will get you some basic information about the user, now that you’ve properly authenticated them. Add the following after the previous two operations, in the same array:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"template"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://graph.facebook.com/v2.9/{userId}?access_token={accessToken}&amp;fields=id,name,picture,first_name,last_name,email"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"headers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"accept"</span><span class="p">:</span><span class="w"> </span><span class="s2">"application/json"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"functions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"me"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"userId"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"accessToken"</span><span class="w">
+    </span><span class="p">]</span><span class="w"> 
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>After you add these three operations, your <code class="highlighter-rouge">datasources.json</code> file, in its entirety, should look like so (given your filled in app secrets and tokens):</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"db"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"db"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"localStorage"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"file"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"connector"</span><span class="p">:</span><span class="w"> </span><span class="s2">"memory"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"Facebook"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Facebook"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"baseURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"crud"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"connector"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rest"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"operations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"template"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://graph.facebook.com/v2.9/oauth/access_token?client_id={appId}&amp;redirect_uri={redirectUri}&amp;client_secret={appSecret}&amp;code={codeParameter}"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"headers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"accept"</span><span class="p">:</span><span class="w"> </span><span class="s2">"application/json"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"functions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"accessToken"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"appId"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"appSecret"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"redirectUri"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"codeParameter"</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"template"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://graph.facebook.com/v2.9/me?access_token={accessToken}"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"headers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"accept"</span><span class="p">:</span><span class="w"> </span><span class="s2">"application/json"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"functions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"me"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"accessToken"</span><span class="w">
+          </span><span class="p">]</span><span class="w"> 
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"template"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://graph.facebook.com/v2.9/{userId}?access_token={accessToken}&amp;fields=id,name,picture,first_name,last_name,email"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"headers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"accept"</span><span class="p">:</span><span class="w"> </span><span class="s2">"application/json"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"functions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"me"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"userId"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"accessToken"</span><span class="w">
+          </span><span class="p">]</span><span class="w"> 
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>If you need to take a second to breathe, we won’t blame you!</p>
+
+<h2 id="adding-a-remote-method">Adding a Remote Method</h2>
+
+<p>The last thing you’ll be doing is setting up a way for this user to login to Facebook. LoopBack has a way to easily extend any model object with custom logic via adding a <em>remote method</em>.</p>
+
+<h3 id="back-to-the-command-line">Back to the Command Line</h3>
+
+<p>In your terminal, type <code class="highlighter-rouge">lb remote-method</code> and enter the following for each prompt:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>? Select the model: FBUser
+? Enter the remote method name: loginWithFacebook
+? Is Static? Yes
+? Description for method: Allows users to login with an OAuth2 token received from Facebook
+</code></pre></div></div>
+
+<p>Most of this is variable for your use case, but make sure you select the right user model, and that the remote method will be static. Continue on with the following answers:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Let's configure where to expose your new method in the public REST API.
+You can provide multiple HTTP endpoints, enter an empty path when you are done.
+? Enter the path of this endpoint: /login-facebook
+? HTTP verb: post
+</code></pre></div></div>
+
+<p>You only need to provide one endpoint, and while it is up to you what to name it, this is an example that follows convention. Moving on:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Describe the input ("accepts") arguments of your remote method.
+You can define multiple input arguments.
+Enter an empty name when you've defined all input arguments.
+? What is the name of this argument? oauth-token
+? Select argument's type: string
+? Is this argument required? Yes
+? Please describe the argument: OAuth2 token received from Facebook when logging in. Retrieved from the callback URL.
+? Where to get the value from? (auto)
+</code></pre></div></div>
+
+<p>Your only argument that gets passed in will be for the token itself. Make sure all of this is correct. Hit enter, and continue on to enter information about the arguments returned from the method:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Describe the output ("returns") arguments to the remote method's callback function.
+You can define multiple output arguments.
+Enter an empty name when you've defined all output arguments.
+? What is the name of this argument? result
+? Select argument's type: object
+? Is this argument a full response body (root)? Yes
+? Please describe the argument: instance of FBUser
+</code></pre></div></div>
+
+<p>This means that the entire response will be converted into a contextualized object for you to use in your remote method. Once you do that, you’ll be able to assign the returned fields to your user object. After this, hit enter once more, and the terminal will show you a code representation of the method you’ve created.</p>
+
+<h3 id="now-who-wants-to-write-some-actual-javascript">Now, Who Wants to Write Some Actual JavaScript?</h3>
+
+<p>You’ll want to add the <code class="highlighter-rouge">Bluebird</code> module to your <code class="highlighter-rouge">package.json</code> file before proceeding, so your updated file for dependencies should look something like this, specifically noting the new dependency:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">"dependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"bluebird"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^3.5.0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"compression"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^1.0.3"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"cors"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^2.5.2"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"helmet"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^1.3.0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"loopback"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^3.0.0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"loopback-boot"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^2.6.5"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"loopback-component-explorer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^4.0.0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"loopback-connector-rest"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^2.1.0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"serve-favicon"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^2.0.1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"strong-error-handler"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^2.0.0"</span><span class="w">
+  </span><span class="p">}</span><span class="err">,</span><span class="w">
+</span></code></pre></div></div>
+
+<p>After you update this and run <code class="highlighter-rouge">npm install</code>, go to your <code class="highlighter-rouge">fb-user.js</code> file, which you should be able to find in your <code class="highlighter-rouge">common</code> folder at your root directory. At first, you can copy and paste what your terminal showed you, so that your file looks like this:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="dl">'</span><span class="s1">use strict</span><span class="dl">'</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nb">Promise</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">bluebird</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Fbuser</span><span class="p">)</span> <span class="p">{</span>
+    <span class="cm">/**
+     * description
+     * @param {string} oauthToken token
+     * @param {Function(Error, object)} callback
+     */</span>
+
+    <span class="nx">FBUser</span><span class="p">.</span><span class="nx">loginWithFacebook</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">oauthToken</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">result</span><span class="p">;</span>
+        <span class="c1">// TODO</span>
+        <span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">result</span><span class="p">);</span>
+    <span class="p">};</span>
+
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>That <code class="highlighter-rouge">//TODO</code> part is where you’ll be adding a lot of code. Take note that we’ve imported <code class="highlighter-rouge">bluebird</code> at the top. Inside your method, start like so:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">appID</span> <span class="o">=</span> <span class="nx">YOUR_APP_ID_GOES_HERE</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">appSecret</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">YOUR_APP_SECRET_GOES_HERE</span><span class="dl">'</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">redirectUrl</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">YOUR_APP_REDIRECT_URL_GOES_HERE</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">Facebook</span> <span class="o">=</span> <span class="nx">FBUser</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">datasources</span><span class="p">.</span><span class="nx">Facebook</span><span class="p">;</span>
+
+<span class="kd">let</span> <span class="nx">accessToken</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>The first three vars are identifiers specific to your application - make sure you get them from your own dev console. (NB: you may want to consider using environment variables for these so you don’t put your code at a security risk.)</p>
+
+<p>The next var is simply getting a hold of the class you need to work with the correct datasource. Finally, you create a buffer for your access token when you receive it later.</p>
+
+<p>Next, make use of the operation you wrote earlier to get an access token and exchange it for an OAuth token:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">Facebook</span><span class="p">.</span><span class="nx">accessToken</span><span class="p">(</span><span class="nx">appId</span><span class="p">,</span> <span class="nx">appSecret</span><span class="p">,</span> <span class="nx">redirectUrl</span><span class="p">,</span> <span class="nx">oauthToken</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// retrieve access token from response</span>
+  <span class="nx">accessToken</span> <span class="o">=</span> <span class="nx">response</span><span class="p">[</span><span class="dl">'</span><span class="s1">access_token</span><span class="dl">'</span><span class="p">];</span>
+  <span class="c1">// get current user</span>
+  <span class="k">return</span> <span class="nx">Facebook</span><span class="p">.</span><span class="nx">me</span><span class="p">(</span><span class="nx">accessToken</span><span class="p">);</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<p>All that command line work paid off, didn’t it? Next, get the user ID for the logged in user, and get their info:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// get Facebook ID</span>
+  <span class="kd">var</span> <span class="nx">facebookId</span> <span class="o">=</span> <span class="nx">response</span><span class="p">[</span><span class="dl">'</span><span class="s1">id</span><span class="dl">'</span><span class="p">];</span>
+  <span class="c1">// retrieve user info</span>
+  <span class="k">return</span> <span class="nx">Facebook</span><span class="p">.</span><span class="nx">user</span><span class="p">(</span><span class="nx">facebookId</span><span class="p">,</span> <span class="nx">accessToken</span><span class="p">);</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<p>Lastly, we’re going to collect all the data we get from our last call, and return the requisite data via the callback we get at the end:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">fullName</span> <span class="o">=</span> <span class="nx">response</span><span class="p">[</span><span class="dl">'</span><span class="s1">first_name</span><span class="dl">'</span><span class="p">]</span> <span class="o">+</span> <span class="dl">'</span><span class="s1"> </span><span class="dl">'</span> <span class="o">+</span> <span class="nx">response</span><span class="p">[</span><span class="dl">'</span><span class="s1">last_name</span><span class="dl">'</span><span class="p">];</span>
+  <span class="kd">var</span> <span class="nx">email</span> <span class="o">=</span> <span class="nx">response</span><span class="p">[</span><span class="dl">'</span><span class="s1">email</span><span class="dl">'</span><span class="p">];</span>
+  <span class="kd">var</span> <span class="nx">pictureDictionary</span> <span class="o">=</span> <span class="nx">response</span><span class="p">[</span><span class="dl">'</span><span class="s1">picture</span><span class="dl">'</span><span class="p">];</span>
+  <span class="kd">var</span> <span class="nx">pictureData</span> <span class="o">=</span> <span class="nx">pictureDictionary</span><span class="p">[</span><span class="dl">'</span><span class="s1">data</span><span class="dl">'</span><span class="p">];</span>
+  <span class="kd">var</span> <span class="nx">facebookPicUrl</span> <span class="o">=</span> <span class="nx">pictureData</span><span class="p">[</span><span class="dl">'</span><span class="s1">url</span><span class="dl">'</span><span class="p">];</span>
+  <span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="p">{</span><span class="dl">'</span><span class="s1">fullName</span><span class="dl">'</span><span class="p">:</span> <span class="nx">fullname</span><span class="p">,</span>
+                  <span class="dl">'</span><span class="s1">email</span><span class="dl">'</span><span class="p">:</span> <span class="nx">email</span><span class="p">,</span>
+                  <span class="dl">'</span><span class="s1">facebookPicUrl</span><span class="dl">'</span><span class="p">:</span> <span class="nx">facebookPicUrl</span><span class="p">});</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">callback</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>Whew! In the end, it all ties into the original model object you created, so you get the properties you need at the end. When you’ve done all of this by following these steps, your <code class="highlighter-rouge">fb-user.js</code> file should look more or less like this:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="dl">'</span><span class="s1">use strict</span><span class="dl">'</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nb">Promise</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">bluebird</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Fbuser</span><span class="p">)</span> <span class="p">{</span>
+    <span class="cm">/**
+     * description
+     * @param {string} oauthToken token
+     * @param {Function(Error, object)} callback
+     */</span>
+
+    <span class="nx">FBUser</span><span class="p">.</span><span class="nx">loginWithFacebook</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">oauthToken</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">result</span><span class="p">;</span>
+      <span class="kd">var</span> <span class="nx">appID</span> <span class="o">=</span> <span class="nx">YOUR_APP_ID_GOES_HERE</span><span class="p">;</span>
+      <span class="kd">var</span> <span class="nx">appSecret</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">YOUR_APP_SECRET_GOES_HERE</span><span class="dl">'</span><span class="p">;</span>
+      <span class="kd">var</span> <span class="nx">redirectUrl</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">YOUR_APP_REDIRECT_URL_GOES_HERE</span><span class="dl">'</span><span class="p">;</span>
+
+      <span class="kd">var</span> <span class="nx">Facebook</span> <span class="o">=</span> <span class="nx">FBUser</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">datasources</span><span class="p">.</span><span class="nx">Facebook</span><span class="p">;</span>
+
+      <span class="kd">let</span> <span class="nx">accessToken</span><span class="p">;</span>
+      <span class="nx">Facebook</span><span class="p">.</span><span class="nx">accessToken</span><span class="p">(</span><span class="nx">appId</span><span class="p">,</span> <span class="nx">appSecret</span><span class="p">,</span> <span class="nx">redirectUrl</span><span class="p">,</span> <span class="nx">oauthToken</span><span class="p">)</span>
+	   <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+		  <span class="c1">// retrieve access token from response</span>
+   	     <span class="nx">accessToken</span> <span class="o">=</span> <span class="nx">response</span><span class="p">[</span><span class="dl">'</span><span class="s1">access_token</span><span class="dl">'</span><span class="p">];</span> 
+		  <span class="c1">// get current user</span>
+		  <span class="k">return</span> <span class="nx">Facebook</span><span class="p">.</span><span class="nx">me</span><span class="p">(</span><span class="nx">accessToken</span><span class="p">);</span>
+		<span class="p">})</span>
+		<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+         <span class="c1">// get Facebook ID</span>
+         <span class="kd">var</span> <span class="nx">facebookId</span> <span class="o">=</span> <span class="nx">response</span><span class="p">[</span><span class="dl">'</span><span class="s1">id</span><span class="dl">'</span><span class="p">];</span>
+         <span class="c1">// retrieve user info</span>
+         <span class="k">return</span> <span class="nx">Facebook</span><span class="p">.</span><span class="nx">user</span><span class="p">(</span><span class="nx">facebookId</span><span class="p">,</span> <span class="nx">accessToken</span><span class="p">);</span>
+       <span class="p">})</span>
+       <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+         <span class="kd">var</span> <span class="nx">fullName</span> <span class="o">=</span> <span class="nx">response</span><span class="p">[</span><span class="dl">'</span><span class="s1">first_name</span><span class="dl">'</span><span class="p">]</span> <span class="o">+</span> <span class="dl">'</span><span class="s1"> </span><span class="dl">'</span> <span class="o">+</span> <span class="nx">response</span><span class="p">[</span><span class="dl">'</span><span class="s1">last_name</span><span class="dl">'</span><span class="p">];</span>
+         <span class="kd">var</span> <span class="nx">email</span> <span class="o">=</span> <span class="nx">response</span><span class="p">[</span><span class="dl">'</span><span class="s1">email</span><span class="dl">'</span><span class="p">];</span>
+         <span class="kd">var</span> <span class="nx">pictureDictionary</span> <span class="o">=</span> <span class="nx">response</span><span class="p">[</span><span class="dl">'</span><span class="s1">picture</span><span class="dl">'</span><span class="p">];</span>
+         <span class="kd">var</span> <span class="nx">pictureData</span> <span class="o">=</span> <span class="nx">pictureDictionary</span><span class="p">[</span><span class="dl">'</span><span class="s1">data</span><span class="dl">'</span><span class="p">];</span>
+         <span class="kd">var</span> <span class="nx">facebookPicUrl</span> <span class="o">=</span> <span class="nx">pictureData</span><span class="p">[</span><span class="dl">'</span><span class="s1">url</span><span class="dl">'</span><span class="p">];</span>
+         <span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="p">{</span><span class="dl">'</span><span class="s1">fullName</span><span class="dl">'</span><span class="p">:</span> <span class="nx">fullname</span><span class="p">,</span>
+                            <span class="dl">'</span><span class="s1">email</span><span class="dl">'</span><span class="p">:</span> <span class="nx">email</span><span class="p">,</span>
+                   <span class="dl">'</span><span class="s1">facebookPicUrl</span><span class="dl">'</span><span class="p">:</span> <span class="nx">facebookPicUrl</span><span class="p">});</span>
+       <span class="p">})</span>
+       <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+         <span class="nx">callback</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+       <span class="p">});</span>
+    <span class="p">};</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<h2 id="youre-finished">You’re Finished!!</h2>
+
+<p>Now, when you login to XtraPoints with Facebook, you know what’s happening behind the scenes! If you want to try a demo of this, you can go clone <a href="https://github.com/silverlogic/custom-facebook-auth">this</a> repository to try it out.</p>
+
+<p>Interested in trying LoopBack for your own RESTful API needs? Check out <a href="https://developer.ibm.com/apiconnect/2017/03/09/loopback-in-5-minutes/">this</a> blog post to get started in 5 minutes!</p>
+:ET

@@ -1,0 +1,22 @@
+I"�<p><strong>Editor’s Note: This is based on a blog post and series I wrote for <a href="https://strongloop.com/strongblog/strongloop-and-ibm-do-oscon/">IBM DevWorks</a>. The associate code repo is <a href="https://github.com/IBM/loopback-in-five">here</a>.</strong></p>
+
+<h2 id="you-need-an-api">You Need An API</h2>
+
+<p>Applications these days need APIs. And let’s face it – it’s not always easy to set them up. LoopBack is a Node API framework built to solve this problem. Using LoopBack, you can quickly generate powerful REST APIs in 5 minutes, flat. Using IBM Cloud, you can deploy them in 5 more minutes, flat.</p>
+
+<p>In this pair of videos, I will show you how to use Loopback to create a fully functional API architected in Node.js, how you can secure it, and how you can persist your data to a datastore, like MongoDB. I’ll then show you how to deploy your API to IBM Cloud using Cloud Foundry.</p>
+
+<p>LoopBack is free to use and open source, so it’s easy to follow along in this tutorial, or just check out the code on GitHub to see how it works.</p>
+
+<h2 id="videos">Videos!</h2>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/pFPMFcPNgKA" frameborder="0" allowfullscreen=""></iframe>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/nlP8mCcQDDY" frameborder="0" allowfullscreen=""></iframe>
+
+<h2 id="want-to-know-more">Want To Know More?</h2>
+
+<p>LoopBack is extensible far beyond what you see here; it can be used for everything from prototypes to production applications. Check out the <a href="http://developer.ibm.com/code/journey/unlock-enterprise-data-using-apis/?cm_sp=developer-_-apic-devcenter-_-loopback-5-min-blog&amp;S_TACT=C4310CTW">Acme Freight developer journey</a> to see a working example of a microservices architecture using LoopBack to create and access APIs for on-premises data.</p>
+
+<p>P.S. – When you’re ready to add broader API management capabilities for your API’s, you’ll be happy to know that LoopBack helps power IBM API Connect. You can create LoopBack projects directly within the API Designer, so you can get productive fast and scale when you need it, giving you complete control of your server-side API experience.</p>
+:ET

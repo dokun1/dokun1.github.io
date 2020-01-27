@@ -1,0 +1,12 @@
+I"�<p>This past Friday, <a href="https://twitter.com/nibalizer">Spencer Krum</a> and I hopped on <a href="https://twitch.tv/ibmdeveloper">IBM’s Twitch channel</a> and worked out some kinks with an OSS projct I’ve been working on for a while.</p>
+
+<p>A few years ago, <a href="https://twitter.com/rauchg">Guillermo Rauch</a> made a tool called <a href="https://github.com/rauchg/slackin">Slackin</a> that allows people to easily access a Slack instance that you want to be available for the community. Through some inspiration from some colleagues, I decided to try to re-write it in Swift, and the concept works! However, I was only able to set up a way to deploy it through one way - Cloud Foundry on <a href="https://console.cloud.ibm.com">IBM Cloud</a>.</p>
+
+<p>Of course, I don’t mind if you use IBM Cloud (illuminati confirmed), but I think it’s important to have multiple means of deploying such an application if you are interested in using it. Spencer and I got on Twitch and we worked out how to use a secret API key to run this application in Kubernetes!</p>
+
+<p>The session is quite long, but its full of wonderful #content, and I recommend you give it a watch if you’re interested!</p>
+
+<center>
+<iframe src="https://player.twitch.tv/?allowfullscreen&amp;channel=ibmdeveloper&amp;video=333643594" width="640" height="360" frameborder="0" scrolling="no" allow="autoplay; fullscreen" allowfullscreen=""></iframe>
+</center>
+:ET
