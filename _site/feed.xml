@@ -1,4 +1,116 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-01-27T01:48:34+01:00</updated><id>http://localhost:4000/</id><title type="html">David Okun</title><subtitle>Constantly Trying New Stuff For You</subtitle><entry><title type="html">Kubernetes, Secret API Tokens, and Swift On The Server</title><link href="http://localhost:4000/2018/11/11/how-to-launch-a-swift-app-in-kubernetes/" rel="alternate" type="text/html" title="Kubernetes, Secret API Tokens, and Swift On The Server" /><published>2018-11-11T13:00:00+01:00</published><updated>2018-11-11T13:00:00+01:00</updated><id>http://localhost:4000/2018/11/11/how-to-launch-a-swift-app-in-kubernetes</id><content type="html" xml:base="http://localhost:4000/2018/11/11/how-to-launch-a-swift-app-in-kubernetes/">&lt;p&gt;This past Friday, &lt;a href=&quot;https://twitter.com/nibalizer&quot;&gt;Spencer Krum&lt;/a&gt; and I hopped on &lt;a href=&quot;https://twitch.tv/ibmdeveloper&quot;&gt;IBM’s Twitch channel&lt;/a&gt; and worked out some kinks with an OSS projct I’ve been working on for a while.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-02-09T10:45:15-06:00</updated><id>http://localhost:4000/</id><title type="html">David Okun</title><subtitle>Constantly Trying New Stuff For You</subtitle><entry><title type="html">10 Things About Going To DevRel and Back</title><link href="http://localhost:4000/2020/02/11/10-things-about-going-to-devrel-and-back/" rel="alternate" type="text/html" title="10 Things About Going To DevRel and Back" /><published>2020-02-11T06:00:00-06:00</published><updated>2020-02-11T06:00:00-06:00</updated><id>http://localhost:4000/2020/02/11/10-things-about-going-to-devrel-and-back</id><content type="html" xml:base="http://localhost:4000/2020/02/11/10-things-about-going-to-devrel-and-back/">&lt;p&gt;My interview process with IBM, from start to finish, lasted 3 months. I originally interviewed for an engineering position on the Swift team at IBM, and I would have focused on Kitura. The team was, unfortunately, unable to find room for me, and I was told to call back in 1 - 6 months.&lt;/p&gt;
+
+&lt;p&gt;After 3 more weeks, I got a call asking if I would be interested in joining the Strongloop team advocating for Loopback, which is a Node.js server-generation framework, but as an evangelist for Swift developers. I mean…sure. I can’t say I didn’t hesitate before taking the role, and it was for two reasons.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;I’d played with Node, but not to the point that I was about to go talk to developers about how awesome it was as though I’d been using it forever.&lt;/li&gt;
+  &lt;li&gt;What even is a Developer Evangelist?&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;1-focus-on-projects-and-examples-not-tweets&quot;&gt;1. Focus on Projects and Examples, not Tweets&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;What Past-Me Did:&lt;/strong&gt; &lt;br /&gt;
+&lt;strong&gt;What Future-Me Would Do:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;2-pick-an-airline-and-a-hotel-chain&quot;&gt;2. Pick an Airline And A Hotel Chain&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;What Past-Me Did:&lt;/strong&gt; &lt;br /&gt;
+&lt;strong&gt;What Future-Me Would Do:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;3-get-to-know-the-developers-on-the-project-you-care-most-about&quot;&gt;3. Get To Know The Developers On The Project You Care Most About&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;What Past-Me Did:&lt;/strong&gt; &lt;br /&gt;
+&lt;strong&gt;What Future-Me Would Do:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;4-get-to-know-the-developers-that-use-projects-that-compete-with-your-favorite-project&quot;&gt;4. Get To Know The Developers That Use Projects That Compete With Your Favorite Project&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;What Past-Me Did:&lt;/strong&gt; &lt;br /&gt;
+&lt;strong&gt;What Future-Me Would Do:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;5-buy-a-standing-desk&quot;&gt;5. Buy A Standing Desk&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;What Past-Me Did:&lt;/strong&gt; &lt;br /&gt;
+&lt;strong&gt;What Future-Me Would Do:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;6-invest-in-your-personal-health&quot;&gt;6. Invest In Your Personal Health&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;What Past-Me Did:&lt;/strong&gt; &lt;br /&gt;
+&lt;strong&gt;What Future-Me Would Do:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;7-start-a-meetup-or-be-a-regular-at-one&quot;&gt;7. Start A Meetup Or Be A Regular At One&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;What Past-Me Did:&lt;/strong&gt; &lt;br /&gt;
+&lt;strong&gt;What Future-Me Would Do:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;8-make-a-wiki-for-your-future-teammates&quot;&gt;8. Make A Wiki For Your Future Teammates&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;What Past-Me Did:&lt;/strong&gt; &lt;br /&gt;
+&lt;strong&gt;What Future-Me Would Do:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;9-try-side-projects-that-scare-you&quot;&gt;9. Try Side Projects That Scare You&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;What Past-Me Did:&lt;/strong&gt; &lt;br /&gt;
+&lt;strong&gt;What Future-Me Would Do:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;10-accept-that-projects-both-change-and-disappear&quot;&gt;10. Accept That Projects Both Change And Disappear&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;What Past-Me Did:&lt;/strong&gt; &lt;br /&gt;
+&lt;strong&gt;What Future-Me Would Do:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;With that, I’d like to announce that I am leaving my position as team lead for the Client Developer Advocacy team at IBM.&lt;/p&gt;
+
+&lt;p&gt;Starting on the 18th of February, I’ll be the new iOS Technical Director of Charles Schwab in Austin, TX!&lt;/p&gt;</content><author><name>David Okun</name></author><summary type="html">My interview process with IBM, from start to finish, lasted 3 months. I originally interviewed for an engineering position on the Swift team at IBM, and I would have focused on Kitura. The team was, unfortunately, unable to find room for me, and I was told to call back in 1 - 6 months.</summary></entry><entry><title type="html">When Someone Famous Dies</title><link href="http://localhost:4000/2020/01/27/when-someone-famous-dies/" rel="alternate" type="text/html" title="When Someone Famous Dies" /><published>2020-01-27T06:00:00-06:00</published><updated>2020-01-27T06:00:00-06:00</updated><id>http://localhost:4000/2020/01/27/when-someone-famous-dies</id><content type="html" xml:base="http://localhost:4000/2020/01/27/when-someone-famous-dies/">&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;Let people express their grief on social media. It’s cathartic for a lot of folks and one of the good things about this thing. Performative mourning is different, but people reaching out to each other - that’s not bad, that’s good. Feel free to ignore me. I’m for more kindness.&lt;/p&gt;&amp;mdash; Jake Fogelnest (@jakefogelnest) &lt;a href=&quot;https://twitter.com/jakefogelnest/status/1221550245999304704?ref_src=twsrc%5Etfw&quot;&gt;January 26, 2020&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async=&quot;&quot; src=&quot;https://platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;Everyone’s got a take on Kobe. Here’s mine.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;I always was, and likely always be, terrible at basketball. I grew up in Houston, Texas idolizing Hakeem Olajuwon and watching him win in 1994 and 1995 the first two years I ever watched Basketball. Then Michael Jordan came back, ripped off three straight, and made me feel human as a sports fan.&lt;/p&gt;
+
+&lt;p&gt;I remember watching Kobe, and then I remember the first time I &lt;em&gt;remembered&lt;/em&gt; Kobe.&lt;/p&gt;
+
+&lt;p&gt;I remember listening to the news on the radio with my mom as she was driving me to school in 7th grade. Kobe was apologizing for his extra-marital sexual encounter. I remember watching the video later, but I remember him speaking everything he said in that moment.&lt;/p&gt;
+
+&lt;p&gt;I remember him saying how, even though he thought it was consensual, he knew it wasn’t perceived that way, and that he was truly sorry.&lt;/p&gt;
+
+&lt;p&gt;I remember seeing the video later. I remember him sitting there with nothing hiding him, owning up to his  grave mistake, next to his wife, and taking responsibility for what he did.&lt;/p&gt;
+
+&lt;p&gt;I think Kobe knew he was an entertainer in that moment, but I think he also knew he was going to be a role model, whether he wanted that responsibility or not. I’d like to think he knew how the world would be watching. I’m 8 years younger than Kobe Bryant, and I was in 7th grade, so as old as I am now, I think that’s a striking amount of maturity in the wake of arguable immaturity.&lt;/p&gt;
+
+&lt;p&gt;In the #MeToo era, I always think of how Kobe Bryant eventually owned up to his mistakes whenever someone is in the news over sexual assault allegations. I wish no one would commit such a crime, but I also wish more people had the sense to try to rehabilitate themselves the way Kobe did.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;It’s overtime against the Suns in the playoffs. He gets the tip, dribbles past the key. 1 second to go. He throws it up over two defenders. There’s just no way it’s going in…then you remember who shot it.&lt;/p&gt;
+
+&lt;p&gt;“Bang!” -Mike Breen&lt;/p&gt;
+
+&lt;p&gt;You’ve seen it, and I won’t share the video here on purpose. Dote on your own memory or make it up as you go - the only person in the stadium that knew with titanium certainty that it was a bucket was Kobe, and when it went in, the stadium erupted.&lt;/p&gt;
+
+&lt;p&gt;You’ve seen it. One fist cocked at eye-level, moving along the sideline. That knowing look - he knew it was going in. It must have been amazing to have been a teammate of his, and I mean that with zero percent irony (Kobe Bryant has a career average of 4.7 assists per game.)&lt;/p&gt;
+
+&lt;p&gt;As I continue to grow up and work in my career where I sit in front of computers and ask them to do what I want them to do, I am still learning about leadership skills and what it takes to form a successful team. I often think about how I would never and have never asked a single person to do anything I wouldn’t do myself. I always think of how Kobe Bryant played basketball when I think of that sentiment talking to my team.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;When the news spread, I knew he had a family, and one comprised almost exclusively of daughters. News spreads differently in 2020, and one of the videos that made me cry real tears was a video of Kobe Bryant on Jimmy Kimmel. He was talking about his oldest daughter, Gianna.&lt;/p&gt;
+
+&lt;p&gt;He was talking about how so many people came up to him and told him how he and his wife, Vanessa, needed to have a boy to carry on his legacy. He told Jimmy how his daughter, Gianna, would speak up and say “Hey dad, I got this.”&lt;/p&gt;
+
+&lt;p&gt;Think for a moment about the kind of father who raises a daughter to be confident enough to carry on the sports legacy of one of the greatest people to ever play basketball. Think about the lack of a precedent for her to play in the same league as him. Then mourn the passing of that daughter with her beloved father in the same tragedy. Rest in power, Gianna.&lt;/p&gt;
+
+&lt;p&gt;I love my dad very much, and I think I have a pretty good relationship with him. My dad has influenced me to be who I am in many ways, and I can only hope that he’s as proud of me as Kobe was of Gianna, even if I only have one video to go off of.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;I always was, and likely always be, terrible at basketball. I really only play to break a sweat, and I’m so awful that I am constantly scared that other people in the L.A. Fitness I go to will want me to play a game with them. I only ever really play when no one else is in that gym, or if I can ever practice meaningless layups and shots.&lt;/p&gt;
+
+&lt;p&gt;Dave Chappelle coined the term “Kobe!” in one of his iconic skits from his show in 2003, and I can’t tell you how many people have made baffling shots over me and just yelled the same thing as they’ve gone in. I hope I can take myself less seriously moving forward and start yelling the same thing, too.&lt;/p&gt;</content><author><name>David Okun</name></author><summary type="html">Let people express their grief on social media. It’s cathartic for a lot of folks and one of the good things about this thing. Performative mourning is different, but people reaching out to each other - that’s not bad, that’s good. Feel free to ignore me. I’m for more kindness.&amp;mdash; Jake Fogelnest (@jakefogelnest) January 26, 2020</summary></entry><entry><title type="html">Kubernetes, Secret API Tokens, and Swift On The Server</title><link href="http://localhost:4000/2018/11/11/how-to-launch-a-swift-app-in-kubernetes/" rel="alternate" type="text/html" title="Kubernetes, Secret API Tokens, and Swift On The Server" /><published>2018-11-11T06:00:00-06:00</published><updated>2018-11-11T06:00:00-06:00</updated><id>http://localhost:4000/2018/11/11/how-to-launch-a-swift-app-in-kubernetes</id><content type="html" xml:base="http://localhost:4000/2018/11/11/how-to-launch-a-swift-app-in-kubernetes/">&lt;p&gt;This past Friday, &lt;a href=&quot;https://twitter.com/nibalizer&quot;&gt;Spencer Krum&lt;/a&gt; and I hopped on &lt;a href=&quot;https://twitch.tv/ibmdeveloper&quot;&gt;IBM’s Twitch channel&lt;/a&gt; and worked out some kinks with an OSS projct I’ve been working on for a while.&lt;/p&gt;
 
 &lt;p&gt;A few years ago, &lt;a href=&quot;https://twitter.com/rauchg&quot;&gt;Guillermo Rauch&lt;/a&gt; made a tool called &lt;a href=&quot;https://github.com/rauchg/slackin&quot;&gt;Slackin&lt;/a&gt; that allows people to easily access a Slack instance that you want to be available for the community. Through some inspiration from some colleagues, I decided to try to re-write it in Swift, and the concept works! However, I was only able to set up a way to deploy it through one way - Cloud Foundry on &lt;a href=&quot;https://console.cloud.ibm.com&quot;&gt;IBM Cloud&lt;/a&gt;.&lt;/p&gt;
 
@@ -8,7 +120,7 @@
 
 &lt;center&gt;
 &lt;iframe src=&quot;https://player.twitch.tv/?allowfullscreen&amp;amp;channel=ibmdeveloper&amp;amp;video=333643594&quot; width=&quot;640&quot; height=&quot;360&quot; frameborder=&quot;0&quot; scrolling=&quot;no&quot; allow=&quot;autoplay; fullscreen&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
-&lt;/center&gt;</content><author><name>David Okun</name></author><summary type="html">This past Friday, Spencer Krum and I hopped on IBM’s Twitch channel and worked out some kinks with an OSS projct I’ve been working on for a while.</summary></entry><entry><title type="html">The Importance Of Trying New Things</title><link href="http://localhost:4000/2018/09/04/importance-of-trying-new-things/" rel="alternate" type="text/html" title="The Importance Of Trying New Things" /><published>2018-09-04T14:00:00+02:00</published><updated>2018-09-04T14:00:00+02:00</updated><id>http://localhost:4000/2018/09/04/importance-of-trying-new-things</id><content type="html" xml:base="http://localhost:4000/2018/09/04/importance-of-trying-new-things/">&lt;h2 id=&quot;taking-the-broccoli&quot;&gt;Taking The Broccoli&lt;/h2&gt;
+&lt;/center&gt;</content><author><name>David Okun</name></author><summary type="html">This past Friday, Spencer Krum and I hopped on IBM’s Twitch channel and worked out some kinks with an OSS projct I’ve been working on for a while.</summary></entry><entry><title type="html">The Importance Of Trying New Things</title><link href="http://localhost:4000/2018/09/04/importance-of-trying-new-things/" rel="alternate" type="text/html" title="The Importance Of Trying New Things" /><published>2018-09-04T07:00:00-05:00</published><updated>2018-09-04T07:00:00-05:00</updated><id>http://localhost:4000/2018/09/04/importance-of-trying-new-things</id><content type="html" xml:base="http://localhost:4000/2018/09/04/importance-of-trying-new-things/">&lt;h2 id=&quot;taking-the-broccoli&quot;&gt;Taking The Broccoli&lt;/h2&gt;
 
 &lt;p&gt;When I was about 8 years old and living in Houston, my family friend Barnet took me to the grocery store. I lost a bet. I don’t remember what the bet was, but I know I lost, because my end of the bargain was that I had to eat broccoli for lunch. I distinctly remember the schadenfreude in Barnet’s laughter as he made me pick out my own stalk of broccoli to eat.&lt;/p&gt;
 
@@ -91,7 +203,7 @@
   &lt;li&gt;Don’t be afraid, because you’ll make tons of mistakes as you learn and get better at whatever you’re trying.&lt;/li&gt;
   &lt;li&gt;Mustard and pickles are trash, but Ethiopian Chicken Tagine is actually pretty delicious if you give it a shot.&lt;/li&gt;
   &lt;li&gt;A little bit of butter and Parmesan cheese makes broccoli taste pretty good.&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>David Okun</name></author><summary type="html">Taking The Broccoli</summary></entry><entry><title type="html">How You Can Draw On My Homepage And Email It To Me</title><link href="http://localhost:4000/2018/08/25/invoking-open-whisk-from-an-html-canvas/" rel="alternate" type="text/html" title="How You Can Draw On My Homepage And Email It To Me" /><published>2018-08-25T14:00:00+02:00</published><updated>2018-08-25T14:00:00+02:00</updated><id>http://localhost:4000/2018/08/25/invoking-open-whisk-from-an-html-canvas</id><content type="html" xml:base="http://localhost:4000/2018/08/25/invoking-open-whisk-from-an-html-canvas/">&lt;p&gt;As I start getting more comfortable with web technology, both on the front end and the back end, I get curious about trying new things. Who doesn’t love drawing On The Internet (© 2018)?&lt;/p&gt;
+&lt;/ol&gt;</content><author><name>David Okun</name></author><summary type="html">Taking The Broccoli</summary></entry><entry><title type="html">How You Can Draw On My Homepage And Email It To Me</title><link href="http://localhost:4000/2018/08/25/invoking-open-whisk-from-an-html-canvas/" rel="alternate" type="text/html" title="How You Can Draw On My Homepage And Email It To Me" /><published>2018-08-25T07:00:00-05:00</published><updated>2018-08-25T07:00:00-05:00</updated><id>http://localhost:4000/2018/08/25/invoking-open-whisk-from-an-html-canvas</id><content type="html" xml:base="http://localhost:4000/2018/08/25/invoking-open-whisk-from-an-html-canvas/">&lt;p&gt;As I start getting more comfortable with web technology, both on the front end and the back end, I get curious about trying new things. Who doesn’t love drawing On The Internet (© 2018)?&lt;/p&gt;
 
 &lt;p&gt;I wanted to put a canvas on my homepage that you could draw on, and I wanted to be able to see your images. I mean…this &lt;em&gt;shouldn’t&lt;/em&gt; be too complicated, right? Draw an image and send it somewhere, right?&lt;/p&gt;
 
@@ -221,7 +333,7 @@
     &lt;img src=&quot;/img/2018-08-25/openWhiskResult.jpg&quot; /&gt;Nice.
 &lt;/p&gt;
 
-&lt;p&gt;And there you go! Again, all of the code for this post is on the GitHub repo for this site right &lt;a href=&quot;https://github.com/dokun1/dokun1.github.io&quot;&gt;here&lt;/a&gt;. I hope you have even more fun on my website than you were already having :-]&lt;/p&gt;</content><author><name>David Okun</name></author><summary type="html">As I start getting more comfortable with web technology, both on the front end and the back end, I get curious about trying new things. Who doesn’t love drawing On The Internet (© 2018)?</summary></entry><entry><title type="html">Video - Live Demo of Swift NIO In An Xcode Playground</title><link href="http://localhost:4000/2018/08/02/live-demo-swift-nio/" rel="alternate" type="text/html" title="Video - Live Demo of Swift NIO In An Xcode Playground" /><published>2018-08-02T14:00:00+02:00</published><updated>2018-08-02T14:00:00+02:00</updated><id>http://localhost:4000/2018/08/02/live-demo-swift-nio</id><content type="html" xml:base="http://localhost:4000/2018/08/02/live-demo-swift-nio/">&lt;p&gt;I recently spoke at a meetup in Austin about Apple’s &lt;a href=&quot;https://github.com/apple/swift-nio&quot;&gt;Swift NIO&lt;/a&gt; framework and what it means for the networking landscape in Swift.&lt;/p&gt;
+&lt;p&gt;And there you go! Again, all of the code for this post is on the GitHub repo for this site right &lt;a href=&quot;https://github.com/dokun1/dokun1.github.io&quot;&gt;here&lt;/a&gt;. I hope you have even more fun on my website than you were already having :-]&lt;/p&gt;</content><author><name>David Okun</name></author><summary type="html">As I start getting more comfortable with web technology, both on the front end and the back end, I get curious about trying new things. Who doesn’t love drawing On The Internet (© 2018)?</summary></entry><entry><title type="html">Video - Live Demo of Swift NIO In An Xcode Playground</title><link href="http://localhost:4000/2018/08/02/live-demo-swift-nio/" rel="alternate" type="text/html" title="Video - Live Demo of Swift NIO In An Xcode Playground" /><published>2018-08-02T07:00:00-05:00</published><updated>2018-08-02T07:00:00-05:00</updated><id>http://localhost:4000/2018/08/02/live-demo-swift-nio</id><content type="html" xml:base="http://localhost:4000/2018/08/02/live-demo-swift-nio/">&lt;p&gt;I recently spoke at a meetup in Austin about Apple’s &lt;a href=&quot;https://github.com/apple/swift-nio&quot;&gt;Swift NIO&lt;/a&gt; framework and what it means for the networking landscape in Swift.&lt;/p&gt;
 
 &lt;p&gt;I took some inspiration from &lt;a href=&quot;https://twitter.com/chriseidhof&quot;&gt;Chris Eidhof&lt;/a&gt; and &lt;a href=&quot;https://twitter.com/icanzilb&quot;&gt;Marin Todorov&lt;/a&gt; to level up my live demo game, and I hope it paid off. I would also like to thank an unnamed person for making the playground part of this possible - this person knows who this person is, but I can’t say their name publicly :-D&lt;/p&gt;
 
@@ -229,7 +341,7 @@
 
 &lt;iframe src=&quot;https://player.vimeo.com/video/267825628&quot; width=&quot;640&quot; height=&quot;360&quot; frameborder=&quot;0&quot; webkitallowfullscreen=&quot;&quot; mozallowfullscreen=&quot;&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
 
-&lt;p&gt;This talk was based on a tutorial I wrote for &lt;a href=&quot;raywenderlich.com&quot;&gt;raywenderlich.com&lt;/a&gt;, which you can read &lt;a href=&quot;http://okun.io/2018/04/09/tcp-server-with-swift-nio/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;</content><author><name>David Okun</name></author><summary type="html">I recently spoke at a meetup in Austin about Apple’s Swift NIO framework and what it means for the networking landscape in Swift.</summary></entry><entry><title type="html">The Pain Of Updating A Blog</title><link href="http://localhost:4000/2018/07/29/the-pain-of-updating-a-blog/" rel="alternate" type="text/html" title="The Pain Of Updating A Blog" /><published>2018-07-29T14:00:00+02:00</published><updated>2018-07-29T14:00:00+02:00</updated><id>http://localhost:4000/2018/07/29/the-pain-of-updating-a-blog</id><content type="html" xml:base="http://localhost:4000/2018/07/29/the-pain-of-updating-a-blog/">&lt;p&gt;Finally!!!&lt;/p&gt;
+&lt;p&gt;This talk was based on a tutorial I wrote for &lt;a href=&quot;raywenderlich.com&quot;&gt;raywenderlich.com&lt;/a&gt;, which you can read &lt;a href=&quot;http://okun.io/2018/04/09/tcp-server-with-swift-nio/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;</content><author><name>David Okun</name></author><summary type="html">I recently spoke at a meetup in Austin about Apple’s Swift NIO framework and what it means for the networking landscape in Swift.</summary></entry><entry><title type="html">The Pain Of Updating A Blog</title><link href="http://localhost:4000/2018/07/29/the-pain-of-updating-a-blog/" rel="alternate" type="text/html" title="The Pain Of Updating A Blog" /><published>2018-07-29T07:00:00-05:00</published><updated>2018-07-29T07:00:00-05:00</updated><id>http://localhost:4000/2018/07/29/the-pain-of-updating-a-blog</id><content type="html" xml:base="http://localhost:4000/2018/07/29/the-pain-of-updating-a-blog/">&lt;p&gt;Finally!!!&lt;/p&gt;
 
 &lt;p&gt;Tech debt is one thing, but when it’s something you care personally about, it’s insidious at worst. I’ve not been doing a good job keeping this here web log updated, but I finally had some time (and some help!) to do it this weekend while at an event in San Francisco, and I’m thrilled I automated some things.&lt;/p&gt;
 
@@ -327,7 +439,7 @@
 
 &lt;p&gt;Now, all I have to do is commit to my repo - Travis CI does the rest, and things get updated in about a minute.&lt;/p&gt;
 
-&lt;p&gt;Whew! Now I have more to say here. Again, thank you Erin and Tim for your help/rubber-ducking/calmness.&lt;/p&gt;</content><author><name>David Okun</name></author><summary type="html">Finally!!!</summary></entry><entry><title type="html">New Video Course - Server Side Swift with Kitura</title><link href="http://localhost:4000/2018/06/12/new-video-course-kitura-swift/" rel="alternate" type="text/html" title="New Video Course - Server Side Swift with Kitura" /><published>2018-06-12T14:00:00+02:00</published><updated>2018-06-12T14:00:00+02:00</updated><id>http://localhost:4000/2018/06/12/new-video-course-kitura-swift</id><content type="html" xml:base="http://localhost:4000/2018/06/12/new-video-course-kitura-swift/">&lt;p&gt;&lt;strong&gt;Editor’s Note: This is mirrored from &lt;a href=&quot;https://www.raywenderlich.com/196340/new-course-server-side-swift-with-kitura&quot;&gt;RayWenderlich.com&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Whew! Now I have more to say here. Again, thank you Erin and Tim for your help/rubber-ducking/calmness.&lt;/p&gt;</content><author><name>David Okun</name></author><summary type="html">Finally!!!</summary></entry><entry><title type="html">New Video Course - Server Side Swift with Kitura</title><link href="http://localhost:4000/2018/06/12/new-video-course-kitura-swift/" rel="alternate" type="text/html" title="New Video Course - Server Side Swift with Kitura" /><published>2018-06-12T07:00:00-05:00</published><updated>2018-06-12T07:00:00-05:00</updated><id>http://localhost:4000/2018/06/12/new-video-course-kitura-swift</id><content type="html" xml:base="http://localhost:4000/2018/06/12/new-video-course-kitura-swift/">&lt;p&gt;&lt;strong&gt;Editor’s Note: This is mirrored from &lt;a href=&quot;https://www.raywenderlich.com/196340/new-course-server-side-swift-with-kitura&quot;&gt;RayWenderlich.com&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;If you’re ready to level up your skills to become a full stack developer, we’re releasing a brand new course for you today: &lt;a href=&quot;https://videos.raywenderlich.com/courses/123-server-side-swift-with-kitura/lessons/1&quot;&gt;Server Side Swift with Kitura&lt;/a&gt;!&lt;/p&gt;
 
@@ -400,7 +512,7 @@
 
 &lt;p&gt;Want to check out the course? The &lt;a href=&quot;https://videos.raywenderlich.com/courses/123-server-side-swift-with-kitura/lessons/1&quot;&gt;first part of the course&lt;/a&gt; is ready for you today! The rest of the course will be released over the next two weeks, and entire course will be available for free.
 
-Stay tuned for more new and updated courses to come. I hope you enjoy the course! :]&lt;/p&gt;</content><author><name>David Okun</name></author><summary type="html"></summary></entry><entry><title type="html">TCP Server With the SwiftNIO Networking Framework</title><link href="http://localhost:4000/2018/04/09/tcp-server-with-swift-nio/" rel="alternate" type="text/html" title="TCP Server With the SwiftNIO Networking Framework" /><published>2018-04-09T14:00:00+02:00</published><updated>2018-04-09T14:00:00+02:00</updated><id>http://localhost:4000/2018/04/09/tcp-server-with-swift-nio</id><content type="html" xml:base="http://localhost:4000/2018/04/09/tcp-server-with-swift-nio/">&lt;p&gt;&lt;strong&gt;Editor’s Note: This is mirrored from &lt;a href=&quot;https://www.raywenderlich.com/188345/swift-server-tutorial-tcp-server-with-the-swiftnio-networking-framework&quot;&gt;RayWenderlich.com&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
+Stay tuned for more new and updated courses to come. I hope you enjoy the course! :]&lt;/p&gt;</content><author><name>David Okun</name></author><summary type="html"></summary></entry><entry><title type="html">TCP Server With the SwiftNIO Networking Framework</title><link href="http://localhost:4000/2018/04/09/tcp-server-with-swift-nio/" rel="alternate" type="text/html" title="TCP Server With the SwiftNIO Networking Framework" /><published>2018-04-09T07:00:00-05:00</published><updated>2018-04-09T07:00:00-05:00</updated><id>http://localhost:4000/2018/04/09/tcp-server-with-swift-nio</id><content type="html" xml:base="http://localhost:4000/2018/04/09/tcp-server-with-swift-nio/">&lt;p&gt;&lt;strong&gt;Editor’s Note: This is mirrored from &lt;a href=&quot;https://www.raywenderlich.com/188345/swift-server-tutorial-tcp-server-with-the-swiftnio-networking-framework&quot;&gt;RayWenderlich.com&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;Mobile developers often work with REST APIs or other networking protocols in their applications — whether it’s to retrieve data, communicate with other devices, or something else. &lt;em&gt;&lt;a href=&quot;https://github.com/apple/swift-nio/&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;SwiftNIO&lt;/a&gt;&lt;/em&gt;, written by Apple, is a low-level networking framework that makes writing Swift servers even easier than before, empowering Swift developers to leverage their skills on the server side.&lt;/p&gt;
 
@@ -762,7 +874,7 @@ Closing connection
 
 &lt;p&gt;For more information on SwiftNIO from Apple itself, check out the full &lt;a href=&quot;https://apple.github.io/swift-nio/docs/current/NIO/index.html&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;Apple SwiftNIO Docs&lt;/a&gt; on Apple’s GitHub.&lt;/p&gt;
 
-&lt;p&gt;It’s an exciting time for Swift as it stretches past mobile development and into the rest of the programming world. Let us know what Swift projects you’re working on, your thoughts on the future of Swift, or leave us your favorite Quote of the Day in the forum discussion below!&lt;/p&gt;</content><author><name>David Okun</name></author><summary type="html"></summary></entry><entry><title type="html">Kitura Stencil Tutorial - How to make Websites with Swift</title><link href="http://localhost:4000/2018/04/03/kitura-stencil-making-websites-with-swift/" rel="alternate" type="text/html" title="Kitura Stencil Tutorial - How to make Websites with Swift" /><published>2018-04-03T14:00:00+02:00</published><updated>2018-04-03T14:00:00+02:00</updated><id>http://localhost:4000/2018/04/03/kitura-stencil-making-websites-with-swift</id><content type="html" xml:base="http://localhost:4000/2018/04/03/kitura-stencil-making-websites-with-swift/">&lt;p&gt;&lt;strong&gt;Editor’s Note: This is mirrored from &lt;a href=&quot;https://www.raywenderlich.com/181130/kitura-stencil-tutorial-how-to-make-websites-with-swift&quot;&gt;RayWenderlich.com&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;It’s an exciting time for Swift as it stretches past mobile development and into the rest of the programming world. Let us know what Swift projects you’re working on, your thoughts on the future of Swift, or leave us your favorite Quote of the Day in the forum discussion below!&lt;/p&gt;</content><author><name>David Okun</name></author><summary type="html"></summary></entry><entry><title type="html">Kitura Stencil Tutorial - How to make Websites with Swift</title><link href="http://localhost:4000/2018/04/03/kitura-stencil-making-websites-with-swift/" rel="alternate" type="text/html" title="Kitura Stencil Tutorial - How to make Websites with Swift" /><published>2018-04-03T07:00:00-05:00</published><updated>2018-04-03T07:00:00-05:00</updated><id>http://localhost:4000/2018/04/03/kitura-stencil-making-websites-with-swift</id><content type="html" xml:base="http://localhost:4000/2018/04/03/kitura-stencil-making-websites-with-swift/">&lt;p&gt;&lt;strong&gt;Editor’s Note: This is mirrored from &lt;a href=&quot;https://www.raywenderlich.com/181130/kitura-stencil-tutorial-how-to-make-websites-with-swift&quot;&gt;RayWenderlich.com&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;IBM’s &lt;a href=&quot;http://kitura.io&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;Kitura&lt;/a&gt; is a very popular and exciting server framework, but did you know it can be used to create web apps?&lt;/p&gt;
 
@@ -1437,837 +1549,4 @@ open KituraWebInterface.xcodeproj
 
 &lt;p&gt;Web templating is fun when you need to interface with your Swift API right away. I hope that Stencil helps you get on track for whatever it is you want to create, whether it’s a blog, a photo library or anything else you have in mind.&lt;/p&gt;
 
-&lt;p&gt;If you have any questions or comments, please join the forum discussion below!&lt;/p&gt;</content><author><name>David Okun</name></author><summary type="html"></summary></entry><entry><title type="html">Kitura Tutorial - Getting Started with Server-side Swift</title><link href="http://localhost:4000/2018/04/02/getting-started-with-server-side-swift/" rel="alternate" type="text/html" title="Kitura Tutorial - Getting Started with Server-side Swift" /><published>2018-04-02T14:00:00+02:00</published><updated>2018-04-02T14:00:00+02:00</updated><id>http://localhost:4000/2018/04/02/getting-started-with-server-side-swift</id><content type="html" xml:base="http://localhost:4000/2018/04/02/getting-started-with-server-side-swift/">&lt;p&gt;&lt;strong&gt;Editor’s Note: This is mirrored from &lt;a href=&quot;https://www.raywenderlich.com/180721/kitura-tutorial-getting-started-with-server-side-swift&quot;&gt;RayWenderlich.com&lt;/a&gt;, and it was my first ever post on his website!.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Are you a busy Swift developer, with no time to learn Node.js, but still feeling drawn to server-side development? This Kitura tutorial will teach you how to create RESTful APIs written entirely in Swift.&lt;/p&gt;
-
-&lt;p&gt;You’ll build a “Today I Learned” app to help you learn and remember common acronyms. Along the way, you’ll learn how to:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Create a backend API from scratch.&lt;/li&gt;
-  &lt;li&gt;Link your API to a CouchDB instance running on your local machine.&lt;/li&gt;
-  &lt;li&gt;Assign GET, POST, and DELETE routes for a model object.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;getting-started&quot;&gt;Getting Started&lt;/h2&gt;
-
-&lt;p&gt;To complete this Kitura tutorial, you’ll need:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;macOS 10.12 (Sierra) or higher&lt;/li&gt;
-  &lt;li&gt;Xcode 9.2 or newer&lt;/li&gt;
-  &lt;li&gt;Basic familiarity with Terminal, as you’ll use the command line quite a bit in this tutorial.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; It’s possible to use Kitura with simply a text editor and a standalone Swift installation, which makes it possible to run Kitura even on Linux! However, this tutorial uses Xcode to take advantage of autocomplete and the nuances of a familiar development environment.&lt;/p&gt;
-
-&lt;h2 id=&quot;installing-couchdb&quot;&gt;Installing CouchDB&lt;/h2&gt;
-
-&lt;p&gt;You’ll use a database called &lt;em&gt;&lt;a href=&quot;http://couchdb.apache.org/&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;CouchDB&lt;/a&gt;&lt;/em&gt; in this Kitura tutorial. This is a NoSQL database that strictly enforces JSON and uses revision keys for updates. So it’s safe — and fast!&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://brew.sh/&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;&lt;em&gt;Homebrew&lt;/em&gt;&lt;/a&gt;, a popular package manager for macOS, is the easiest way to install CouchDB. If you don’t have Homebrew installed already, open Terminal and enter this command:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/usr/bin/ruby &lt;span class=&quot;nt&quot;&gt;-e&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;curl &lt;span class=&quot;nt&quot;&gt;-fsSL&lt;/span&gt; https://raw.githubusercontent.com/Homebrew/install/master/install&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Enter your password if prompted. You should see &lt;em&gt;Installation Successful&lt;/em&gt; once it completes.&lt;/p&gt;
-
-&lt;p&gt;Next, enter this command to install CouchDB:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;brew &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;couchdb
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Once it’s installed, enter this command to start CouchDB:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;brew services start couchdb
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;To confirm CouchDB installed and started successfully, open a web browser and navigate to &lt;a href=&quot;http://localhost:5984&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;http://localhost:5984&lt;/a&gt;. You should see something like this:&lt;/p&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;s2&quot;&gt;&quot;couchdb&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Welcome&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-  &lt;span class=&quot;s2&quot;&gt;&quot;uuid&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;29b2fe0fb4054c61e6b4b8e01761707b&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-  &lt;span class=&quot;s2&quot;&gt;&quot;version&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;1.7.1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-  &lt;span class=&quot;s2&quot;&gt;&quot;vendor&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;s2&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Homebrew&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-      &lt;span class=&quot;s2&quot;&gt;&quot;version&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;1.7.1&quot;&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; If you’d prefer not to install CouchDB directly and have Docker installed, you may run it in Docker using the command:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker run &lt;span class=&quot;nt&quot;&gt;--name&lt;/span&gt; couchdb &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; 5984:5984 &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; couchdb
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Before you can dive into this Kitura tutorial, you’ll need to first understand a little about Kitura and REST.&lt;/p&gt;
-
-&lt;h2 id=&quot;kitura--restful-api-routing&quot;&gt;Kitura &amp;amp; RESTful API Routing&lt;/h2&gt;
-
-&lt;p&gt;IBM created &lt;em&gt;&lt;a href=&quot;http://kitura.io&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;Kitura&lt;/a&gt;&lt;/em&gt; as an open-source framework in 2015, shortly after Apple open-sourced Swift. They modeled Kitura after Express.js, the de-facto framework for creating RESTful APIs using Node.js.&lt;/p&gt;
-
-&lt;p&gt;REST is an acronym for &lt;em&gt;Re&lt;/em&gt;presentational &lt;em&gt;S&lt;/em&gt;tate &lt;em&gt;T&lt;/em&gt;ransfer. In RESTful apps, each unique URL represents an object. Non-unique URLs represent actions, which are combined with RESTful verbs like GET to fetch objects, POST to insert, DELETE to remove and PUT to update objects.&lt;/p&gt;
-
-&lt;p&gt;Backend development often involves many components working together. You’ll only be concerned with two backend components in this Kitura tutorial: the API and database.&lt;/p&gt;
-
-&lt;p&gt;For example, if you want to populate a table view with a list of acronyms and their meanings, your client app sends a GET request to the backend. In practice, your app requests the URL &lt;code&gt;http://yourAPI.com/acronyms&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://koenig-media.raywenderlich.com/uploads/2017/12/firstDiagram.png&quot;&gt;&lt;img src=&quot;https://koenig-media.raywenderlich.com/uploads/2017/12/firstDiagram-650x310.png&quot; alt=&quot;Kitura tutorial client request made to API&quot; width=&quot;650&quot; height=&quot;310&quot; class=&quot;aligncenter&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;The API receives your request and uses a &lt;em&gt;router&lt;/em&gt; to decide how to handle it. The router checks all available &lt;em&gt;routes&lt;/em&gt;, which are simply publicly accessible endpoints, to determine if there is a GET route ending in &lt;code&gt;/acronyms&lt;/code&gt;. If it finds one, it executes the associated route’s code.&lt;/p&gt;
-
-&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;/acronyms&lt;/code&gt; route then does the following:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Retrieves the acronyms from the database&lt;/li&gt;
-  &lt;li&gt;Serializes them into JSON&lt;/li&gt;
-  &lt;li&gt;Packages them into a response&lt;/li&gt;
-  &lt;li&gt;Returns the response to the API to send to the client&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;This results in the following interaction between the API and database:&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://koenig-media.raywenderlich.com/uploads/2017/12/retrievingAcronyms.png&quot;&gt;&lt;img src=&quot;https://koenig-media.raywenderlich.com/uploads/2017/12/retrievingAcronyms-650x310.png&quot; alt=&quot;Kitura tutorial API and database interaction&quot; width=&quot;650&quot; height=&quot;310&quot; class=&quot;aligncenter&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;If an API is RESTful, then it must also be &lt;em&gt;stateless&lt;/em&gt;. In our example, you can think of the API as the orchestrator, commanding data to and fro in your ecosystem. Once the request is fulfilled, the state of the API and its routes should be unchanged and able to handle the &lt;i&gt;next&lt;/i&gt; request.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://koenig-media.raywenderlich.com/uploads/2017/12/resolvedAcronyms.png&quot;&gt;&lt;img src=&quot;https://koenig-media.raywenderlich.com/uploads/2017/12/resolvedAcronyms-650x310.png&quot; alt=&quot;Kitura tutorial API response to client&quot; width=&quot;650&quot; height=&quot;310&quot; class=&quot;aligncenter&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Just because the API is stateless doesn’t mean it isn’t allowed to store or modify objects. The API itself doesn’t store states, but it does query and update the database to fetch, store and modify objects’ states.&lt;/p&gt;
-
-&lt;h2 id=&quot;setting-up-the-kitura-tutorial-project&quot;&gt;Setting up the Kitura Tutorial Project&lt;/h2&gt;
-
-&lt;p&gt;Open Terminal and enter the following commands:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;mkdir &lt;/span&gt;KituraTIL
-&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;KituraTIL
-swift package init &lt;span class=&quot;nt&quot;&gt;--type&lt;/span&gt; executable
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;This uses the &lt;a href=&quot;https://swift.org/package-manager/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Swift Package Manager&lt;/a&gt; to create a new executable.&lt;/p&gt;
-
-&lt;p&gt;You should see output like this:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Creating executable package: KituraTIL
-Creating Package.swift
-Creating README.md
-Creating .gitignore
-Creating Sources/
-Creating Sources/KituraTIL/main.swift
-Creating Tests/
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Next, enter the following command to open &lt;em&gt;Package.swift&lt;/em&gt; with Xcode:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;open &lt;span class=&quot;nt&quot;&gt;-a&lt;/span&gt; Xcode Package.swift
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Replace the entire contents of &lt;em&gt;Package.swift&lt;/em&gt; with the following:&lt;/p&gt;
-
-&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// swift-tools-version:4.1&lt;/span&gt;
-
-&lt;span class=&quot;kd&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;PackageDescription&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Package&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;// 1&lt;/span&gt;
-  &lt;span class=&quot;nv&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;KituraTIL&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-  &lt;span class=&quot;nv&quot;&gt;dependencies&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// 2&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;package&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;https://github.com/IBM-Swift/Kitura.git&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-             &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;upToNextMinor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;from&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;2.4.1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)),&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// 3&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;package&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;https://github.com/IBM-Swift/HeliumLogger.git&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-             &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;upToNextMinor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;from&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;1.7.1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)),&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// 4&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;package&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;https://github.com/IBM-Swift/Kitura-CouchDB.git&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-             &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;upToNextMinor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;from&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;2.1.0&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)),&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;//5&lt;/span&gt;
-  &lt;span class=&quot;nv&quot;&gt;targets&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;KituraTIL&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-            &lt;span class=&quot;nv&quot;&gt;dependencies&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Kitura&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;HeliumLogger&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;CouchDB&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
-            &lt;span class=&quot;nv&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Sources&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Here’s what each of these commands does:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;You first set the name of your target executable. By convention, you should name this after the enclosing directory.&lt;/li&gt;
-  &lt;li&gt;Here you declare the dependency for Kitura itself.&lt;/li&gt;
-  &lt;li&gt;This is a backend logging framework, which you’ll use to log messages while your backend app is running.&lt;/li&gt;
-  &lt;li&gt;You’ll use this dependency to allow Kitura to communicate with CouchDB.&lt;/li&gt;
-  &lt;li&gt;Finally, you declare your targets and their dependencies.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Save this file and go back to Terminal, where you should still be in the same directory containing &lt;em&gt;Package.swift&lt;/em&gt;. Enter the following command:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;swift build
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;This will generate a lot of logging, ending with logs about compiling your Kitura tutorial project. You’ll see this output at the end:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Compile Swift Module &lt;span class=&quot;s1&quot;&gt;'KituraTIL'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;1 sources&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-Linking ./.build/x86_64-apple-macosx10.10/debug/KituraTIL
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; In case you get errors from &lt;em&gt;swift build&lt;/em&gt;, enter the following in Terminal to verify your Swift version:&amp;lt;/p&amp;gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;swift &lt;span class=&quot;nt&quot;&gt;--version&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;If your version is lower than Swift 4.1, this is likely your problem. To fix this, make sure that you have the latest version of Xcode 9 installed and then run the following command:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;xcode-select &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; /Applications/Xcode.app
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;...where &lt;em&gt;Xcode.app&lt;/em&gt; should be replaced with whatever you called Xcode 9.&lt;/p&gt;
-
-&lt;p&gt;
-
-If you're still having trouble, it's possible you're using &lt;code&gt;swiftenv&lt;/code&gt; or another Swift version management tool, and you may need to manually set your Swift version to 4.1.&lt;/p&gt;
-
-&lt;p&gt;Here's the command to do this if you're using &lt;code&gt;swiftenv&lt;/code&gt;:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;swiftenv global 4.1
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;using-kitura-with-xcode&quot;&gt;Using Kitura with Xcode&lt;/h2&gt;
-
-&lt;p&gt;Still in Terminal, at the root directory for your Kitura tutorial project, enter the following command:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;swift package generate-xcodeproj
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;You should see this output:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;generated: ./KituraTIL.xcodeproj
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Enter this command to open your new Xcode project:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;open KituraTIL.xcodeproj/
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;You’ll then be greeted with this view:&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://koenig-media.raywenderlich.com/uploads/2018/02/Screen-Shot-2018-03-19-at-11.24.25-AM.png&quot;&gt;&lt;img src=&quot;https://koenig-media.raywenderlich.com/uploads/2018/02/Screen-Shot-2018-03-19-at-11.24.25-AM-650x446.png&quot; alt=&quot;Kitura tutorial initial project&quot; width=&quot;650&quot; height=&quot;446&quot; class=&quot;aligncenter size-large bordered wp-image-189218&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;From here, you need to update the &lt;em&gt;KituraTIL-Package&lt;/em&gt; scheme to run your executable. Go to the top of your Xcode window, and click the scheme pane where it says &lt;em&gt;KituraTIL-Package&lt;/em&gt;. You should see this dialog:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://koenig-media.raywenderlich.com/uploads/2018/02/Screen-Shot-2018-02-05-at-20.45.39-295x320.png&quot; alt=&quot;Kitura tutorial edit scheme&quot; width=&quot;295&quot; height=&quot;320&quot; class=&quot;aligncenter bordered&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Click &lt;em&gt;Edit Scheme&lt;/em&gt;, and another dialog will open. In the middle of the dialog, click the dropdown for &lt;em&gt;Executable&lt;/em&gt; and select &lt;em&gt;KituraTIL&lt;/em&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://koenig-media.raywenderlich.com/uploads/2018/02/Screen-Shot-2018-02-05-at-20.47.40-480x269.png&quot; alt=&quot;Kitura tutorial set executable&quot; width=&quot;480&quot; height=&quot;269&quot; class=&quot;bordered aligncenter&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Click &lt;em&gt;Close&lt;/em&gt; in the bottom-right corner of the dialog to dismiss it.&lt;/p&gt;
-
-&lt;p&gt;Next, make sure you’ve set to run this scheme on &lt;em&gt;My Mac&lt;/em&gt; by clicking to the right of the scheme dropdown that you clicked earlier and selecting &lt;em&gt;My Mac&lt;/em&gt; from the list:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://koenig-media.raywenderlich.com/uploads/2018/02/Screen-Shot-2018-02-05-at-20.49.08.png&quot; alt=&quot;Kitura tutorial select My Mac&quot; width=&quot;426&quot; height=&quot;64&quot; class=&quot;bordered aligncenter&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Build and run, and you’ll see this printed to the console:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Hello, world!
-Program ended with &lt;span class=&quot;nb&quot;&gt;exit &lt;/span&gt;code: 0
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;You can safely ignore any compiler warnings about deprecations. Kitura and CouchDB use a few methods that were deprecated in Swift 4, but this shouldn’t cause any problems.&lt;/p&gt;
-
-&lt;p&gt;Awesome, you’re now ready to get your backend app up and running!&lt;/p&gt;
-
-&lt;h2 id=&quot;using-kitura&quot;&gt;Using Kitura&lt;/h2&gt;
-
-&lt;p&gt;First, create a new &lt;em&gt;Swift File&lt;/em&gt; named &lt;em&gt;Application.swift&lt;/em&gt; in the same directory as &lt;em&gt;main.swift&lt;/em&gt;. Make sure to add this file to the &lt;em&gt;KituraTIL&lt;/em&gt; executable target:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://koenig-media.raywenderlich.com/uploads/2018/02/Screen-Shot-2018-02-05-at-20.52.06-480x218.png&quot; alt=&quot;Kitura tutorial set target&quot; width=&quot;480&quot; height=&quot;218&quot; class=&quot;bordered aligncenter&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Next, replace the contents of this file with the following:&lt;/p&gt;
-
-&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Kitura&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;LoggerAPI&lt;/span&gt;
-
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;App&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  
-  &lt;span class=&quot;c1&quot;&gt;// 1&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;router&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Router&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-  
-  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// 2&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;Kitura&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;addHTTPServer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;onPort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;8080&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;router&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// 3&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;Kitura&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Here’s what this does:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;The &lt;em&gt;Router&lt;/em&gt; will handle incoming requests by routing them to the appropriate endpoint.&lt;/li&gt;
-  &lt;li&gt;Here, you register &lt;code&gt;router&lt;/code&gt; to run on port 8080.&lt;/li&gt;
-  &lt;li&gt;Kitura will run infinitely on the main run loop after you call &lt;code&gt;run()&lt;/code&gt;.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;With your &lt;code&gt;App&lt;/code&gt; class created, open &lt;code class=&quot;highlighter-rouge&quot;&gt;main.swift&lt;/code&gt; and replace its contents with the following:&lt;/p&gt;
-
-&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Kitura&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;HeliumLogger&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;LoggerAPI&lt;/span&gt;
-
-&lt;span class=&quot;kt&quot;&gt;HeliumLogger&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;use&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;app&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;App&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Here you create an &lt;code&gt;App&lt;/code&gt; instance and run it.&lt;/p&gt;
-
-&lt;p&gt;The &lt;code&gt;HeliumLogger.use()&lt;/code&gt; command sets up &lt;code&gt;HeliumLogger&lt;/code&gt; as the default logger for Kitura. It’s good practice to “log early and log often”.&lt;/p&gt;
-
-&lt;p&gt;Build and run, and you should see log messages from Kitura appear in the console.&lt;/p&gt;
-
-&lt;p&gt;Next, navigate to &lt;code&gt;&lt;a href=&quot;http://localhost:8080&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;http://localhost:8080&lt;/a&gt;&lt;/code&gt; in your browser, and you should see this page:&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://koenig-media.raywenderlich.com/uploads/2018/03/Screen-Shot-2018-03-20-at-5.10.25-PM.png&quot;&gt;&lt;img src=&quot;https://koenig-media.raywenderlich.com/uploads/2018/03/Screen-Shot-2018-03-20-at-5.10.25-PM-650x460.png&quot; alt=&quot;First Kitura server&quot; width=&quot;650&quot; height=&quot;460&quot; class=&quot;aligncenter size-large bordered wp-image-189374&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Congratulations, you’re now running a Swift RESTful API on your local machine!&lt;/p&gt;
-
-&lt;h2 id=&quot;creating-your-model&quot;&gt;Creating Your Model&lt;/h2&gt;
-
-&lt;p&gt;In this section, you’ll create a model type that represents an acronym.&lt;/p&gt;
-
-&lt;p&gt;Create a new file named &lt;em&gt;Acronym.swift&lt;/em&gt; and remember to add it to the &lt;em&gt;KituraTIL&lt;/em&gt; target.&lt;/p&gt;
-
-&lt;p&gt;Replace the contents of this file with the following:&lt;/p&gt;
-
-&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// 1&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Acronym&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Codable&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-
-  &lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;short&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;long&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;
-  
-  &lt;span class=&quot;nf&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;short&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;long&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// 2&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;short&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isEmpty&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;long&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isEmpty&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;nil&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;short&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;short&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;long&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// 3&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;extension&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Acronym&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Equatable&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-
-  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;lhs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Acronym&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;rhs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Acronym&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Bool&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lhs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;short&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rhs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;short&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lhs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rhs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;long&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Here’s what this does:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;By making &lt;code&gt;Acronym&lt;/code&gt; conform to &lt;code&gt;Codable&lt;/code&gt;, you’ll be able to take advantage of a new Kitura feature named &lt;em&gt;Codable Routing&lt;/em&gt;. You’ll learn more about this shortly.&lt;/li&gt;
-  &lt;li&gt;Within the initializer, you validate that neither &lt;code&gt;short&lt;/code&gt; nor &lt;code&gt;long&lt;/code&gt; are empty strings.&lt;/li&gt;
-  &lt;li&gt;You make &lt;code&gt;Acronym&lt;/code&gt; conform to &lt;code&gt;Equatable&lt;/code&gt; to enable you to determine if two acronyms are the same. You’ll use this later, as another form of validation.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Build and run your project to make sure everything builds properly.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;&lt;a href=&quot;https://developer.apple.com/documentation/swift/codable&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;Codable&lt;/a&gt;&lt;/em&gt; is simply a &lt;code&gt;typealias&lt;/code&gt; that combines the &lt;em&gt;Encodable&lt;/em&gt; and &lt;em&gt;Decodable&lt;/em&gt; protocols. This ensures conforming objects can be converted both to and from external representations. In particular, Kitura uses this to easily convert instances to and from &lt;em&gt;JSON&lt;/em&gt;.&lt;/p&gt;
-
-&lt;p&gt;Before Kitura 2.0, you had to pass a request object into every endpoint closure, parse properties manually, cast appropriately, do necessary transformations and finally create JSON to send as a response. It was a &lt;i&gt;lot&lt;/i&gt; of work!&lt;/p&gt;
-
-&lt;p&gt;Fortunately, you can now leverage the power of Kitura’s &lt;em&gt;Codable Routing&lt;/em&gt; to significantly reduce the boilerplate code in your routes. Win! You simply need to make your models conform to &lt;em&gt;Codable&lt;/em&gt; to take advantage of this, as you did above.&lt;/p&gt;
-
-&lt;p&gt;With this theory out of the way, it’s now time to connect your API to CouchDB.&lt;/p&gt;
-
-&lt;h2 id=&quot;connecting-to-couchdb&quot;&gt;Connecting to CouchDB&lt;/h2&gt;
-
-&lt;p&gt;Open &lt;em&gt;Application.swift&lt;/em&gt;, and replace its contents with the following:&lt;/p&gt;
-
-&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// 1&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CouchDB&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Foundation&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Kitura&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;LoggerAPI&lt;/span&gt;
-
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;App&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-
-  &lt;span class=&quot;c1&quot;&gt;// 2&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CouchDBClient&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;database&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Database&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?&lt;/span&gt;
-    
-  &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;router&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Router&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-    
-  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;postInit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// 3&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    
-  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;createNewDatabase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// 4&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    
-  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;finalizeRoutes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;database&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Database&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// 5&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    
-  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// 6&lt;/span&gt;
-    &lt;span class=&quot;nf&quot;&gt;postInit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;Kitura&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;addHTTPServer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;onPort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;8080&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;router&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;Kitura&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Let’s go over these changes:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;You first import CouchDB in order to set up your persistence layer.&lt;/li&gt;
-  &lt;li&gt;You add properties for &lt;em&gt;client&lt;/em&gt; for CouchDB and &lt;em&gt;database&lt;/em&gt; to keep track of changes.&lt;/li&gt;
-  &lt;li&gt;You’ll add code here after you’ve created your instance of &lt;em&gt;App&lt;/em&gt; to connect to your database.&lt;/li&gt;
-  &lt;li&gt;This organizes your code stemming from the previous function.&lt;/li&gt;
-  &lt;li&gt;Once you’ve set up your database, you’ll list all available routes for your API to match against here.&lt;/li&gt;
-  &lt;li&gt;You call &lt;code&gt;postInit()&lt;/code&gt; from within &lt;code&gt;run()&lt;/code&gt; to make this part of your API setup.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Next, complete &lt;code&gt;postInit()&lt;/code&gt; by replacing &lt;code&gt;// 3&lt;/code&gt; with the following.:&lt;/p&gt;
-
-&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// 1&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;connectionProperties&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;ConnectionProperties&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;host&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;localhost&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5984&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;secured&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;client&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CouchDBClient&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;connectionProperties&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;connectionProperties&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// 2&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;dbExists&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;acronyms&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;exists&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;guard&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;exists&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// 3&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;createNewDatabase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;// 4&lt;/span&gt;
-  &lt;span class=&quot;kt&quot;&gt;Log&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;info&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Acronyms database located - loading...&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;finalizeRoutes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Database&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;connProperties&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;connectionProperties&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;dbName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;acronyms&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Here’s what you just did:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;You created a &lt;code&gt;ConnectionProperties&lt;/code&gt; object that you use to specify configuration values and a new &lt;code&gt;CouchDBClient&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;You check to see if a matching database already exists, so you don’t overwrite existing data.&lt;/li&gt;
-  &lt;li&gt;If a new database does &lt;i&gt;not&lt;/i&gt; exist, then you call &lt;code&gt;createNewDatabase()&lt;/code&gt; to create a new database.&lt;/li&gt;
-  &lt;li&gt;If a new database does exist, you call &lt;code&gt;finalizeRoutes(with:)&lt;/code&gt; to configure your routes.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Next, complete &lt;code&gt;createNewDatabase()&lt;/code&gt; by replacing &lt;code&gt;// 4&lt;/code&gt; with the following:&lt;/p&gt;
-
-&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;Log&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;info&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Database does not exist - creating new database&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// 1&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;createDB&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;acronyms&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;database&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;error&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;// 2&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;guard&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;database&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;database&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;errorReason&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;describing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;localizedDescription&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;Log&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Could not create new database: (&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;errorReason&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;) - acronym routes not created&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;finalizeRoutes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;database&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Here’s what this does piece by piece:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;You create your database with a given name. You can choose anything, but it’s best to keep it simple.&lt;/li&gt;
-  &lt;li&gt;You ensure the database exists, or else, you abort and log an error.&lt;/li&gt;
-  &lt;li&gt;Just like before, you call &lt;code&gt;finalizeRoutes(with:)&lt;/code&gt; to configure your routes&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;You won’t be able to implement &lt;code&gt;finalizeRoutes&lt;/code&gt; just yet. You first need to complete your persistence layer. That’s what you’ll do in the next section.&lt;/p&gt;
-
-&lt;h2 id=&quot;persisting-acronyms&quot;&gt;Persisting Acronyms&lt;/h2&gt;
-
-&lt;p&gt;Create a file named &lt;em&gt;AcronymPersistence.swift&lt;/em&gt; and add it to the &lt;em&gt;KituraTIL&lt;/em&gt; target.&lt;/p&gt;
-
-&lt;p&gt;Replace the contents of &lt;em&gt;AcronymPersistence.swift&lt;/em&gt; with the following:&lt;/p&gt;
-
-&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Foundation&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CouchDB&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// 1&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;SwiftyJSON&lt;/span&gt;
-
-&lt;span class=&quot;kd&quot;&gt;extension&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Acronym&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;// 2&lt;/span&gt;
-  &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Persistence&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-
-    &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getAll&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;database&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Database&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                       &lt;span class=&quot;nv&quot;&gt;callback&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;@escaping&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;acronyms&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Acronym&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]?,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;NSError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;database&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;retrieveAll&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;includeDocuments&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;documents&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;error&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;guard&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;documents&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;documents&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-          &lt;span class=&quot;nf&quot;&gt;callback&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-          &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;acronyms&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Acronym&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;document&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;documents&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;rows&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;arrayValue&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-          &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stringValue&lt;/span&gt;
-          &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;short&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;doc&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;short&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stringValue&lt;/span&gt;
-          &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;doc&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;long&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stringValue&lt;/span&gt;
-          &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;acronym&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Acronym&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;short&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;short&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;long&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;long&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;acronyms&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;acronym&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-          &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;nf&quot;&gt;callback&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;acronyms&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    
-    &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;save&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;acronym&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Acronym&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;database&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Database&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                     &lt;span class=&quot;nv&quot;&gt;callback&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;@escaping&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;NSError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;nf&quot;&gt;getAll&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;from&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;database&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;acronyms&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;error&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;guard&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;acronyms&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;acronyms&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-          &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;callback&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;c1&quot;&gt;// 3&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;guard&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;acronyms&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;contains&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;acronym&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-          &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;callback&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;NSError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;domain&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Kitura-TIL&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                                       &lt;span class=&quot;nv&quot;&gt;code&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;400&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                                       &lt;span class=&quot;nv&quot;&gt;userInfo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;localizedDescription&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Duplicate entry&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]))&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;database&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;JSON&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;short&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;acronym&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;short&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;long&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;acronym&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;long&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]))&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;error&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt;
-          &lt;span class=&quot;nf&quot;&gt;callback&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    
-    &lt;span class=&quot;c1&quot;&gt;// 4&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;database&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Database&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                    &lt;span class=&quot;nv&quot;&gt;callback&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;@escaping&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;acronym&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Acronym&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;NSError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;database&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;retrieve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;error&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;guard&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;document&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;document&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-          &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;callback&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;guard&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;acronym&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Acronym&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;_id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stringValue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                                    &lt;span class=&quot;nv&quot;&gt;short&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;short&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stringValue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                                    &lt;span class=&quot;nv&quot;&gt;long&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;long&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stringValue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;callback&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;nf&quot;&gt;callback&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;acronym&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    
-    &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;delete&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;database&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Database&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                       &lt;span class=&quot;nv&quot;&gt;callback&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;@escaping&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;NSError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;database&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;retrieve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;error&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;guard&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;document&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;document&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-          &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;callback&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;_id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stringValue&lt;/span&gt;
-        &lt;span class=&quot;c1&quot;&gt;// 5&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;revision&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;_rev&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stringValue&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;database&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;delete&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;rev&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;revision&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;error&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt;
-          &lt;span class=&quot;nf&quot;&gt;callback&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Here’s what this does in detail:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Kitura’s CouchDB wrapper has yet to be updated to use &lt;code&gt;Codable&lt;/code&gt;, unfortunately. Instead, it utilizes &lt;a href=&quot;https://github.com/SwiftyJSON/SwiftyJSON&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;SwiftyJSON&lt;/a&gt; to serialize objects into JSON.&lt;/li&gt;
-  &lt;li&gt;You create &lt;code&gt;Persistence&lt;/code&gt; as a nested class within &lt;code&gt;Acronym&lt;/code&gt;. This results in &lt;code&gt;Persistence&lt;/code&gt;-namespaced methods for retrieving, saving and deleting &lt;code&gt;Acronyms&lt;/code&gt; from CouchDB. This prevents name collisions in the event you have more than one model class, as more real-world apps do.&lt;/li&gt;
-  &lt;li&gt;Remember how you made &lt;code&gt;Acronym&lt;/code&gt; conform to &lt;code&gt;Equatable&lt;/code&gt;? This is where it comes in handy. You use it here to ensure you aren’t saving duplicate entries in the database.&lt;/li&gt;
-  &lt;li&gt;In addition to fetching &lt;i&gt;all&lt;/i&gt; available acronyms, you also provide a method to find a single &lt;code&gt;Acronym&lt;/code&gt; by matching its &lt;code&gt;id&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;Here is where CouchDB differs from other NoSQL databases: each record has a revision stored as &lt;code&gt;_rev&lt;/code&gt;, which you can use to check that you are making a proper update.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&quot;setting-up-your-codable-routes&quot;&gt;Setting up Your Codable Routes&lt;/h2&gt;
-
-&lt;p&gt;You’re finally ready to create your routes. Create a new file named &lt;em&gt;AcronymRoutes.swift&lt;/em&gt; and add it to the &lt;em&gt;KituraTIL&lt;/em&gt; target.&lt;/p&gt;
-
-&lt;p&gt;Replace the contents of &lt;em&gt;AcronymRoutes.swift&lt;/em&gt; with the following:&lt;/p&gt;
-
-&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CouchDB&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Kitura&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;KituraContracts&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;LoggerAPI&lt;/span&gt;
-
-&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;database&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Database&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?&lt;/span&gt;
-
-&lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;initializeAcronymRoutes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;App&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;database&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;database&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;// 1&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;router&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/acronyms&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;handler&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getAcronyms&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;router&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;post&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/acronyms&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;handler&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;addAcronym&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;router&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;delete&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/acronyms&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;handler&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;deleteAcronym&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// 2&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getAcronyms&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;completion&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;@escaping&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Acronym&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]?,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;RequestError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;guard&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;database&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;database&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;completion&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;internalServerError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;kt&quot;&gt;Acronym&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Persistence&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;getAll&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;from&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;database&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;acronyms&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;error&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;completion&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;acronyms&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;error&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as?&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;RequestError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// 3&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;addAcronym&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;acronym&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Acronym&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;completion&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;@escaping&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Acronym&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;RequestError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;guard&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;database&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;database&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;completion&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;internalServerError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;kt&quot;&gt;Acronym&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Persistence&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;save&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;acronym&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;database&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;error&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;guard&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;completion&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;notAcceptable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;Acronym&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Persistence&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;from&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;database&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;newAcronym&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;error&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt;
-      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;completion&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;newAcronym&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;error&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as?&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;RequestError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// 4&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;deleteAcronym&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;completion&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;@escaping&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;RequestError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;guard&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;database&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;database&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;completion&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;internalServerError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;kt&quot;&gt;Acronym&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Persistence&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;delete&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;from&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;database&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;error&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;completion&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;error&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as?&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;RequestError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Let’s look at the routes you just set up:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Here you declare &lt;em&gt;handlers&lt;/em&gt; for each route, which associate API endpoints with methods to be called.&lt;/li&gt;
-  &lt;li&gt;&lt;code&gt;getAcronyms&lt;/code&gt; will be called to fetch &lt;code&gt;Acronyms&lt;/code&gt; whenever a &lt;code&gt;GET /acronyms&lt;/code&gt; request is made.&lt;/li&gt;
-  &lt;li&gt;&lt;code&gt;addAcronym&lt;/code&gt; will insert a new &lt;code&gt;Acronym&lt;/code&gt; into the database whenever a &lt;code&gt;POST /acronyms&lt;/code&gt; request is made.&lt;/li&gt;
-  &lt;li&gt;&lt;code&gt;deleteAcronym&lt;/code&gt; will remove an &lt;code&gt;Acronym&lt;/code&gt; from the database whenever a &lt;code&gt;DELETE /acronyms&lt;/code&gt; request is made.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Notice the conciseness of each of your routes; the beauty of Kitura’s Codable Routing is that you don’t need to worry about requests or responses directly. Instead, Kitura will recognize the request that’s made, route it to the appropriate endpoint, execute just the relevant code and even create a response for you. Nice!&lt;/p&gt;
-
-&lt;p&gt;To complete your app, open &lt;em&gt;Application.swift&lt;/em&gt; and complete &lt;code&gt;finalizeRoutes()&lt;/code&gt; by replacing &lt;code&gt;// 5&lt;/code&gt; with the following:&lt;/p&gt;
-
-&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;database&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;database&lt;/span&gt;
-&lt;span class=&quot;nf&quot;&gt;initializeAcronymRoutes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;Log&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;info&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Acronym routes created&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;testing-your-api&quot;&gt;Testing Your API&lt;/h2&gt;
-
-&lt;p&gt;&lt;em&gt;Build and run&lt;/em&gt; your Kitura tutorial project, and navigate to &lt;a href=&quot;http://localhost:8080&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;http://localhost:8080&lt;/a&gt; to ensure your API is still running.&lt;/p&gt;
-
-&lt;p&gt;Then, open Terminal and enter the following command:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl http://localhost:8080/acronyms
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;If everything is set up correctly, you should get back an empty JSON placeholder (&lt;code&gt;[]&lt;/code&gt;). This means you’ve correctly set up your GET route!&lt;/p&gt;
-
-&lt;p&gt;Now try adding a new acronym to your backend. Type the following command in the same terminal window:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl &lt;span class=&quot;nt&quot;&gt;-X&lt;/span&gt; POST http://localhost:8080/acronyms &lt;span class=&quot;nt&quot;&gt;-H&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'content-type: application/json'&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'{&quot;short&quot;: &quot;BRB&quot;, &quot;long&quot;: &quot;Be right back&quot;}'&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Hit Enter, and you should see a response like this:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;id&quot;&lt;/span&gt;:&lt;span class=&quot;s2&quot;&gt;&quot;b2edde7b8032c30c7aeeff8d18000ad9&quot;&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;short&quot;&lt;/span&gt;:&lt;span class=&quot;s2&quot;&gt;&quot;BRB&quot;&lt;/span&gt;,&lt;span class=&quot;s2&quot;&gt;&quot;long&quot;&lt;/span&gt;:&lt;span class=&quot;s2&quot;&gt;&quot;Be right back&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;In Xcode, Kitura’s log messages should include a &lt;em&gt;Received POST type-safe request&lt;/em&gt; message.&lt;/p&gt;
-
-&lt;p&gt;To verify this actually saved to the database, enter the following GET command one more time:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl http://localhost:8080/acronyms
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;If you get back the same JSON you entered inside an array, then congratulations! You’ve successfully created a working API!&lt;/p&gt;
-
-&lt;h2 id=&quot;where-to-go-from-here&quot;&gt;Where to Go From Here?&lt;/h2&gt;
-
-&lt;p&gt;This tutorial has introduced you to Kitura by building a backend API. However, that is not all Kitura can do! In &lt;a href=&quot;https://www.raywenderlich.com/181130/kitura-stencil-tutorial-how-to-make-websites-with-swift&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;part two&lt;/a&gt; of this tutorial series, you’ll learn how to use Kitura and Stencil to build a website that includes a front end.&lt;/p&gt;
-
-&lt;p&gt;You can download the completed version of the project using the &lt;em&gt;Download Materials&lt;/em&gt; button at the top or bottom of this tutorial.&lt;/p&gt;
-
-&lt;p&gt;As part of Kitura 2.0, The Swift@IBM team has created a command line interface for Kitura that streamlines generating a similar starter project, without requiring you to write any code yourself! You can try this out (after completing this tutorial, of course) by entering the following commands in Terminal:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;brew tap ibm-swift/kitura
-brew &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;kitura
-kitura init
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;If you’d like to learn more about Swift 4’s &lt;code&gt;Codable&lt;/code&gt; protocol, check out our &lt;a href=&quot;https://www.raywenderlich.com/172145/encoding-decoding-and-serialization-in-swift-4&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;tutorial about it here&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;You can also read through IBM’s introduction to &lt;a href=&quot;https://developer.ibm.com/swift/2017/10/30/codable-routing&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Kitura Codable Routing here&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;There’s a lot of material on the internet about Kitura, and some especially great stuff available directly from IBM! If you’d like to continue learning about Codable Routing and other Kitura 2.0 features, check out &lt;a href=&quot;https://github.com/ibm/foodtrackerbackend&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;this tutorial&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;I encourage you to comment in the forum below if you have any questions or comments!&lt;/p&gt;</content><author><name>David Okun</name></author><summary type="html">Editor’s Note: This is mirrored from RayWenderlich.com, and it was my first ever post on his website!.</summary></entry><entry><title type="html">Core ML Simplified with Lumina</title><link href="http://localhost:4000/2018/01/30/core-ml-simplified-with-lumina/" rel="alternate" type="text/html" title="Core ML Simplified with Lumina" /><published>2018-01-30T13:00:00+01:00</published><updated>2018-01-30T13:00:00+01:00</updated><id>http://localhost:4000/2018/01/30/core-ml-simplified-with-lumina</id><content type="html" xml:base="http://localhost:4000/2018/01/30/core-ml-simplified-with-lumina/">&lt;p&gt;&lt;strong&gt;Editor’s Note: This is mirrored from &lt;a href=&quot;https://heartbeat.fritz.ai/Core ML-simplified-with-lumina-745e61035f30&quot;&gt;Fritz.ai&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;If you’ve ever considered working with the new Core ML framework in iOS, you might have seen a demo video like this:&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-	&lt;img src=&quot;https://cdn-images-1.medium.com/max/1600/1*TZHsFoFqk4OM0-ZTIhHzsw.gif&quot; /&gt;I'm 85.6701% confident that you've seen this before.
-&lt;/p&gt;
-
-&lt;p&gt;On the surface, this might not look as exciting as it truly is - perhaps because these are popping up everywhere, as this is a very popular experiment with the technology. Each example is usually about 3 or 4 classes, with 50–100 lines of code each.
-What if I told you that you can get this exact same code sample working with one line of code? Thanks to my library, Lumina, you can:&lt;/p&gt;
-&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;camera&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;streamingModelTypes&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;MobileNet&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;No manual image resizing. No model validation. No multithreading with Grand Central Dispatch. Just you and your machine learning model. Let’s take a dive into how this works and how you can use it for any image classification model you have for Core ML.&lt;/p&gt;
-
-&lt;h2 id=&quot;using-core-mlraw&quot;&gt;Using Core ML Raw&lt;/h2&gt;
-
-&lt;p&gt;Let’s say you need to make an iOS app that predicts what’s in a photo. You do some googling, and you find out that you need to download a Core ML model and process the image through it. One approach you could take would be to modify an incoming &lt;code class=&quot;highlighter-rouge&quot;&gt;CVPixelBuffer&lt;/code&gt; like so:&lt;/p&gt;
-&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;resize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;pixelBuffer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CVPixelBuffer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CVPixelBuffer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;imageSize&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;299&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;ciImage&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CIImage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;cvPixelBuffer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pixelBuffer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;transform&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CGAffineTransform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;scaleX&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CGFloat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;imageSide&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CGFloat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;CVPixelBufferGetWidth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pixelBuffer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)),&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CGFloat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;imageSide&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CGFloat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;CVPixelBufferGetHeight&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pixelBuffer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)))&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;ciImage&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ciImage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;transformed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;by&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;transform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;cropped&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CGRect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;imageSide&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;imageSide&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;ciContext&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CIContext&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;resizeBuffer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CVPixelBuffer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?&lt;/span&gt;
-  &lt;span class=&quot;kt&quot;&gt;CVPixelBufferCreate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;kCFAllocatorDefault&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;imageSide&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;imageSide&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CVPixelBufferGetPixelFormatType&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pixelBuffer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;resizeBuffer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;ciContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ciImage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;resizeBuffer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;resizeBuffer&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;After you get your buffer resized, you then pass it through your model, and you do what you want with your predictions:&lt;/p&gt;
-
-&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;DispatchQueue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;global&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;qos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;userInteractive&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;pixelBuffer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;convert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;guard&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;prediction&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;prediction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pixelBuffer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;kt&quot;&gt;DispatchQueue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;screen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;updatePredictionLabel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;prediction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
- &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;Not bad, right? In just a short amount of code, you take an image and leverage the GPU of an Apple device with native iOS code to predict the contents of that image.
-This is great! However, this is also exactly why I made Lumina the way it is. Let’s look again at the singular line of code you need to enable Core ML with Lumina:&lt;/p&gt;
-&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;camera&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;streamingModelTypes&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;MobileNet&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;It’s not that it was difficult before - rather, I saw an opportunity to make it easier, so I took a shot at it. Let’s start at the beginning by deriving an interface.&lt;/p&gt;
-
-&lt;h2 id=&quot;the-interface&quot;&gt;The Interface&lt;/h2&gt;
-
-&lt;p&gt;When you design an application programming interface (API), it’s good practice to think in human terms about what you’re trying to accomplish. The goal of Lumina is to make using a camera in iOS as stress-free as possible. Thanks to iOS 11, the use of the camera includes using Core ML as well.&lt;/p&gt;
-
-&lt;p&gt;When designing this interface, I thought - how simple can I make this? In the sample app that comes with Lumina, I provide a file called MobileNet.mlmodel, which can be downloaded from Apple’s website here - we’ll refer to this model often.&lt;/p&gt;
-
-&lt;p&gt;Test Driven Development is a very widely discussed practice in software, but one basic tenet of the practice is to write your tests first, and then write code that makes your tests pass. Keeping this in mind, I decided to write the interface, and then write code to make the interface valid. I arrived at the snippet above that this article is based on, where you assign a collection of instantiated Core ML classes to &lt;code class=&quot;highlighter-rouge&quot;&gt;camera.streamingModelTypes&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;To utilize a Core ML model, Vision needs to access the property named model like so:&lt;/p&gt;
-&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;model&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;MobileNet&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;model&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;Core ML is not compatible with iOS 10 or below. However, because I want Lumina to be accessible to a wider array of developers, and I like a little bit of masochism, I wanted to maintain one code base that works for developers with and without access to Core ML. This meant that I had to store my models in a more generic variable container:&lt;/p&gt;
-&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;open&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;streamingModelTypes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;AnyObject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]?&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;My favorite video game of all time is Metal Gear Solid, and this image is appropriate:&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-	&lt;img src=&quot;https://cdn-images-1.medium.com/max/1600/1*Aw41MFyBfOiFiNCdsmR0DA.png&quot; /&gt;Nothing to see here, LLVM, move right along.
-&lt;/p&gt;
-
-&lt;p&gt;It would have been a lot easier to make developers wrap all of their code in &lt;code class=&quot;highlighter-rouge&quot;&gt;if #available (iOS 11.0, *)&lt;/code&gt; statements just to use my framework, but that wouldn’t be any fun, would it? Upon some reflection, I realized that I could work around this by using the Mirror class in Swift, like so:&lt;/p&gt;
-&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;types&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;reflection&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Mirror&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;reflecting&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;reflection&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;children&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;where&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;model&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;guard&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;model&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as?&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;MLModel&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;k&quot;&gt;continue&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;modelsToSet&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;reflection&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;subjectType&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;If you make a reflection of your object using Mirror, then you can loop through each property and match against the one you’re looking for. In this case, you’re looking for the model property, and if you can cast it to an object of type &lt;code class=&quot;highlighter-rouge&quot;&gt;MLModel&lt;/code&gt;, then you’re in luck. I use the &lt;code class=&quot;highlighter-rouge&quot;&gt;reflection.subjectType&lt;/code&gt; to keep track of which model is which.
-I wanted developers to only have to write one line of code to enable Core ML with Lumina, and thanks to Mirror, I was able to do that and maintain source compatibility with iOS 10. After some more handiwork, I pass these models down to the recognizer, and the real magic begins.&lt;/p&gt;
-
-&lt;h2 id=&quot;the-machinelearning&quot;&gt;The Machine Learning&lt;/h2&gt;
-
-&lt;p&gt;In Swift, it’s possible to use Core ML without the Vision framework, but to properly perform predictions with image classification models, you have to work to get the query image to the type of &lt;code class=&quot;highlighter-rouge&quot;&gt;CVPixelBuffer&lt;/code&gt; and the right dimensions. Thankfully, Vision makes predictions a lot easier from images, and does the heavy image manipulation work for me, so I can just give it a CoreGraphics image, and get what I need back!
-First, I create a struct for my result type called &lt;code class=&quot;highlighter-rouge&quot;&gt;LuminaPrediction&lt;/code&gt;, so I can keep my framework iOS 10 compatible:&lt;/p&gt;
-&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;LuminaPrediction&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;
-  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;confidence&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Float&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;Next, I create a buffer collection for my results, and a &lt;code class=&quot;highlighter-rouge&quot;&gt;DispatchGroup&lt;/code&gt; to act as a semaphore like so:&lt;/p&gt;
-&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;recognitionResults&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[([&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;LuminaPrediction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]?,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Any&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;Type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)]()&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;recognitionGroup&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;DispatchGroup&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;Now that I have a collection of models, even typed as Core ML objects, and their associated model names, I can create a request using &lt;code class=&quot;highlighter-rouge&quot;&gt;VNCoreMLRequest&lt;/code&gt; for each model I have like so:&lt;/p&gt;
-&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;guard&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;visionModel&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;VNCore&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;MLModel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;modelPair&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;recognitionGroup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;leave&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;continue&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;request&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;VNCore&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;MLRequest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;visionModel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;error&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;error&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;nil&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;results&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;nil&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;recognitionResults&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;modelPair&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;recognitionGroup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;leave&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;results&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;results&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// this function converts my results to my struct&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;mappedResults&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;mapResults&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;results&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;recognitionResults&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mappedResults&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;modelPair&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;recognitionGroup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;leave&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;Once this request is performed, if you don’t have an error, then &lt;code class=&quot;highlighter-rouge&quot;&gt;mapResults&lt;/code&gt; takes your predictions, which are currently of type &lt;code class=&quot;highlighter-rouge&quot;&gt;VNClassificationObservation&lt;/code&gt;, and converts them to a collection of my iOS 10 compatible struct:&lt;/p&gt;
-&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;mapResults&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;objects&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Any&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;LuminaPrediction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;results&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;LuminaPrediction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]()&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;object&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;objects&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;object&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;object&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as?&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;VNClassificationObservation&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;results&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;LuminaPrediction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;identifier&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;confidence&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;confidence&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; 
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;results&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;sorted&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;by&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;confidence&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;confidence&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;With each request set up like this, I have to set up a handler with my query image to perform each request:&lt;/p&gt;
-&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;guard&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;coreImage&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cgImage&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;recognitionGroup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;leave&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;continue&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;handler&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;VNImageRequestHandler&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;cgImage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;coreImage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;handler&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;perform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;recognitionGroup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;leave&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;DispatchGroup&lt;/code&gt; I created will then notify the main thread to fire off once I’m done, sending a completion handler containing my results:&lt;/p&gt;
-&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;recognitionGroup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;notify&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;queue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;DispatchQueue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nf&quot;&gt;completion&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;recognitionResults&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;Whew! A lot of work to do, but thanks to Vision and Core ML, I was able to hand an image off to iOS, and the GPU gives me back a stream of predictions for each frame my camera processes. The delegate function that ultimately returns the predictions out of the framework looks like so:&lt;/p&gt;
-&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;streamed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;videoFrame&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;UIImage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;predictions&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[([&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;LuminaPrediction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]?,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Any&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;Type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)]?,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;controller&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;LuminaViewController&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;// handle your results here&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;the-endresult&quot;&gt;The End Result&lt;/h2&gt;
-
-&lt;p&gt;Thanks to Lumina, you can point your device at any object, and your result in real time should look something like this:&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-	&lt;img src=&quot;https://cdn-images-1.medium.com/max/1600/1*60zXl6pWeAdgMcZ2_xBJpQ.png&quot; /&gt;On the right side, Xcode tells you an ordered list of each prediction made by the model. The query image is on the left. On an iPhone 7+ this prediction takes ~0.1 seconds.
-&lt;/p&gt;
-
-&lt;p&gt;One line of code goes a long way, doesn’t it?&lt;/p&gt;
-
-&lt;p&gt;Lumina is still under active development on GitHub, and as the capabilities of Core ML expand throughout iOS, I’d love to make sure Lumina remains the fastest way to utilize image classification with Core ML.&lt;/p&gt;
-
-&lt;p&gt;I wrote a separate blog post about the capabilities of Lumina on my own website, so feel free to give it a read, and more importantly, give Lumina a try! Follow me on Twitter to see what I’m up to next!&lt;/p&gt;
-
-&lt;p&gt;NB: Thank you to &lt;a href=&quot;https://twitter.com/nathangitter&quot;&gt;Nathan Gitter&lt;/a&gt;, &lt;a href=&quot;https://twitter.com/canberkozcelik&quot;&gt;Canberk Özçelik&lt;/a&gt;, and &lt;a href=&quot;https://twitter.com/raymondcamden&quot;&gt;Raymond Camden&lt;/a&gt; for their help editing this article!&lt;/p&gt;</content><author><name>David Okun</name></author><summary type="html">Editor’s Note: This is mirrored from Fritz.ai.</summary></entry></feed>
+&lt;p&gt;If you have any questions or comments, please join the forum discussion below!&lt;/p&gt;</content><author><name>David Okun</name></author><summary type="html"></summary></entry></feed>
