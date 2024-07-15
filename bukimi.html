@@ -8,58 +8,126 @@
     <script type="text/javascript">
         function sendWebKitEventOne(body) {
             if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.testEvent) {
-                window.webkit.messageHandlers.testEvent.postMessage(body);
+                window.webkit.messageHandlers.testEvent.postMessage({"tapped": true});
             }
         }
 
         function sendWebKitEventTwo(body) {
             if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.linkNinja) {
-                window.webkit.messageHandlers.linkNinja.postMessage(body);
+                window.webkit.messageHandlers.linkNinja.postMessage(
+                    {
+                        "id": "001",
+                        "name": "Wireless Headphones",
+                        "category": "Electronics",
+                        "price": 99.99,
+                        "currency": "USD",
+                        "description": "High-quality wireless headphones with noise-cancelling feature.",
+                        "availability": "In Stock",
+                        "tags": [
+                            "wireless",
+                            "headphones",
+                            "electronics",
+                            "audio"
+                        ]
+                    }
+                );
             }
         }
 
         function sendWebKitEventThree(body) {
-            if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.searchButtonTapped) {
-                window.webkit.messageHandlers.searchButtonTapped.postMessage(body);
+            if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.search) {
+                window.webkit.messageHandlers.search.postMessage(
+                    {
+                        "searchTerm": "Bukimi",
+                        "results": [
+                            {
+                                "id": "001",
+                                "name": "Wireless Headphones",
+                                "category": "Electronics",
+                                "price": 99.99,
+                                "currency": "USD",
+                                "description": "High-quality wireless headphones with noise-cancelling feature.",
+                                "availability": "In Stock",
+                                "tags": [
+                                    "wireless",
+                                    "headphones",
+                                    "electronics",
+                                    "audio"
+                                ]
+                            },
+                            {
+                                "id": "002",
+                                "name": "Running Shoes",
+                                "category": "Sportswear",
+                                "price": 79.99,
+                                "currency": "USD",
+                                "description": "Comfortable and durable running shoes for all terrains.",
+                                "availability": "In Stock",
+                                "tags": [
+                                    "shoes", 
+                                    "running", 
+                                    "sportswear", 
+                                    "footwear"
+                                ]
+                            },
+                            {
+                                "id": "004",
+                                "name": "Espresso Machine",
+                                "category": "Home Appliances",
+                                "price": 249.99,
+                                "currency": "USD",
+                                "description": "Automatic espresso machine with built-in grinder.",
+                                "availability": "Out of Stock",
+                                "tags": [
+                                    "espresso",
+                                    "coffee", 
+                                    "home appliances", 
+                                    "kitchen"
+                                ]
+                            }
+                        ]
+                    }
+                );
             }
         }
 
         function bukimiListRegisteredEvents() {
             const events = [];
-            const eventElements = document.querySelectorAll("#eventList li");
+            const eventElements = document.querySelectorAll("#bukimiEventList li");
             eventElements.forEach(element => {
                 events.push(element.textContent);
             });
             return events
         }
 
-        function sendRegisteredEvents() {
+        function bukimiSendRegisteredEvents() {
             const events = [];
-            const eventElements = document.querySelectorAll("#eventList li");
+            const eventElements = document.querySelectorAll("#bukimiEventList li");
             eventElements.forEach(element => {
                 events.push(element.textContent);
             });
             return events
             if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.bukimiRegisterEvents) {
-                window.webkit.messageHandlers.registerEvents.postMessage(events);
+                window.webkit.messageHandlers.bukimiRegisterEvents.postMessage(events);
             }
         }
 
         document.addEventListener("DOMContentLoaded", function() {
-            sendRegisteredEvents();
+            bukimiSendRegisteredEvents();
         });
     </script>
 </head>
 <body>
     <h1>Bukimi Test Page</h1>
-    <button onclick="sendWebKitEventOne()">Test Event 1</button>
-    <button onclick="sendWebKitEventTwo()">Test Event 2</button>
-    <button onclick="sendWebKitEventThree()">Test Event 3</button>
+    <h3>Webkit Interop Handlers</h3>
+    <button onclick="sendWebKitEventOne()">testEvent</button>
+    <button onclick="sendWebKitEventTwo()">linkNinja</button>
+    <button onclick="sendWebKitEventThree()">search</button>
 
-    <ul id="eventList" style="display:none;">
+    <ul id="bukimiEventList" style="display:none;">
         <li>testEvent</li>
-        <li>searchButtonTapped</li>
         <li>linkNinja</li>
+        <li>search</li>
     </ul>
 </body>
 </html>
