@@ -4,121 +4,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="language" content="en" />
-
-    <script type="text/javascript">
-        function sendWebKitEventOne(body) {
-            if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.testEvent) {
-                window.webkit.messageHandlers.testEvent.postMessage({"tapped": true});
-            }
-        }
-
-        function sendWebKitEventTwo(body) {
-            if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.linkNinja) {
-                window.webkit.messageHandlers.linkNinja.postMessage(
-                    {
-                        "id": "001",
-                        "name": "Wireless Headphones",
-                        "category": "Electronics",
-                        "price": 99.99,
-                        "currency": "USD",
-                        "description": "High-quality wireless headphones with noise-cancelling feature.",
-                        "availability": "In Stock",
-                        "tags": [
-                            "wireless",
-                            "headphones",
-                            "electronics",
-                            "audio"
-                        ]
-                    }
-                );
-            }
-        }
-
-        function sendWebKitEventThree(body) {
-            if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.search) {
-                window.webkit.messageHandlers.search.postMessage(
-                    {
-                        "searchTerm": "Bukimi",
-                        "results": [
-                            {
-                                "id": "001",
-                                "name": "Wireless Headphones",
-                                "category": "Electronics",
-                                "price": 99.99,
-                                "currency": "USD",
-                                "description": "High-quality wireless headphones with noise-cancelling feature.",
-                                "availability": "In Stock",
-                                "tags": [
-                                    "wireless",
-                                    "headphones",
-                                    "electronics",
-                                    "audio"
-                                ]
-                            },
-                            {
-                                "id": "002",
-                                "name": "Running Shoes",
-                                "category": "Sportswear",
-                                "price": 79.99,
-                                "currency": "USD",
-                                "description": "Comfortable and durable running shoes for all terrains.",
-                                "availability": "In Stock",
-                                "tags": [
-                                    "shoes", 
-                                    "running", 
-                                    "sportswear", 
-                                    "footwear"
-                                ]
-                            },
-                            {
-                                "id": "004",
-                                "name": "Espresso Machine",
-                                "category": "Home Appliances",
-                                "price": 249.99,
-                                "currency": "USD",
-                                "description": "Automatic espresso machine with built-in grinder.",
-                                "availability": "Out of Stock",
-                                "tags": [
-                                    "espresso",
-                                    "coffee", 
-                                    "home appliances", 
-                                    "kitchen"
-                                ]
-                            }
-                        ]
-                    }
-                );
-            }
-        }
-
-        function bukimiListRegisteredEvents() {
-            const events = [];
-            const eventElements = document.querySelectorAll("#bukimiEventList li");
-            eventElements.forEach(element => {
-                events.push(element.textContent);
-            });
-            return events
-        }
-
-        // function bukimiSendRegisteredEvents() {
-        //     const events = [];
-        //     const eventElements = document.querySelectorAll("#bukimiEventList li");
-        //     eventElements.forEach(element => {
-        //         events.push(element.textContent);
-        //     });
-        //     return events
-        //     if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.bukimiRegisterEvents) {
-        //         window.webkit.messageHandlers.bukimiRegisterEvents.postMessage(events);
-        //     }
-        // }
-
-        // document.addEventListener("DOMContentLoaded", function() {
-        //     bukimiSendRegisteredEvents();
-        // });
-    </script>
 </head>
 <body>
-    <h1>Bukimi Test Page</h1>
+    <h1>Bukimi Test Webpage</h1>
     <h3>Webkit Interop Handlers</h3>
     <button onclick="sendWebKitEventOne()">testEvent</button>
     <button onclick="sendWebKitEventTwo()">linkNinja</button>
@@ -130,4 +18,99 @@
         <li>search</li>
     </ul>
 </body>
+<script type="text/javascript">
+    function bukimiListRegisteredEvents() {
+        const events = [];
+        const eventElements = document.querySelectorAll("#bukimiEventList li");
+        eventElements.forEach(element => {
+            events.push(element.textContent);
+        });
+        return events
+    }
+
+    function sendWebKitEventOne(body) {
+        if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.testEvent) {
+            window.webkit.messageHandlers.testEvent.postMessage({"tapped": true});
+        }
+    }
+
+    function sendWebKitEventTwo(body) {
+        if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.linkNinja) {
+            window.webkit.messageHandlers.linkNinja.postMessage(
+                {
+                    "id": "001",
+                    "name": "Wireless Headphones",
+                    "category": "Electronics",
+                    "price": 99.99,
+                    "currency": "USD",
+                    "description": "High-quality wireless headphones with noise-cancelling feature.",
+                    "availability": "In Stock",
+                    "tags": [
+                        "wireless",
+                        "headphones",
+                        "electronics",
+                        "audio"
+                    ]
+                }
+            );
+        }
+    }
+
+    function sendWebKitEventThree(body) {
+        if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.search) {
+            window.webkit.messageHandlers.search.postMessage(
+                {
+                    "searchTerm": "Bukimi",
+                    "results": [
+                        {
+                            "id": "001",
+                            "name": "Wireless Headphones",
+                            "category": "Electronics",
+                            "price": 99.99,
+                            "currency": "USD",
+                            "description": "High-quality wireless headphones with noise-cancelling feature.",
+                            "availability": "In Stock",
+                            "tags": [
+                                "wireless",
+                                "headphones",
+                                "electronics",
+                                "audio"
+                            ]
+                        },
+                        {
+                            "id": "002",
+                            "name": "Running Shoes",
+                            "category": "Sportswear",
+                            "price": 79.99,
+                            "currency": "USD",
+                            "description": "Comfortable and durable running shoes for all terrains.",
+                            "availability": "In Stock",
+                            "tags": [
+                                "shoes", 
+                                "running", 
+                                "sportswear", 
+                                "footwear"
+                            ]
+                        },
+                        {
+                            "id": "004",
+                            "name": "Espresso Machine",
+                            "category": "Home Appliances",
+                            "price": 249.99,
+                            "currency": "USD",
+                            "description": "Automatic espresso machine with built-in grinder.",
+                            "availability": "Out of Stock",
+                            "tags": [
+                                "espresso",
+                                "coffee", 
+                                "home appliances", 
+                                "kitchen"
+                            ]
+                        }
+                    ]
+                }
+            );
+        }
+    }
+</script>
 </html>
