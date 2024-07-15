@@ -100,21 +100,21 @@
             return events
         }
 
-        function bukimiSendRegisteredEvents() {
-            const events = [];
-            const eventElements = document.querySelectorAll("#bukimiEventList li");
-            eventElements.forEach(element => {
-                events.push(element.textContent);
-            });
-            return events
-            if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.bukimiRegisterEvents) {
-                window.webkit.messageHandlers.bukimiRegisterEvents.postMessage(events);
-            }
-        }
+        // function bukimiSendRegisteredEvents() {
+        //     const events = [];
+        //     const eventElements = document.querySelectorAll("#bukimiEventList li");
+        //     eventElements.forEach(element => {
+        //         events.push(element.textContent);
+        //     });
+        //     return events
+        //     if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.bukimiRegisterEvents) {
+        //         window.webkit.messageHandlers.bukimiRegisterEvents.postMessage(events);
+        //     }
+        // }
 
-        document.addEventListener("DOMContentLoaded", function() {
-            bukimiSendRegisteredEvents();
-        });
+        // document.addEventListener("DOMContentLoaded", function() {
+        //     bukimiSendRegisteredEvents();
+        // });
     </script>
 </head>
 <body>
