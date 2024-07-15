@@ -1,0 +1,65 @@
+<html>
+<head>
+	<title>Bukimi Test Page</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="language" content="en" />	
+
+<script type="text/javascript">
+
+// function launchNativeProductSearch() {
+//     if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.searchButtonTapped) {
+//         // Need to send empty JSON object
+//         window.webkit.messageHandlers.searchButtonTapped.postMessage({});
+//     }
+// }
+
+// function launchNativeLinkNinja(advertiserId, advertiserName) {
+//     if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.linkNinja) {
+//         // Send iOS app the retailer info
+//         window.webkit.messageHandlers.linkNinja.postMessage({
+//             "advertiserId": advertiserId,
+//             "advertiserName": advertiserName,
+//         });
+//     }
+// }
+
+// function createEventList() {
+//     const registeredEvents = document.getElementById("registeredEvents");
+//     registeredEvents.innerHTML = "";
+
+//     if (window.webkit && window.webkit.messageHandlers) {
+//         console.log(window.webkit.messageHandlers);
+//         console.log(window.webkit.messageHandlers.linkNinja);
+// 	console.log(window.webkit.messageHandlers.notYetImplemented);
+//         for (const handlerName in window.webkit.messageHandlers) {
+//             let li = document.createElement("li");
+//             li.textContent = "test";
+//             registeredEvents.appendChild(li);
+//         }
+//     } else {
+//         let li = document.createElement("li");
+//         li.textContent = "window.webkit.messageHandlers is undefined outside of a WKWebView";
+//         registeredEvents.appendChild(li);
+//     }
+// }
+
+    function myFunction() {
+        alert("Button was clicked!");
+        sendWebKitEvent({ "buttonClicked": true });
+    }
+
+    function sendWebKitEvent(body) {
+        if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.testEvent) {
+            window.webkit.messageHandlers.testEvent.postMessage(body);
+        }
+    }
+</script>
+</head>
+<body>
+    <h1>Bukimi Test Page</h1>
+    <button onclick="myFunction()">Click me</button>
+</body>
+<html>
+
+
