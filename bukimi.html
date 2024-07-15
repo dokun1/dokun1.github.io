@@ -24,12 +24,22 @@
             }
         }
 
+        function bukimiListRegisteredEvents() {
+            const events = [];
+            const eventElements = document.querySelectorAll("#eventList li");
+            eventElements.forEach(element => {
+                events.push(element.textContent);
+            });
+            return events
+        }
+
         function sendRegisteredEvents() {
             const events = [];
             const eventElements = document.querySelectorAll("#eventList li");
             eventElements.forEach(element => {
                 events.push(element.textContent);
             });
+            return events
             if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.bukimiRegisterEvents) {
                 window.webkit.messageHandlers.registerEvents.postMessage(events);
             }
