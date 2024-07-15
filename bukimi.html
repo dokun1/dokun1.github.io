@@ -14,13 +14,13 @@
 
         function sendWebKitEventTwo(body) {
             if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.linkNinja) {
-                window.webkit.messageHandlers.testEvent.postMessage(body);
+                window.webkit.messageHandlers.linkNinja.postMessage(body);
             }
         }
 
         function sendWebKitEventThree(body) {
             if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.searchButtonTapped) {
-                window.webkit.messageHandlers.testEvent.postMessage(body);
+                window.webkit.messageHandlers.searchButtonTapped.postMessage(body);
             }
         }
 
