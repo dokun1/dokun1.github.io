@@ -10,9 +10,21 @@
         }
 
         function openMultipleURLs() {
-            setTimeout(function() { window.open('https://www.google.com', '_blank'); }, 100);
-            setTimeout(function() { window.open('https://www.bing.com', '_blank'); }, 200);
-            setTimeout(function() { window.open('https://www.shopltk.com', '_blank'); }, 300);
+            const urls = [
+                'https://www.google.com',
+                'https://www.bing.com',
+                'https://www.shopltk.com'
+            ];
+
+            urls.forEach((url, index) => {
+                const link = document.createElement('a');
+                link.href = url;
+                link.target = '_blank';
+                link.style.display = 'none';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            });
         }
     </script>
 </head>
