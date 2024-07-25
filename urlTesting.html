@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open URLs</title>
+    <script>
+        function openSingleURL() {
+            window.open('https://www.example.com', '_blank');
+        }
+
+        function openMultipleURLs() {
+            window.open('https://www.example1.com', '_blank');
+            window.open('https://www.example2.com', '_blank');
+            window.open('https://www.example3.com', '_blank');
+        }
+    </script>
+</head>
+<body>
+    <h1>Open URLs Example</h1>
+    <button onclick="openSingleURL()">Open Single URL</button>
+    <button onclick="openMultipleURLs()">Open Multiple URLs</button>
+</body>
+</html>
