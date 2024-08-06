@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bukimi Test Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bukimi Test Page</h1>
+    <button onclick="displayCookies()">Show Cookies</button>
+    <button onclick="displayLocalStorage()">Show Local Storage</button>
+
+    <h2>Cookies</h2>
+    <table id="cookiesTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Cookies will be displayed here -->
+        </tbody>
+    </table>
+
+    <h2>Local Storage</h2>
+    <table id="localStorageTable">
+        <thead>
+            <tr>
+                <th>Key</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Local Storage items will be displayed here -->
+        </tbody>
+    </table>
+
+    <script>
+        function displayCookies() {
+            const cookies = document.cookie.split(';');
+            const tableBody = document.getElementById('cookiesTable').getElementsByTagName('tbody')[0];
+            tableBody.innerHTML = ''; // Clear existing content
+
+            cookies.forEach(cookie => {
+                const [name, value] = cookie.split('=').map(c => c.trim());
+                const row = tableBody.insertRow();
+                const nameCell = row.insertCell(0);
+                const valueCell = row.insertCell(1);
+
+                nameCell.textContent = name;
+                valueCell.textContent = value;
+            });
+        }
+
+        function displayLocalStorage() {
+            const tableBody = document.getElementById('localStorageTable').getElementsByTagName('tbody')[0];
+            tableBody.innerHTML = ''; // Clear existing content
+
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                const value = localStorage.getItem(key);
+                const row = tableBody.insertRow();
+                const keyCell = row.insertCell(0);
+                const valueCell = row.insertCell(1);
+
+                keyCell.textContent = key;
+                valueCell.textContent = value;
+            }
+        }
+
+        // Optionally display cookies and local storage on page load
+        window.onload = function() {
+            displayCookies();
+            displayLocalStorage();
+        };
+    </script>
+</body>
+</html>
