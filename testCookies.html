@@ -19,6 +19,7 @@
             flex-direction: column;
             justify-content: space-between;
             align-items: flex-start;
+            word-wrap: break-word;
         }
 
         .list-item-title {
@@ -53,7 +54,16 @@
             display: none;
             margin-top: 4px;
             width: 100%;
+            overflow-wrap: break-word;
+            /* Use break-word to force wrap */
+        }
+
+        .value-container pre {
+            white-space: pre-wrap;
+            /* Ensures that text wraps inside the pre element */
             word-wrap: break-word;
+            overflow-wrap: anywhere;
+            /* Ensures that any long word can wrap anywhere */
         }
 
         .expanded .expand-icon {
