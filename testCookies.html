@@ -8,19 +8,51 @@
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
+            max-width: 800px;
+            margin: auto;
         }
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            margin-bottom: 20px;
-        }
-        th, td {
-            border: 1px solid #ddd;
+
+        .list-item {
+            border-bottom: 1px solid #ddd;
             padding: 8px;
-            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        th {
-            background-color: #f4f4f4;
+
+        .list-item-title {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .value-container {
+            display: none;
+            margin-top: 4px;
+        }
+
+        .expand-icon {
+            cursor: pointer;
+            margin-left: 8px;
+            transition: transform 0.2s;
+        }
+
+        .copy-icon {
+            cursor: pointer;
+            font-size: 12px;
+            margin-left: 8px;
+            border: none;
+            background: none;
+            color: #333;
+            transition: color 0.3s;
+        }
+
+        .copy-icon:hover {
+            color: #007BFF;
+        }
+
+        .expanded .expand-icon {
+            transform: rotate(180deg);
         }
     </style>
 </head>
@@ -30,62 +62,69 @@
     <button onclick="displayLocalStorage()">Show Local Storage</button>
 
     <h2>Cookies</h2>
-    <table id="cookiesTable">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Value</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Cookies will be displayed here -->
-        </tbody>
-    </table>
+    <div id="cookiesList">
+        <!-- Cookies will be displayed here -->
+    </div>
 
     <h2>Local Storage</h2>
-    <table id="localStorageTable">
-        <thead>
-            <tr>
-                <th>Key</th>
-                <th>Value</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Local Storage items will be displayed here -->
-        </tbody>
-    </table>
+    <div id="localStorageList">
+        <!-- Local Storage items will be displayed here -->
+    </div>
 
     <script>
+        function createListItem(name, value) {
+            const listItem = document.createElement('div');
+            listItem.className = 'list-item';
+
+            const title = document.createElement('div');
+            title.className = 'list-item-title';
+            title.innerHTML = `${name} <span class="expand-icon">▼</span>`;
+            title.onclick = () => toggleValue(listItem);
+
+            const valueContainer = document.createElement('div');
+            valueContainer.className = 'value-container';
+            valueContainer.innerHTML = `<pre>${value}</pre><button class="copy-icon" onclick="copyToClipboard('${value}')">📋 Copy</button>`;
+
+            listItem.appendChild(title);
+            listItem.appendChild(valueContainer);
+
+            return listItem;
+        }
+
+        function toggleValue(listItem) {
+            const valueContainer = listItem.querySelector('.value-container');
+            valueContainer.style.display = valueContainer.style.display === 'block' ? 'none' : 'block';
+            listItem.classList.toggle('expanded');
+        }
+
         function displayCookies() {
             const cookies = document.cookie.split(';');
-            const tableBody = document.getElementById('cookiesTable').getElementsByTagName('tbody')[0];
-            tableBody.innerHTML = ''; // Clear existing content
+            const cookiesList = document.getElementById('cookiesList');
+            cookiesList.innerHTML = ''; // Clear existing content
 
             cookies.forEach(cookie => {
                 const [name, value] = cookie.split('=').map(c => c.trim());
-                const row = tableBody.insertRow();
-                const nameCell = row.insertCell(0);
-                const valueCell = row.insertCell(1);
-
-                nameCell.textContent = name;
-                valueCell.textContent = value;
+                const listItem = createListItem(name, value);
+                cookiesList.appendChild(listItem);
             });
         }
 
         function displayLocalStorage() {
-            const tableBody = document.getElementById('localStorageTable').getElementsByTagName('tbody')[0];
-            tableBody.innerHTML = ''; // Clear existing content
+            const localStorageList = document.getElementById('localStorageList');
+            localStorageList.innerHTML = ''; // Clear existing content
 
             for (let i = 0; i < localStorage.length; i++) {
                 const key = localStorage.key(i);
                 const value = localStorage.getItem(key);
-                const row = tableBody.insertRow();
-                const keyCell = row.insertCell(0);
-                const valueCell = row.insertCell(1);
-
-                keyCell.textContent = key;
-                valueCell.textContent = value;
+                const listItem = createListItem(key, value);
+                localStorageList.appendChild(listItem);
             }
+        }
+
+        function copyToClipboard(value) {
+            navigator.clipboard.writeText(value)
+                .then(() => alert("Copied to clipboard!"))
+                .catch(err => console.error("Could not copy text: ", err));
         }
 
         // Optionally display cookies and local storage on page load
