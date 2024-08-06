@@ -16,19 +16,17 @@
             border-bottom: 1px solid #ddd;
             padding: 8px;
             display: flex;
+            flex-direction: column;
             justify-content: space-between;
-            align-items: center;
+            align-items: flex-start;
         }
 
         .list-item-title {
             display: flex;
             align-items: center;
             cursor: pointer;
-        }
-
-        .value-container {
-            display: none;
-            margin-top: 4px;
+            width: 100%;
+            justify-content: space-between;
         }
 
         .expand-icon {
@@ -49,6 +47,13 @@
 
         .copy-icon:hover {
             color: #007BFF;
+        }
+
+        .value-container {
+            display: none;
+            margin-top: 4px;
+            width: 100%;
+            word-wrap: break-word;
         }
 
         .expanded .expand-icon {
@@ -78,12 +83,27 @@
 
             const title = document.createElement('div');
             title.className = 'list-item-title';
-            title.innerHTML = `${name} <span class="expand-icon">▼</span>`;
-            title.onclick = () => toggleValue(listItem);
+
+            const nameLabel = document.createElement('span');
+            nameLabel.textContent = name;
+
+            const expandIcon = document.createElement('span');
+            expandIcon.className = 'expand-icon';
+            expandIcon.textContent = '▼';
+            expandIcon.onclick = () => toggleValue(listItem);
+
+            const copyNameIcon = document.createElement('button');
+            copyNameIcon.className = 'copy-icon';
+            copyNameIcon.textContent = '📋 Copy Name';
+            copyNameIcon.onclick = () => copyToClipboard(name);
+
+            title.appendChild(nameLabel);
+            title.appendChild(expandIcon);
+            title.appendChild(copyNameIcon);
 
             const valueContainer = document.createElement('div');
             valueContainer.className = 'value-container';
-            valueContainer.innerHTML = `<pre>${value}</pre><button class="copy-icon" onclick="copyToClipboard('${value}')">📋 Copy</button>`;
+            valueContainer.innerHTML = `<pre>${value}</pre><button class="copy-icon" onclick="copyToClipboard('${value}')">📋 Copy Value</button>`;
 
             listItem.appendChild(title);
             listItem.appendChild(valueContainer);
@@ -121,8 +141,8 @@
             }
         }
 
-        function copyToClipboard(value) {
-            navigator.clipboard.writeText(value)
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text)
                 .then(() => alert("Copied to clipboard!"))
                 .catch(err => console.error("Could not copy text: ", err));
         }
